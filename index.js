@@ -9,8 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   logo.addEventListener('mouseleave', () => {
     logo.style.textShadow = "0 0 10px var(--green)";
   });
-  
-  alert("⚠️ SYSTEM ERROR 0x00FREAK: Something’s... off.\n\nReality may be unstable. Time may loop. But your signal synced.\n\nExit is theoretical. Stay if you hear the static.\n_glitch.breathe()");
 
 let currentSound = null;
 

@@ -94,10 +94,44 @@ Ive been playing guitar for some time and i came to the conclusion that you dont
 
 <div id="flashOverlay"></div>
   </main>
-
+  
   <footer class="footer">
-    <p>&copy; 2025 Neural Override – Loud. Dirty. Real.</p>
-  </footer>
+
+  <p>&copy; 2025 Neural Override – Loud. Dirty. Real.</p>
+  
+  <button id="impressumToggle" style="background:#222; color:#eee; border:none; padding:10px 15px; cursor:pointer; margin-top:10px;">
+    Impressum anzeigen
+  </button>
+  
+  <div id="impressumContent" style="display:none; margin-top:15px; line-height:1.5; font-size: 0.9em; color:#ccc;">
+    <p>
+      Dominik Oellers<br>
+      Poststraße 16<br>
+      41363 Jüchen<br>
+      Deutschland<br><br>
+      Telefon: +49 176 47951298<br>
+      E-Mail: Dominik.Oellers@gmx.de<br><br>
+      Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:<br>
+      Dominik Oellers
+    </p>
+  </div>
+  
+  <script>
+    const btn = document.getElementById('impressumToggle');
+    const content = document.getElementById('impressumContent');
+    
+    btn.addEventListener('click', () => {
+      if (content.style.display === 'none') {
+        content.style.display = 'block';
+        btn.textContent = 'Impressum verbergen';
+      } else {
+        content.style.display = 'none';
+        btn.textContent = 'Impressum anzeigen';
+      }
+    });
+  </script>
+
+</footer>
 
   <script src="index.js"></script>
 </body>
