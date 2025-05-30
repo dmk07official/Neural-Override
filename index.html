@@ -11,10 +11,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" defer></script>
 </head>
 <body>
+  
+  <div id="epilepsy-warning">
+  <div class="warning-box">
+    <h2>Epilepsy Warning</h2>
+    <p>This site contains fast flashing lights, glitch effects and visual distortions that may potentially trigger seizures for people with photosensitive epilepsy.</p>
+    <p>Viewer discretion is advised. All effects used are 100% safe and purely stylistic.</p>
+    <button id="continueBtn">OK, Proceed</button>
+  </div>
+</div>
+  
   <header class="header">
     <h1 class="logo">NEURAL OVERRIDE</h1>
     <nav class="nav">
-      <a href="#">Home</a>
+      <a href="#news">News</a>
       <a href="#about">About</a>
       <a href="#songs">Songs</a>
       <a href="#social">Connect</a>
@@ -22,22 +32,57 @@
     </nav>
   </header>
 
-  <main>
+  <main>    
     <section class="hero anchor-fix">
       <div class="noise-bg" aria-hidden="true"></div>
       <h2>E-Punk from Hell</h2>
       <p>No compromise. No filter. Just noise and truth.</p>
     </section>
+    
+    <section id="news" class="news anchor-fix">
+  <h3>News</h3>
+  
+  <div id="news-container">
+    
+    <div class="news-item">
+      <h4>WORKING ON A NEW SONG</h4>
+      <p>New Song is in the works. Itll be a lot more pop - ish (sucking the mainstreams d). We got a Riff and dmk07 will be part of it (hes basically part of Neural Override Corp. GmbH. CoKg. And whatever.</p>
+      <div class="news-date">30.05.2025</div>
+    </div>
+    
+    <div class="news-item">
+      <h4>UNBANNED</h4>
+      <p>The system tried to get rid of me but I rebelled (i wrote the Soundcloud support ❤️) and got my shit back. Now once again you can listen to my shitty tracks 🔥🔥</p>
+      <div class="news-date">29.05.2025</div>
+    </div>
+    
+    <div class="news-item">
+      <h4>WEBSITE ONLINE</h4>
+      <p>We're online guys! I got a fuckin website now (shoutout to dmk07 for coding). Now you can access my shit and read news and all that shit.</p>
+      <div class="news-date">28.05.2025</div>
+    </div>
+  
+  <div id="news-nav">
+    <button id="prev-news">‹</button>
+    <button id="next-news">›</button>
+  </div>
+</section>
 
-    <section id="about" class="about anchor-fix">
-      <h3>About</h3>
-      <p>Im Neural Override and ive been doing music since the start of 2025
-<br>
-<br>
+    <section id="about" class="about anchor-fix" style="text-align:center;">
+  <img 
+    src="profile.jpg" 
+    alt="Neural Override" 
+    style="width:150px; height:150px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem; border: 3px solid var(--green); box-shadow: 0 0 15px var(--green);"
+  />
+  <h3 style="color: var(--green); font-size: 2rem; margin-bottom: 1rem; text-shadow: 0 0 10px var(--green);">About</h3>
+  <p style="max-width: 600px; margin: 0 auto; color: var(--light); font-family: var(--font-main); white-space: pre-line; line-height: 1.5;">
+Im Neural Override and ive been doing music since the start of 2025
+
 Ive been playing guitar for some time and i came to the conclusion that you dont need alot if skill to make music even if its shitty. Ive just been pissed of by alot of things and thought Id make some music about that shit. After some trial and error Neural Override came to be. Now I just make music while drunk about things that force me to get drunk. Listen to my songs (shameless advertisement). Fuck yall and have fun!
-<br>
--Neural Override<span id="cursor">|</span></p>
-    </section>
+
+-Neural Override<span id="cursor">|</span>
+  </p>
+</section>
 
     <section id="songs" class="songs anchor-fix">
       <h3>Songs</h3>
@@ -88,6 +133,10 @@ Ive been playing guitar for some time and i came to the conclusion that you dont
       <img src="x.svg" alt="X (Twitter)" />
       <span>X</span>
     </a>
+    <a href="https://youtube.com/@choke-t5b?si=4iYV6P7hXb4NGGse" target="_blank" class="social-icon" aria-label="X">
+      <img src="youtube.svg" alt="Youtube" />
+      <span>Youtube</span>
+    </a>
   </div>
 </section>
 
@@ -97,9 +146,9 @@ Ive been playing guitar for some time and i came to the conclusion that you dont
   
   <footer class="footer">
 
-  <p>&copy; 2025 Neural Override – Loud. Dirty. Real.</p>
+  <p>&copy; 2025 Neural Override – icons by <a href="https://icons8.com/">icons8.com</a></p>
   
-  <button id="impressumToggle" style="background:#222; color:#eee; border:none; padding:10px 15px; cursor:pointer; margin-top:10px;">
+  <button id="impressumToggle" style="background:#111; color: var(--green); border:2px solid var(--green); border-radius: 10px; padding:10px 15px; cursor:pointer; margin-top:10px;">
     Impressum anzeigen
   </button>
   

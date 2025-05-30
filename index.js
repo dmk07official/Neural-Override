@@ -9,6 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
   logo.addEventListener('mouseleave', () => {
     logo.style.textShadow = "0 0 10px var(--green)";
   });
+  document.getElementById("continueBtn").addEventListener("click", function () {
+    document.getElementById("epilepsy-warning").style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+
+  // Disable scrolling while popup is active
+  document.body.style.overflow = "hidden";
 
 let currentSound = null;
 
@@ -209,5 +216,43 @@ function typeLoop() {
 }
 
 typeLoop();
+
+  
+  const newsItems = document.querySelectorAll(".news-item");
+  const prevBtn = document.getElementById("prev-news");
+  const nextBtn = document.getElementById("next-news");
+
+  let currentIndex = 0;
+  const itemsPerPage = 2;
+
+  function showNews(index) {
+    newsItems.forEach((item, i) => {
+      if (i >= index && i < index + itemsPerPage) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  }
+
+  showNews(currentIndex);
+
+  nextBtn.addEventListener("click", function () {
+    if (currentIndex + itemsPerPage < newsItems.length) {
+      currentIndex += itemsPerPage;
+    } else {
+      currentIndex = 0; // loop to start
+    }
+    showNews(currentIndex);
+  });
+
+  prevBtn.addEventListener("click", function () {
+    if (currentIndex - itemsPerPage >= 0) {
+      currentIndex -= itemsPerPage;
+    } else {
+      currentIndex = Math.max(0, newsItems.length - itemsPerPage); // loop to end
+    }
+    showNews(currentIndex);
+  });
 
 });

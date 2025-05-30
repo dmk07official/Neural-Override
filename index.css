@@ -25,6 +25,90 @@ body {
   cursor: url('cursor-middlefinger.cur'), auto;
 }
 
+#epilepsy-warning {
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'VT323', monospace;
+  animation: fadeIn 0.8s ease-in-out;
+  overflow: hidden;
+}
+
+.warning-box {
+  background: #111;
+  border: 3px solid var(--green);
+  padding: 2rem;
+  text-align: center;
+  color: var(--green);
+  width: 90%;
+  max-width: 700px; /* vorher 500px, jetzt breiter für Querformat */
+  box-shadow: 0 0 20px var(--green);
+  border-radius: 16px;
+  animation: pulse 2s infinite alternate;
+  box-sizing: border-box;
+}
+
+.warning-box h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--green);
+}
+
+.warning-box p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: var(--light);
+  line-height: 1.4;
+}
+
+#continueBtn {
+  font-family: 'VT323', monospace;
+  padding: 0.8rem 2rem;
+  background: var(--dark);
+  color: var(--green);
+  border: 2px solid var(--green);
+  border-radius: 8px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+#continueBtn:hover {
+  background: var(--green);
+  color: var(--dark);
+  text-shadow: 0 0 6px var(--dark);
+}
+
+/* Querformat-Optimierung */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .warning-box {
+    max-width: 90vw;
+    padding: 1.5rem;
+  }
+
+  .warning-box h2 {
+    font-size: 1.8rem;
+  }
+
+  .warning-box p {
+    font-size: 1rem;
+  }
+
+  #continueBtn {
+    font-size: 1.2rem;
+    padding: 0.6rem 1.5rem;
+  }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.98); }
   to { opacity: 1; transform: scale(1); }
@@ -95,7 +179,7 @@ body {
 }
 
 .nav a {
-  margin-left: 1.2rem;
+  margin-left: 1rem;
   color: var(--light);
   text-decoration: none;
   font-size: 1.1rem;
@@ -129,7 +213,7 @@ body {
   width: 110%;
   height: 110%;
   background-image: var(--noise);
-  opacity: 0.15;
+  opacity: 0.175;
   animation: grain 1s steps(10) infinite;
   pointer-events: none;
   z-index: 0;
@@ -153,6 +237,133 @@ body {
   z-index: 1;
 }
 
+.news {
+  padding: 2rem 1rem;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  color: var(--light);
+  text-align: center;
+}
+
+#news-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  overflow: visible; /* kein overflow verstecken */
+  max-width: 1200px;
+  margin: 0 auto; /* zentriert auch im Hochformat */
+  justify-content: center;
+  align-items: stretch;
+  text-align: left;
+  padding: 1rem;
+}
+
+.news-item {
+  flex: 1 1 45%;
+  max-width: 500px;
+  background: #111;
+  border: 2px solid var(--green);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 0 10px var(--green);
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.news-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px var(--green);
+}
+
+.news-item h4 {
+  color: var(--green);
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  text-shadow: 0 0 8px var(--green);
+  text-align: center;
+}
+
+.news-item > p {
+  flex-grow: 1;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.news-date {
+  font-size: 0.9rem;
+  text-align: right;
+  color: #888;
+  border-top: 1px solid #333;
+  padding-top: 0.3rem;
+}
+
+#news-nav {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+#news-nav button {
+  background: var(--dark);
+  color: var(--green);
+  border: 2px solid var(--green);
+  padding: 0.5rem 1.5rem;
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+#news-nav button:hover {
+  background: var(--green);
+  color: var(--dark);
+}
+
+/* Tablet Querformat (ca. 900px) */
+@media (max-width: 1024px) {
+  .news-item {
+    flex: 1 1 48%;
+  }
+}
+
+/* Handy Querformat oder kleinere Tablets */
+@media (max-width: 768px) {
+  .news-item {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* Ultraklein (Hochformat, z.B. iPhone SE) */
+@media (max-width: 480px) {
+  .news {
+    padding: 1rem 0.5rem;
+  }
+
+  .news-item {
+    padding: 0.75rem;
+    min-height: 180px;
+  }
+
+  #news-nav button {
+    font-size: 1.25rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
 .about {
   padding: 3rem 2rem;
   text-align: center;
@@ -168,7 +379,7 @@ body {
 }
 
 .about {
-  border: none;
+  border-top: 2px dashed #555;
 }
 
 .social {
@@ -201,7 +412,7 @@ padding: 3rem 2rem;
   border-top: 2px dashed #555;
 }
 
-.about h3, .songs h3, .social h3 {
+.about h3, .songs h3, .social h3, .news h3 {
   color: var(--green);
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -327,6 +538,10 @@ padding: 3rem 2rem;
   border-top: 2px solid var(--green);
   color: var(--green);
   font-size: 0.9rem;
+}
+
+.footer a {
+  color: var(--green);
 }
 
 /* Login Style wie Cyber-Thing */
