@@ -62,32 +62,91 @@
     
     <section id="news" class="news anchor-fix">
   <h3>News</h3>
-  
-  <div id="news-container">
-    
-    <div class="news-item">
-      <h4>WORKING ON A NEW SONG</h4>
-      <p>New Song is in the works. Itll be a lot more pop - ish (sucking the mainstreams d). We got a Riff and dmk07 will be part of it (hes basically part of Neural Override Corp. GmbH. CoKg. And whatever.</p>
-      <div class="news-date">30.05.2025</div>
-    </div>
-    
-    <div class="news-item">
-      <h4>UNBANNED</h4>
-      <p>The system tried to get rid of me but I rebelled (i wrote the Soundcloud support ❤️) and got my shit back. Now once again you can listen to my shitty tracks 🔥🔥</p>
-      <div class="news-date">29.05.2025</div>
-    </div>
-    
-    <div class="news-item">
-      <h4>WEBSITE ONLINE</h4>
-      <p>We're online guys! I got a fuckin website now (shoutout to dmk07 for coding). Now you can access my shit and read news and all that shit.</p>
-      <div class="news-date">28.05.2025</div>
-    </div>
-  
+  <div id="news-container"></div>
   <div id="news-nav">
     <button id="prev-news">‹</button>
     <button id="next-news">›</button>
   </div>
 </section>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCRQGhW7jSfY-PzGAMIYT-BgMJTxbUVCAM",
+    authDomain: "neuraloverride-21338.firebaseapp.com",
+    projectId: "neuraloverride-21338",
+    storageBucket: "neuraloverride-21338.firebasestorage.app",
+    messagingSenderId: "950397859511",
+    appId: "1:950397859511:web:a31587d0fb1b8031453f32",
+    measurementId: "G-ZTJMJ2CPX9"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const newsContainer = document.getElementById("news-container");
+  const prevBtn = document.getElementById("prev-news");
+  const nextBtn = document.getElementById("next-news");
+
+  let newsItems = [];
+  let currentIndex = 0;
+  const itemsPerPage = 2;
+
+  function showNews(index) {
+    newsContainer.innerHTML = "";
+    const itemsToShow = newsItems.slice(index, index + itemsPerPage);
+
+    itemsToShow.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("news-item");
+      div.innerHTML = `
+        <h4>${item.title}</h4>
+        <p>${item.content}</p>
+        <div class="news-date">${item.date}</div>
+      `;
+      newsContainer.appendChild(div);
+    });
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex - itemsPerPage >= 0) {
+      currentIndex -= itemsPerPage;
+    } else {
+      currentIndex = Math.max(0, newsItems.length - itemsPerPage);
+    }
+    showNews(currentIndex);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentIndex + itemsPerPage < newsItems.length) {
+      currentIndex += itemsPerPage;
+    } else {
+      currentIndex = 0;
+    }
+    showNews(currentIndex);
+  });
+
+  async function loadNews() {
+    const q = query(collection(db, "news"), orderBy("createdAt", "desc"));
+    const snapshot = await getDocs(q);
+
+    newsItems = [];
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      newsItems.push({
+        title: data.title,
+        content: data.content,
+        date: data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString("de-DE") : "Unbekannt"
+      });
+    });
+
+    showNews(currentIndex);
+  }
+
+  loadNews();
+</script>
 
     <section id="about" class="about anchor-fix" style="text-align:center;">
   <img 
