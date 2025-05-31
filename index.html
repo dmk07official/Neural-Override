@@ -166,22 +166,137 @@
   loadNews();
 </script>
 
-    <section id="about" class="about anchor-fix" style="text-align:center;">
-  <img 
-    src="profile.jpg" 
-    alt="Neural Override" 
-    style="width:150px; height:150px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem; border: 3px solid var(--green); box-shadow: 0 0 15px var(--green);"
-    class="lazyload"
-  />
-  <h3 style="color: var(--green); font-size: 2rem; margin-bottom: 1rem; text-shadow: 0 0 10px var(--green);">About</h3>
-  <p style="max-width: 600px; margin: 0 auto; color: var(--light); font-family: var(--font-main); white-space: pre-line; line-height: 1.5;">
-Im Neural Override and ive been doing music since the start of 2025
+    <section id="about" class="about anchor-fix">
 
-Ive been playing guitar for some time and i came to the conclusion that you dont need alot if skill to make music even if its shitty. Ive just been pissed of by alot of things and thought Id make some music about that shit. After some trial and error Neural Override came to be. Now I just make music while drunk about things that force me to get drunk. Listen to my songs (shameless advertisement). Fuck yall and have fun!
+  <div class="profile-container">
+    <img 
+      src="profile_neural_override.jpg" 
+      alt="Neural Override" 
+      class="profile-pic active" 
+      onclick="switchProfile('neural')"
+    />
+    <img 
+      src="profile_dmk07.jpg" 
+      alt="DMK07" 
+      class="profile-pic" 
+      onclick="switchProfile('dmk')"
+    />
+  </div>
 
--Neural Override<span id="cursor">|</span>
+  <div class="about-header">
+    <h3 id="about-title">About <span id="profile-name">Neural Override</span></h3>
+    <p id="profile-role" class="role-text">Frontman</p>
+  </div>
+
+  <p id="about-neural" class="about-text">
+    Im Neural Override and ive been doing music since the start of 2025
+
+    Ive been playing guitar for some time and i came to the conclusion that you dont need alot if skill to make music even if its shitty. Ive just been pissed of by alot of things and thought Id make some music about that shit. After some trial and error Neural Override came to be. Now I just make music while drunk about things that force me to get drunk. Listen to my songs (shameless advertisement). Fuck yall and have fun!
+
+    -Neural Override<span id="cursor">|</span>
   </p>
+
+  <p id="about-dmk" class="about-text" style="display: none;">
+    Hi guys,
+    I'm dmk_07 a close friend of Neural Override and part oft the Neural Override group. I started playing piano at a young age and continued my journey with the guitar. Now im here bein' the second voice of neural override and managing this website. Hope y'all vibe with our tracks as much as we love makin' 'em. Peace and Out.
+
+    -dmk_07😎<span id="cursor">|</span>
+  </p>
+
 </section>
+
+<style>
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 15px transparent;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .profile-pic.active {
+    border: 3px solid var(--green);
+    box-shadow: 0 0 15px var(--green);
+  }
+
+  .about-header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  #about-title {
+    color: var(--green);
+    font-size: 2rem;
+    margin: 0;
+    text-shadow: 0 0 10px var(--green);
+  }
+
+  .role-text {
+    color: var(--light);
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    font-family: var(--font-main);
+  }
+
+  .about-text {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--light);
+    font-family: var(--font-main);
+    white-space: pre-line;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 600px) {
+    .profile-pic {
+      width: 110px;
+      height: 110px;
+    }
+
+    #about-title {
+      font-size: 1.5rem;
+    }
+
+    .role-text {
+      font-size: 1.2rem;
+    }
+
+    .profile-container {
+      gap: 1rem;
+    }
+  }
+</style>
+
+<script>
+  function switchProfile(profile) {
+    // Bilder umschalten
+    document.querySelectorAll('.profile-pic').forEach(img => img.classList.remove('active'));
+    if (profile === 'neural') {
+      document.querySelector('img[alt="Neural Override"]').classList.add('active');
+    } else {
+      document.querySelector('img[alt="DMK07"]').classList.add('active');
+    }
+
+    // Texte zeigen
+    document.getElementById('about-neural').style.display = profile === 'neural' ? 'block' : 'none';
+    document.getElementById('about-dmk').style.display = profile === 'dmk' ? 'block' : 'none';
+
+    // Titel & Rolle setzen
+    document.getElementById('profile-name').textContent = profile === 'neural' ? 'Neural Override' : 'DMK07';
+    document.getElementById('profile-role').textContent = profile === 'neural' ? 'Frontman' : 'Second Vocalist – Digital Manager';
+  }
+</script>
 
     <section id="songs" class="songs anchor-fix">
   <h3>Songs</h3>
