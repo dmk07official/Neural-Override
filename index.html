@@ -29,7 +29,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" defer></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/lazysizes/lazysizes.min.js" async=""></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/defer.js@1.0.5/dist/defer.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fontfaceobserver/2.1.0/fontfaceobserver.standalone.js"></script>
+<script>
+  var roboto = new FontFaceObserver('Roboto');
+  roboto.load().then(() => {
+    document.documentElement.classList.add('fonts-loaded');
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/css-element-queries/src/ResizeSensor.js"></script>
+  
+  <script src="https://instant.page/5.1.0" type="module" defer></script>
+  
 </head>
 <body>
   
@@ -49,7 +67,7 @@
       <a href="#about">About</a>
       <a href="#songs">Songs</a>
       <a href="#social">Connect</a>
-      <a href="mailto:neural.override@gmx.de">Contact</a>
+      <a href="mailto:neural.o.management@gmail.com">Contact</a>
     </nav>
   </header>
 
@@ -153,6 +171,7 @@
     src="profile.jpg" 
     alt="Neural Override" 
     style="width:150px; height:150px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem; border: 3px solid var(--green); box-shadow: 0 0 15px var(--green);"
+    class="lazyload"
   />
   <h3 style="color: var(--green); font-size: 2rem; margin-bottom: 1rem; text-shadow: 0 0 10px var(--green);">About</h3>
   <p style="max-width: 600px; margin: 0 auto; color: var(--light); font-family: var(--font-main); white-space: pre-line; line-height: 1.5;">
@@ -165,25 +184,52 @@ Ive been playing guitar for some time and i came to the conclusion that you dont
 </section>
 
     <section id="songs" class="songs anchor-fix">
-      <h3>Songs</h3>
-      <div class="tracklist">
-        <div class="track" id="track1">
-          <img src="song1.jpg" alt="Album cover of Alcoholic Therapy" />
-          <p>🍺 Alcoholic Therapy (ft. dmk07)</p>
-          <a href="https://on.soundcloud.com/nkwPJWo2stKu6H8QvL" target="_blank" class="track-link">Listen on SoundCloud</a>
-        </div>
-        <div class="track" id="track2">
-          <img src="song2.jpg" alt="Album cover of Attitude" />
-          <p>🔥 Attitude</p>
-          <a href="https://on.soundcloud.com/kz2YS3H1zexs8CuW9" target="_blank" class="track-link">Listen on SoundCloud</a>
-        </div>
-        <div class="track" id="track3">
-          <img src="song3.jpg" alt="Album cover of Lost in Time" />
-          <p>⏳ Lost in Time</p>
-          <a href="https://on.soundcloud.com/tHCfJhiUrRt6rGqC6" target="_blank" class="track-link">Listen on SoundCloud</a>
-        </div>
+  <h3>Songs</h3>
+  <p class="songs-subtext">You can listen to the previews of my songs right here!</p>
+  <div class="tracklist">
+    <div class="track" id="track1">
+      <img src="song1.jpg" alt="Album cover of Alcoholic Therapy" class="lazyload"/>
+      <div class="track-info">
+        <p class="track-title">🍺 <strong>Alcoholic Therapy (ft. dmk07)</strong></p>
+        <p class="description">Drinking my problems away while making music with the boys</p>
       </div>
-    </section>
+      <div class="track-actions">
+        <button class="play-btn" data-track="track1">
+          Listen
+        </button>
+        <a href="https://on.soundcloud.com/nkwPJWo2stKu6H8QvL" target="_blank" class="track-link">SoundCloud</a>
+      </div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <!-- Repeat für andere Tracks -->
+    <div class="track" id="track2">
+      <img src="song2.jpg" alt="Album cover of Attitude" class="lazyload"/>
+      <div class="track-info">
+        <p class="track-title">🔥 <strong>Attitude</strong></p>
+        <p class="description">This gem is about a special type of person. If you feel offended by it then youre that person</p>
+      </div>
+      <div class="track-actions">
+        <button class="play-btn" data-track="track2">Listen</button>
+        <a href="https://on.soundcloud.com/kz2YS3H1zexs8CuW9" target="_blank" class="track-link">SoundCloud</a>
+      </div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <div class="track" id="track3">
+      <img src="song3.jpg" alt="Album cover of Lost in Time" class="lazyload"/>
+      <div class="track-info">
+        <p class="track-title">⏳ <strong>Lost in Time</strong></p>
+        <p class="description">The Lost in Time EP shows some of my older unreleased songs like this one</p>
+      </div>
+      <div class="track-actions">
+        <button class="play-btn" data-track="track3">Listen</button>
+        <a href="https://on.soundcloud.com/tHCfJhiUrRt6rGqC6" target="_blank" class="track-link">SoundCloud</a>
+      </div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+  </div>
+</section>
     
     <section id="login" class="login anchor-fix">
   <h3>Access Terminal</h3>

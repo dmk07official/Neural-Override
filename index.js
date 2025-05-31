@@ -18,25 +18,51 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.style.overflow = "hidden";
 
 let currentSound = null;
+let currentProgress = null;
+let progressInterval = null;
+
+const trackDurations = 14; // seconds
 
 const tracks = {
-  track1: new Howl({ src: ['song1.mp3'] }),
-  track2: new Howl({ src: ['song2.mp3'] }),
-  track3: new Howl({ src: ['song3.mp3'] })
+  track1: new Howl({ src: ['song1.mp3'], volume: 1 }),
+  track2: new Howl({ src: ['song2.mp3'], volume: 1 }),
+  track3: new Howl({ src: ['song3.mp3'], volume: 1 })
 };
 
-Object.keys(tracks).forEach(trackId => {
-  const element = document.getElementById(trackId);
-  if (element) {
-    element.addEventListener('click', () => {
-      if (currentSound && currentSound.playing()) {
-        currentSound.stop();
-      }
+document.querySelectorAll('.play-btn').forEach(button => {
+  button.addEventListener('click', (e) => {
+    const trackId = button.getAttribute('data-track');
+    const sound = tracks[trackId];
+    const trackEl = document.getElementById(trackId);
+    const progressBar = trackEl.querySelector('.progress-fill');
 
-      currentSound = tracks[trackId];
-      currentSound.play();
-    });
-  }
+    if (currentSound && currentSound.playing()) {
+      currentSound.stop();
+      clearInterval(progressInterval);
+      if (currentSound === sound) {
+        progressBar.style.width = '0%';
+        return; // stop same track
+      }
+    }
+
+    currentSound = sound;
+    currentProgress = progressBar;
+    progressBar.style.width = '0%';
+    sound.play();
+
+    let startTime = Date.now();
+    progressInterval = setInterval(() => {
+      let elapsed = (Date.now() - startTime) / 1000;
+      let percent = Math.min((elapsed / trackDurations) * 100, 100);
+      progressBar.style.width = percent + '%';
+
+      if (percent >= 100) {
+        clearInterval(progressInterval);
+        progressBar.style.width = '0%';
+        currentSound = null;
+      }
+    }, 100);
+  });
 });
 
 const loginBtn = document.getElementById('loginBtn');
@@ -92,11 +118,6 @@ loginBtn.addEventListener('click', () => {
 
     function glitchCrash() {
       if (crashCount >= maxCrash) {
-        flashOverlay.innerHTML = `
-          <p>!!! SYSTEM LOCKDOWN INITIATED !!!</p>
-          <p>YOU TRIGGERED THE WRONG DOOR</p>
-          <p>EXITING... OR NOT?</p>
-        `;
         document.body.style.filter = 'none';
         return;
       }
@@ -119,9 +140,6 @@ loginBtn.addEventListener('click', () => {
         rotate(${(Math.random() * 20 - 10).toFixed(2)}deg)
         translate(${(Math.random() * 20 - 10).toFixed(1)}px, ${(Math.random() * 20 - 10).toFixed(1)}px)
       `;
-
-      // Zufälligen Glitch-Text anzeigen
-      flashOverlay.innerHTML = `<p>${getRandomGlitchText()}</p>`;
 
       crashCount++;
       setTimeout(glitchCrash, Math.random() * 150 + 50);
