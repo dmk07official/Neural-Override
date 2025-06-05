@@ -140,7 +140,7 @@
 }
 
 :root {
-    --green: #00ff88;
+    --green: #00cc6e;
     --dark: #0a0a0a;
     --light: #f0f0f0;
     --noise: url('noise.jpg');
@@ -162,7 +162,12 @@ body {
     background-color: var(--dark);
     color: var(--light);
     overflow-x: hidden;
-    cursor: url(cursor-middlefinger.cur),auto
+    cursor: url('cursor.cur'), auto;
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 #epilepsy-warning {
@@ -186,13 +191,13 @@ body {
 }
 
 .warning-box {
-    background: #111;
+    background: linear-gradient(160deg, #111 30%, #1a1a1a 60%, #222 100%);
     border: 3px solid var(--green);
     padding: 2rem;
     text-align: center;
     width: 90%;
     max-width: 700px;
-    box-shadow: 0 0 20px var(--green);
+    box-shadow: 0 0 10px var(--green);
     border-radius: 16px;
     animation: pulse 2s infinite alternate
 }
@@ -210,7 +215,8 @@ body {
 
 .warning-box p {
     margin-bottom: 1.5rem;
-    line-height: 1.4
+    line-height: 1.4;
+    opacity: 0.9;
 }
 
 #continueBtn {
@@ -256,18 +262,31 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid var(--green);
-    z-index: 999;
     position: sticky;
-    top: 0
+    top: 0;
+    z-index: 999;
+    border-bottom: 3px solid var(--dark); /* default border */
 }
+
+.header::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background-color: var(--green); /* grüne Farbe */
+    transition: width 0.2s linear;
+    z-index: 1000;
+}
+
 
 .logo {
     font-size: 2.5rem;
     color: var(--green);
     text-shadow: 0 0 10px var(--green);
     letter-spacing: 3px;
-    animation: rgbGlitch .2s infinite steps(8,jump-none)
+    animation: rgbGlitch .4s infinite steps(8,jump-none)
 }
 
 #cursor {
@@ -278,7 +297,8 @@ body {
 }
 
 .nav a {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     text-decoration: none;
     transition: color .3s ease
 }
@@ -289,7 +309,24 @@ body {
 }
 
 .anchor-fix {
-    scroll-margin-top: 5rem
+    scroll-margin-top: 6.6rem
+}
+
+@media screen and (orientation:landscape) {
+    .anchor-fix {
+    scroll-margin-top: 4.5rem
+}
+}
+
+@media screen and (orientation:portrait) {
+    .header {
+        flex-direction: column;
+        text-align: center
+    }
+
+    .nav {
+        margin-top: 1rem
+    }
 }
 
 .hero,.news-item h4 {
@@ -358,9 +395,8 @@ body {
 .news-item {
     flex: 1 1 45%;
     max-width: 500px;
-    background: #111;
+    background: linear-gradient(160deg, #111 30%, #1a1a1a 60%, #222 100%);
     padding: 1rem;
-    box-shadow: 0 0 10px var(--green);
     min-height: 240px;
     display: flex;
     flex-direction: column;
@@ -484,54 +520,6 @@ body {
     margin-bottom: 1rem
 }
 
-.tracklist {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem
-}
-
-.track {
-    background: #1c1c1c;
-    border: 2px solid var(--green);
-    padding: 1rem;
-    width: 220px;
-    border-radius: 10px;
-    transition: transform .3s ease,box-shadow .3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center
-}
-
-.track:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px var(--green)
-}
-
-.track img {
-    width: 100%;
-    border-radius: 5px;
-    margin-bottom: .5rem;
-    object-fit: cover
-}
-
-.track p {
-    color: var(--light);
-    margin-bottom: .5rem;
-}
-
-.track-link {
-    color: var(--green);
-    text-decoration: underline;
-    font-size: .9rem;
-    transition: color .3s ease
-}
-
-.track-link:hover {
-    color: #0c6
-}
-
 .social {
     padding: 4rem 1rem;
     background: #0a0a0a;
@@ -570,8 +558,8 @@ body {
 }
 
 .social-icon img {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     margin-bottom: .5rem;
     filter: grayscale(100%) brightness(.8);
     transition: filter .3s ease
@@ -714,27 +702,9 @@ body {
 }
 
 @media (max-width:768px) {
-    .header {
-        flex-direction: column;
-        text-align: center
-    }
-
-    .nav {
-        margin-top: 1rem
-    }
-
     .hero {
         font-size: 2rem;
         padding: 4rem 1rem
-    }
-
-    .tracklist {
-        flex-direction: column;
-        align-items: center
-    }
-
-    .track {
-        width: 90%
     }
 
     .social-container {
@@ -795,17 +765,33 @@ body {
   margin-top: 1rem;
 }
 
+.tracklist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem
+}
+
 .track {
-  background: #1c1c1c;
+  background: linear-gradient(160deg, #111 30%, #1a1a1a 60%, #222 100%);
+
   border: 2px solid var(--green);
   padding: 1rem;
-  width: 220px;
+  width: 230px;
+  height: 100%;
+  min-height: 360px;
   border-radius: 15px;
   transition: transform .3s ease, box-shadow .3s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+}
+
+.track-footer {
+  margin-top: auto; /* schiebt den Footer immer nach unten, egal wie kurz die Description */
+  width: 100%;
 }
 
 .track:hover {
@@ -816,7 +802,7 @@ body {
 .track img {
   width: 80%;
   border-radius: 12px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.9rem;
   object-fit: cover;
   aspect-ratio: 1/1;
 }
@@ -829,13 +815,20 @@ body {
 .track-title {
   font-weight: 700;
   color: var(--light);
-  margin-bottom: 0.3rem;
+    text-align: left;
 }
 
 .description {
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: #ccc;
   font-weight: 100;
+    text-align: left;
+    opacity: 0.9;
+}
+
+.track p {
+    color: var(--light);
+    margin-bottom: 0.3rem;
 }
 
 .track-actions {
@@ -848,20 +841,15 @@ body {
 }
 
 .play-btn {
-  background: var(--green);
-  border: none;
-  color: #111;
-  font-weight: 800;
-  font-size: 1.1rem;
-  padding: 0.3rem 0.7rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-family: var(--font-main);
-}
-
-.play-btn:hover {
-  background: #0c6;
+font-family: var(--font-main);
+font-size: 1rem;
+background:#1a1a1a; 
+color: var(--green);
+border:2px solid var(--green); 
+border-radius: 10px;
+padding:8px 14px;
+cursor:pointer;
+margin-top:5px;
 }
 
 .progress-bar {
