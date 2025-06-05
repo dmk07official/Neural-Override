@@ -37,12 +37,23 @@
   </script>
 
   <!-- 🧩 Icons & Manifest -->
-  <link rel="icon" href="/favicon.ico?v=2" />
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#00cc6e" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#000000">
 
 
   <!-- 🧵 Styles & Fonts -->
@@ -221,13 +232,13 @@
 
   <div class="profile-container">
     <img 
-      src="profile_neural_override.jpg" 
+      src="profile_neural_override.webp" 
       alt="Neural Override" 
       class="profile-pic active" 
       onclick="switchProfile('neural')"
     />
     <img 
-      src="profile_dmk07.jpg" 
+      src="profile_dmk07.webp" 
       alt="DMK07" 
       class="profile-pic" 
       onclick="switchProfile('dmk')"
@@ -266,8 +277,8 @@
   }
 
   .profile-pic {
-    width: 140px;
-    height: 140px;
+    width: 160px;
+    height: 160px;
     object-fit: cover;
     border-radius: 50%;
     box-shadow: 0 0 15px transparent;
@@ -283,7 +294,7 @@
 
   .about-header {
     text-align: left;
-      max-width: 650px;
+      max-width: 700px;
       margin: 0 auto;
     margin-bottom: 0.2rem;
   }
@@ -304,7 +315,7 @@
 
   .about-text {
     text-align: left;
-    max-width: 650px;
+    max-width: 700px;
     margin: 0 auto;
     color: var(--light);
     font-family: var(--font-main);
@@ -358,7 +369,7 @@
   <p class="songs-subtext">You can listen to the previews of my songs right here!</p>
   <div class="tracklist">
     <div class="track" id="track1">
-      <img src="song1.jpg" alt="Album cover of Alcoholic Therapy" class="lazyload"/>
+      <img src="song1.webp" alt="Album cover of Alcoholic Therapy" class="lazyload"/>
       <div class="track-info">
         <p class="track-title"><strong>Alcoholic Therapy</strong></p>
         <p class="description">Drinking my problems away while making music with the boys</p>
@@ -368,7 +379,7 @@
         <button class="play-btn" data-track="track1">
           Preview
         </button>
-        <button class="play-btn" onclick="window.open('https://on.soundcloud.com/nkwPJWo2stKu6H8Qv', '_blank')">
+        <button class="play-btn" onclick="window.open('https://on.soundcloud.com/uYXRhycfwYPcGsHKaW', '_blank')">
   Soundcloud
 </button>
             </div>
@@ -378,7 +389,7 @@
 
     <!-- Repeat für andere Tracks -->
     <div class="track" id="track2">
-      <img src="song2.jpg" alt="Album cover of Attitude" class="lazyload"/>
+      <img src="song2.webp" alt="Album cover of Attitude" class="lazyload"/>
       <div class="track-info">
         <p class="track-title"><strong>Attitude</strong></p>
         <p class="description">This gem is about a special type of person. If you feel offended by it then youre that person</p>
@@ -395,15 +406,15 @@
     </div>
 
     <div class="track" id="track3">
-      <img src="song3.jpg" alt="Album cover of Lost in Time" class="lazyload"/>
+      <img src="song3.webp" alt="Album cover of Lost in Time" class="lazyload"/>
       <div class="track-info">
-        <p class="track-title"><strong>Lost in Time</strong></p>
-        <p class="description">The Lost in Time EP shows some of my older unreleased songs like this one</p>
+        <p class="track-title"><strong>I hate myself</strong></p>
+        <p class="description">This is my first collab. Go check it out and huge thanks to doomed</p>
       </div>
         <div class="track-footer">
       <div class="track-actions">
         <button class="play-btn" data-track="track3">Preview</button>
-        <button class="play-btn" onclick="window.open('https://on.soundcloud.com/tHCfJhiUrRt6rGqC6 '_blank')">
+        <button class="play-btn" onclick="window.open('https://on.soundcloud.com/J702MdJdCSCG6yxKQc','_blank')">
   Soundcloud
 </button>
       </div>

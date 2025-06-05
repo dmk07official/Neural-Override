@@ -24,9 +24,9 @@ let progressInterval = null;
 const trackDurations = 14; // seconds
 
 const tracks = {
-  track1: new Howl({ src: ['song1.mp3'], volume: 1 }),
-  track2: new Howl({ src: ['song2.mp3'], volume: 1 }),
-  track3: new Howl({ src: ['song3.mp3'], volume: 1 })
+  track1: new Howl({ src: ['song1.aac'], volume: 1 }),
+  track2: new Howl({ src: ['song2.aac'], volume: 1 }),
+  track3: new Howl({ src: ['song3.aac'], volume: 1 })
 };
 
 document.querySelectorAll('.play-btn').forEach(button => {
