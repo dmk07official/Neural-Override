@@ -103,3 +103,7 @@
     padding-top: var(--space-sm);
     margin-top: var(--space-md);
 }
+
+svg {
+    width: var(--step-3);
+}

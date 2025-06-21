@@ -88,6 +88,12 @@
   overflow: hidden;
 }
 
+strong {
+  font-weight: 600;
+  font-size: calc(var(--step-1) * 1.2);
+}
+
+
 .profile-pic-floated {
   float: right;
   width: clamp(120px, 20vw, 200px);

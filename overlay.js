@@ -12,13 +12,6 @@ const btn = document.getElementById('impressumToggle');
       }
     });
 
-// Hamburger Toggle
-
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobileNav');
-    menu.classList.toggle('show');
-  }
-
 // Variable Border
 window.addEventListener('scroll', function () {
     const scrollTop = window.scrollY;
