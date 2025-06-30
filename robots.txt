@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://neural-override.pages.dev/sitemap-sites.xml
-Sitemap: https://neural-override.pages.dev/sitemap-pictures.xml
+Sitemap: https://neural-override.pages.dev/sitemapindex.xml
