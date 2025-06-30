@@ -1,3 +1,7 @@
-/sitemap.xml
+/sitemap-sites.xml
+  Content-Type: application/xml; charset=UTF-8
+  Cache-Control: no-cache
+
+/sitemap-pictures.xml
   Content-Type: application/xml; charset=UTF-8
   Cache-Control: no-cache
