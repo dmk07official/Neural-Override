@@ -10,11 +10,24 @@ opacity:0}
 padding:var(--s-md)var(--s-sm);
 background:repeating-linear-gradient(to bottom,rgba(255, 255, 255, 0.03),rgba(255, 255, 255, 0.03)1px,transparent 1px,transparent 2px);
 text-align:center}
-.about h2{
+.about h1{
+max-width: 1000px;
+margin-left:auto;
+margin-right:auto;
+text-align:left;
 font-size:var(--s-3);
-margin-bottom:var(--s-lg);
-color:var(--g);
-text-shadow:0 0 10px var(--g)}
+margin-top:var(--s-sm);
+margin-bottom:var(--s-md);
+color:var(--g)}
+.description{
+max-width: 1000px;
+margin-bottom:var(--s-xl);
+padding-bottom:var(--s-lg);
+font-size:var(--s-1);
+margin-left:auto;
+margin-right:auto;
+text-align:left;
+border-bottom:2px dashed #555}
 .about-box{
 position:relative;
 width:100%;
@@ -29,21 +42,18 @@ text-align:left}
 .about-title{
 font-size:var(--s-3);
 margin-bottom:var(--s-md);
-color:var(--g);
-text-shadow:0 0 10px var(--g)}
+color:var(--g)}
 .about-text{
 color:var(--l);
-font-family:var(--f);
 white-space:pre-line;
-line-height:1.6;
 font-size:var(--s-1);
 opacity:0.9;
-overflow:hidden}
+overflow:hidden;
+margin-bottom:calc(var(--s-sm) * 1.2)}
 .strong{
 font-weight:500;
 opacity:1!important;
-font-size:calc(var(--s-1) * 1.2);
-line-height:1.8}
+font-size:calc(var(--s-1) * 1.2)}
 .profile-pic-floated{
 float:right;
 width:clamp(120px, 20vw, 200px);

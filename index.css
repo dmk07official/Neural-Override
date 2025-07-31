@@ -21,7 +21,7 @@ display:flex;
 flex-direction:column;
 align-content:center;
 justify-content:center}
-.hero h2{
+.hero h1{
 font-size:var(--s-4);
 animation:pulse 3s infinite;
 position:relative;
@@ -60,22 +60,22 @@ color:#f0f0f0;
 text-align:center;
 margin-left:auto;
 margin-right:auto;
+margin-top:var(--s-md);
 max-width:1000px}
 .description{
+margin-top:var(--s-xl);
 border-bottom:2px dashed #555}
 .social h2,
 .description h2{
 font-size:var(--s-3);
 margin-bottom:var(--s-lg);
-color:var(--g);
-text-shadow:0 0 10px var(--g)}
+color:var(--g)}
 .social-text,
 .description-text{
 margin-bottom:var(--s-md);
 font-size:var(--s-1);
 margin-left:auto;
-margin-right:auto;
-line-height:1.5}
+margin-right:auto}
 .description-text{
 text-align:left}
 .description a{
@@ -94,7 +94,9 @@ align-items:center;
 text-decoration:none;
 color:var(--l);
 transition:transform 0.3s ease,filter 0.3s ease;
-width:auto}
+width:auto;
+margin:var(--s-sm);
+margin-bottom:var(--s-lg)}
 .social-icon img{
 width:var(--s-4);
 height:auto;
@@ -112,3 +114,4 @@ transform:scale(1.08)}
 filter:grayscale(0%)brightness(1)}
 .social-icon:hover span{
 opacity:1}
+

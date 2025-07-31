@@ -1,37 +1,48 @@
-@keyframes rgbGlitch{
-0%,to{
-text-shadow:2px 0 red,-2px 0 blue,0 0 10px var(--g);
-transform:translate(0,0)}
-25%{
-text-shadow:-2px 0 red,2px 0 #00f,0 0 20px #f0f;
-transform:translate(1px,-1px)}
-50%{
-text-shadow:2px 0 #00f,-2px 0 red,0 0 15px #0ff;
-transform:translate(-1px,1px)}
-75%{
-text-shadow:0 0 30px red,0 0 20px #00f,0 0 15px #0ff;
-transform:translate(1px,1px)}
-}
+@font-face{
+font-family:'Russo One';
+src:url('/fonts/RussoOne-Regular.ttf') format('truetype');
+font-weight:400;
+font-style:normal}
+@font-face{
+font-family:'Space Mono';
+src:url('/fonts/SpaceMono-Regular.ttf') format('truetype');
+font-weight:400;
+font-style:normal}
+@font-face{
+font-family:'Space Mono';
+src:url('/fonts/SpaceMono-Bold.ttf') format('truetype');
+font-weight:700;
+font-style:normal}
+@font-face{
+font-family:'Space Mono';
+src:url('/fonts/SpaceMono-Italic.ttf') format('truetype');
+font-weight:400;
+font-style:italic}
+@font-face{
+font-family:'Space Mono';
+src:url('/fonts/SpaceMono-BoldItalic.ttf') format('truetype');
+font-weight:700;
+font-style:italic}
 :root{
 --g:#00cc6e;
 --d:#0a0a0a;
 --l:#f0f0f0;
---f:'VT323', monospace;
 --progress-width:0;
 --s-xs:0.5rem;
 --s-sm:1rem;
 --s-md:2rem;
 --s-lg:3rem;
 --s-xl:4rem;
---s--4:clamp(0.2rem, 0.18rem + 0.025vw, 0.24rem);
---s--3:clamp(0.34rem, 0.33rem + 0.05vw, 0.4rem);
---s--2:clamp(0.57rem, 0.55rem + 0.11vw, 0.67rem);
---s--1:clamp(0.83rem, 0.78rem + 0.2vw, 1rem);
---s-0:clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
---s-1:clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
---s-2:clamp(1.5rem, 1.25rem + 1vw, 2.25rem);
---s-3:clamp(2.25rem, 2rem + 1.5vw, 3.75rem);
---s-4:clamp(3.75rem, 3rem + 2vw, 6.25rem)}
+--s--4: clamp(0.18rem, 0.162rem + 0.0225vw, 0.216rem);
+--s--3: clamp(0.306rem, 0.297rem + 0.045vw, 0.36rem);
+--s--2: clamp(0.513rem, 0.495rem + 0.099vw, 0.603rem);
+--s--1: clamp(0.747rem, 0.702rem + 0.18vw, 0.9rem);
+--s-0: clamp(0.9rem, 0.855rem + 0.225vw, 1.0125rem);
+--s-1: clamp(1.0125rem, 0.9rem + 0.45vw, 1.35rem);
+--s-2: clamp(1.35rem, 1.125rem + 0.9vw, 2.025rem);
+--s-3: clamp(2.025rem, 1.8rem + 1.35vw, 3.375rem);
+--s-4: clamp(3.375rem, 2.7rem + 1.8vw, 5.625rem);
+}
 *{
 margin:0;
 padding:0;
@@ -39,7 +50,7 @@ box-sizing:border-box}
 html{
 scroll-behavior: smooth}
 body{
-font-family:var(--f);
+font-family: 'Space Mono', monospace;
 background-color:var(--d);
 color:var(--l);
 overflow-x:hidden;
@@ -47,6 +58,9 @@ cursor:url('cursor.cur'),auto;
 -ms-overflow-style:none}
 ::-webkit-scrollbar{
 display:none}
+h1,h2,h3,h4{
+font-family: 'Russo One', sans-serif
+}
 .header{
 background:#000;
 padding:var(--s-sm)calc(var(--s-sm) + var(--s-0));
@@ -71,12 +85,10 @@ z-index:1000}
 .logo{
 font-size:var(--s-3);
 color:var(--g);
-text-shadow:0 0 10px var(--g),0 0 20px #000;
 letter-spacing:3px;
 -webkit-user-select:none;
 user-select:none;
-white-space:nowrap;
-animation:rgbGlitch .3s infinite steps(8,jump-none)}
+white-space:nowrap}
 .hamburger{
 padding-top:var(--s--2);
 padding-bottom:var(--s--2);
@@ -122,15 +134,15 @@ transform:translateY(-11px)}
 transform:translateY(11px)}
 .mobile-nav{
 position:fixed;
-top:calc(var(--s-sm) + var(--s-sm) + var(--s-3));
+top:calc(var(--s-sm) + var(--s-sm) + var(--s-3) + var(--s--2));
 right:0;
 transform:translateX(calc(100% + 10px));
 height:100vh;
 background:linear-gradient(160deg,#111 30%,#1a1a1a 60%,#222 100%);
 border-left:2px solid var(--g);
 box-shadow:0 0 10px var(--g);
-padding-left:var(--s-md);
-padding-right:var(--s-xl);
+padding-left:var(--s-lg);
+padding-right:calc(var(--s-xl) * 1.2);
 padding-top:var(--s-md);
 display:flex;
 flex-direction:column;
@@ -146,6 +158,8 @@ width:calc(var(--s-4) * .7)}
 .logo{
 font-size:calc(var(--s-3) * .7)}
 .mobile-nav{
+padding-left:var(--s-md);
+padding-right:var(--s-lg);
 top:calc(var(--s-sm) + var(--s-sm) + calc(var(--s-3) * .7))}
 .header{
 padding:var(--s-sm)var(--s-xs)}
@@ -187,7 +201,21 @@ justify-content:center}
 margin-left:var(--s-xs);
 margin-right:var(--s-xs);
 color:var(--g);
-text-decoration:none;
-transition:color 0.3s ease,text-shadow 0.3s ease}
-.footer a:hover{
+text-decoration:none}
+a:hover{
 text-shadow:0 0 5px var(--g)}
+.fade-in {
+opacity: 0;
+transform: translateY(50px) scale(0.95);
+transition-property: opacity, transform;
+transition-duration: 0.3s, 0.3s;
+transition-timing-function: cubic-bezier(0.7, 0, 1, 0.5), cubic-bezier(0.7, 0, 1, 0.5);
+will-change: opacity, transform;
+}
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0) scale(1);
+transition-duration: 0.8s, 0.8s;
+transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.4, 0, 0.2, 1);
+}
+
