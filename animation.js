@@ -1,13 +1,15 @@
+const isMobile = window.innerWidth < 600;
 const observer = new IntersectionObserver((entries, obs) => {
-entries.forEach(entry => {
-if (entry.intersectionRatio >= 0.2) {
+  entries.forEach(entry => {
+    if (entry.intersectionRatio >= (isMobile ? 0.1 : 0.2)) {
     entry.target.classList.add('visible');
     obs.unobserve(entry.target);
-}
-});
+    }
+  });
 }, {
-threshold: 0.2
+threshold: isMobile ? 0.05 : 0.2
 });
+
 
 window.addEventListener('load', () => {
 const fadeElems = document.querySelectorAll('.fade-in');
