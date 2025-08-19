@@ -1,0 +1,41 @@
+@keyframes grain{
+0%{
+transform:translate(0, 0)}
+to{
+transform:translate(-10%, -10%)}
+}
+:root{
+--noise:url("https://ik.imagekit.io/ggcm4pyrd/images/noise.webp?updatedAt=1753533413286")}
+body{
+color: var(--l);
+background-image: repeating-linear-gradient(to bottom,rgba(255, 255, 255, 0.03),rgba(255, 255, 255, 0.03) 1px,transparent 2px,transparent 4px)}
+.description{
+padding:var(--s-md)var(--s-sm);
+color:#f0f0f0;
+text-align:center;
+margin-left:auto;
+margin-right:auto;
+margin-top:var(--s-md);
+max-width:1000px}
+.description{
+margin-top:var(--s-xl);
+border-bottom:2px dashed #555}
+.description h1,
+.description h2{
+font-size:var(--s-3);
+margin-bottom:var(--s-lg);
+color:var(--g)}
+.description h1,
+.description h2{
+text-align:left}
+.description-text{
+margin-bottom:var(--s-md);
+font-size:var(--s-1);
+margin-left:auto;
+margin-right:auto}
+.description-text{
+text-align:left}
+.description a,
+.release a{
+color:var(--g);
+text-decoration: none}
