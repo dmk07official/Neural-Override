@@ -39,3 +39,26 @@ text-align:left}
 .release a{
 color:var(--g);
 text-decoration: none}
+.presentation{
+max-width:600px;
+margin:var(--s-sm) auto;
+margin-bottom:var(--s-md);
+padding:0 var(--s-sm)}
+.image-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:var(--s-md)}
+@media (min-width: 720px) {
+.image-grid{grid-template-columns:1fr 1fr; align-items: start}
+.presentation{max-width: 1000px}
+}
+.image-block h3{
+font-size:var(--s-1);
+line-height:1.2;
+color:var(--g);
+margin-left:var(--s-md)}
+.image-block img{
+width:100%;
+height:auto;
+display:block;
+border-radius:var(--s-1)}
