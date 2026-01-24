@@ -1,0 +1,70 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
+<url>
+  <loc>https://neural-override.pages.dev/members</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-neural-override.webp</image:loc>
+    <image:caption>Neural Override: Frontman - Producer</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.pages.dev/members</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-dmk07.webp?updatedAt=1753533413078</image:loc>
+    <image:caption>dmk_07: Part-time feature - Web Developer - The Music Theory Guy</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.pages.dev/news</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-bass-beer-dark-purple.webp?updatedAt=1753533413162</image:loc>
+    <image:caption>Production Bass Beer Dark Purple</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.pages.dev/news</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-beer-flstudio-dark-purple.webp?updatedAt=1753533413180</image:loc>
+    <image:caption>Production Beer FL Studio Dark Purple</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.pages.dev/news</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-flstudio-dark-purple.webp?updatedAt=1753533413228</image:loc>
+    <image:caption>Production FL Studio Dark Purple</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.pages.dev/news</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-mixing-flstudio-purple.webp?updatedAt=1753533413162</image:loc>
+    <image:caption>Production Mixing FL Studio Purple</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.pages.dev/news</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/neural-override-logo-band.webp?updatedAt=1753533413107</image:loc>
+    <image:caption>Neural Override Logo Incelcore Band</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.pages.dev/news</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/alcoholic-therapy-song-2025-cover.webp?updatedAt=1753533412992</image:loc>
+    <image:caption>Alcoholic Therapy Song 2025 Album Cover Incelcore</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.pages.dev/news</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/alcoholic-therapy-demo-2025-cover.webp?updatedAt=1753533413150</image:loc>
+    <image:caption>Alcoholic Therapy Song 2025 Album Cover Incelcore</image:caption>
+  </image:image>
+</url>
+</urlset>

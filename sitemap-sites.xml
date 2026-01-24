@@ -1,0 +1,22 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
+<url>
+<loc>https://neural-override.pages.dev/</loc>
+<lastmod>2022-01-24T12:00:00+00:00</lastmod>
+<priority>1.00</priority>
+</url>
+<url>
+<loc>https://neural-override.pages.dev/members</loc>
+<lastmod>2022-01-24T12:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://neural-override.pages.dev/news</loc>
+<lastmod>2022-01-24T12:00:00+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+</urlset>
