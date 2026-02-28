@@ -76,12 +76,14 @@ background-position:center}
 }
 @media(max-height: 800px){
 .hero h1{
+font-size:calc(var(--s-4) * 0.9);
 top:calc(var(--s-xl) * 0.8)}
 .hero button{
 bottom:calc(var(--s-xl) * 1.5)}
 }
 @media(max-height: 700px){
 .hero h1{
+font-size:calc(var(--s-4) * 0.85);
 top:calc(var(--s-xl) * 0.2)}
 .hero button{
 bottom:calc(var(--s-xl) * 1.2)}
@@ -105,6 +107,7 @@ display:none}
 .hero p{
 display: none}
 .hero h1{
+font-size:calc(var(--s-4) * 0.7);
 top:calc(var(--s-xl) * 0.5)}
 }
 /*Hero Hochformat*/

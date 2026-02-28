@@ -11,28 +11,40 @@
   let menuOffen = false;
   let isAtTop = null; // 👈 absichtlich null
 
-  function handleScroll() {
-    const scrollTop = window.scrollY;
+  // ⚡ requestAnimationFrame Flag
+  let ticking = false;
 
+  function handleScrollRAF() {
+    const scrollTop = window.scrollY;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateHeader(scrollTop);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  function updateHeader(scrollTop) {
     // progress bar
     const docHeight =
       document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     header.style.setProperty("--progress-width", `${scrollPercent}%`);
 
-    // 🔒 Initialisierung + Hysterese
+    // 🔒 Hysterese + at-top toggle
     if (isAtTop === null) {
       isAtTop = scrollTop < 5;
       header.classList.toggle("at-top", isAtTop);
       subHeader?.classList.toggle("at-top", isAtTop);
     } else {
-      if (scrollTop <= 2 && !isAtTop) {
+      if (scrollTop <= 5 && !isAtTop) { // früher 2px
         header.classList.add("at-top");
         subHeader?.classList.add("at-top");
         isAtTop = true;
       }
 
-      if (scrollTop >= 10 && isAtTop) {
+      if (scrollTop >= 20 && isAtTop) { // früher 10px
         header.classList.remove("at-top");
         subHeader?.classList.remove("at-top");
         isAtTop = false;
@@ -75,8 +87,8 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     updateTitle();
-    handleScroll(); // 👈 setzt at-top korrekt beim Start
-    window.addEventListener("scroll", handleScroll);
+    handleScrollRAF(); // setzt at-top korrekt beim Start
+    window.addEventListener("scroll", handleScrollRAF);
   });
 
   window.addEventListener("load", () => {
