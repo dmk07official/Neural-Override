@@ -233,3 +233,6 @@ opacity: 1}
 to {
 opacity: 0}
 }
+/*Chrome Hardware Acceleration*/
+.header, .sub-header{
+transform: translateZ(0)}

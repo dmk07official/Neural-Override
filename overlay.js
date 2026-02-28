@@ -38,13 +38,13 @@
       header.classList.toggle("at-top", isAtTop);
       subHeader?.classList.toggle("at-top", isAtTop);
     } else {
-      if (scrollTop <= 5 && !isAtTop) { // früher 2px
+      if (scrollTop <= 10 && !isAtTop) { // früher 2px
         header.classList.add("at-top");
         subHeader?.classList.add("at-top");
         isAtTop = true;
       }
 
-      if (scrollTop >= 20 && isAtTop) { // früher 10px
+      if (scrollTop >= 25 && isAtTop) { // früher 10px
         header.classList.remove("at-top");
         subHeader?.classList.remove("at-top");
         isAtTop = false;
@@ -88,7 +88,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     updateTitle();
     handleScrollRAF(); // setzt at-top korrekt beim Start
-    window.addEventListener("scroll", handleScrollRAF);
+    window.addEventListener("scroll", handleScrollRAF, { passive: true });
   });
 
   window.addEventListener("load", () => {
