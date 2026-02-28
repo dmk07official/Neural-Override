@@ -17,4 +17,3 @@ window.addEventListener('load', () => {
   console.log('Fade-in Elemente:', fadeElems.length);
   fadeElems.forEach(el => observer.observe(el));
 });
-

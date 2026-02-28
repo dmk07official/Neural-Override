@@ -59,41 +59,71 @@ cursor:url('cursor.cur'),auto;
 ::-webkit-scrollbar{
 display:none}
 h1,h2,h3,h4,button{
-font-family: 'Russo One', sans-serif
-}
+font-family: 'Russo One', sans-serif}
 .header{
-background:#000;
-padding:var(--s-sm)calc(var(--s-sm) + var(--s-0));
-display:flex;
-align-items:center;
-justify-content:space-between;
 position:sticky;
 top:0;
 z-index:999;
-border-bottom:3px solid var(--d);
-box-shadow:0 0 10px #000}
+background: linear-gradient(to bottom, #000, #000, #0A0A0A);
+display:flex;
+flex-direction:column;
+box-shadow:0 0 10px #000;
+border-bottom:none;
+transition:all 0.5s ease}
+.header-main{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:calc(var(--s-sm) * 1.6) calc(var(--s-sm) + var(--s-0));
+position:relative;
+transition:padding 0.5s ease}
+.header:not(.at-top) .header-main{
+padding:var(--s-sm) calc(var(--s-sm) + var(--s-0))}
 .header::after{
 content:"";
 position:absolute;
-bottom:-3px;
+bottom:0;
 left:0;
 height:3px;
-width:0%;
+width: var(--progress-width);
 background-color:var(--g);
-transition:width 0.2s linear;
+transition:width 0.5s ease;
 z-index:1000}
 .logo{
 font-size:var(--s-3);
 color:var(--g);
 letter-spacing:3px;
--webkit-user-select:none;
 user-select:none;
-white-space:nowrap}
+white-space:nowrap;
+transition:transform 0.5s cubic-bezier(.4,0,.2,1),font-size 0.5s ease}
+.header.at-top .logo{
+transform:translateX(var(--logo-shift, 0px))}
+.header:not(.at-top) .logo{
+transform:translateX(-10%) scale(0.85)}
+.sub-header{
+display:flex;
+align-items:center;
+justify-content:space-around;
+height:48px;
+overflow-x:auto;
+border-top: 1px rgba(10,20,10,0.6) solid;
+transition:height 0.5s ease,opacity 0.55s ease}
+.header:not(.at-top) .sub-header{
+height:3px;
+border: none}
+.sub-header a{
+font-family: 'Russo One', sans-serif;
+font-size:var(--s-0);
+color:var(--g);
+text-decoration:none;
+transition:opacity 0.2s ease}
+.header:not(.at-top) .sub-header a{
+opacity:0;
+pointer-events:none}
 .hamburger{
 padding-top:var(--s--2);
 padding-bottom:var(--s--2);
 display:flex;
-flex-direction:column;
 justify-content:center;
 cursor:pointer;
 position:absolute;
@@ -101,40 +131,31 @@ top:50%;
 right:var(--s-sm);
 transform:translateY(-50%);
 z-index:1000;
-opacity:.9}
+opacity:0;
+pointer-events:none;
+transition:opacity 0.25s ease}
+.header:not(.at-top) .hamburger{
+opacity:.9;
+pointer-events:auto}
 .hamburger svg{
 width:calc(var(--s-4) * .9);
 transition:fill 100ms ease-in-out}
-.line {
-transition:transform 0.15s ease,opacity 0.1s ease;
+.line{
+transition:transform 0.1s ease,opacity 0.1s ease;
 transform-origin:25px 25px}
-.move-line1{
-transform:translateY(11px)}
-.move-line3{
-transform:translateY(-11px)}
-.hide-line2{
-opacity:0}
-.rotate-line1{
-transform-origin:12px 20px;
-transform:rotate(45deg)}
-.rotate-line3{
-transform-origin:12px 30px;
-transform:rotate(-45deg)}
-.r-rotate-line1{
-transform-origin:10px 23px;
-transform:rotate(0)}
-.r-rotate-line3{
-transform-origin:10px 23px;
-transform:rotate(0)}
-.show-line2{
-opacity:1}
-.r-move-line1{
-transform:translateY(-11px)}
-.r-move-line3{
-transform:translateY(11px)}
+.move-line1{transform:translateY(11px)}
+.move-line3{transform:translateY(-11px)}
+.hide-line2{opacity:0}
+.rotate-line1{transform-origin:12px 20px;transform:rotate(45deg)}
+.rotate-line3{transform-origin:12px 30px;transform:rotate(-45deg)}
+.r-rotate-line1{transform-origin:10px 23px;transform:rotate(0)}
+.r-rotate-line3{transform-origin:10px 23px;transform:rotate(0)}
+.show-line2{opacity:1}
+.r-move-line1{transform:translateY(-11px)}
+.r-move-line3{transform:translateY(11px)}
 .mobile-nav{
 position:fixed;
-top:calc(var(--s-sm) + var(--s-sm) + var(--s-3) + var(--s--2));
+top:calc(var(--s-sm) + var(--s-sm) + calc(var(--s-3) * 0.85));
 right:0;
 transform:translateX(calc(100% + 10px));
 height:100vh;
@@ -147,23 +168,9 @@ padding-top:var(--s-md);
 display:flex;
 flex-direction:column;
 gap:var(--s-sm);
-transition:transform 0.4s ease-out;
+transition:transform 0.4s ease-out, opacity 0.4s ease;
 z-index:998;
 overflow-y:auto}
-@media(max-width:720px){
-.hamburger{
-right:var(--s-xs)}
-.hamburger svg{
-width:calc(var(--s-4) * .7)}
-.logo{
-font-size:calc(var(--s-3) * .7)}
-.mobile-nav{
-padding-left:var(--s-md);
-padding-right:var(--s-lg);
-top:calc(var(--s-sm) + var(--s-sm) + calc(var(--s-3) * .7))}
-.header{
-padding:var(--s-sm)var(--s-xs)}
-}
 .mobile-nav.show{
 transform:translateX(0)}
 .mobile-nav a{
@@ -172,13 +179,11 @@ text-decoration:none;
 font-size:var(--s-1);
 opacity:0.9;
 transition:color 0.3s ease}
-.mobile-nav a:hover{
-color:var(--g)}
+.mobile-nav a:hover{color:var(--g)}
 .mobile-nav h2,h3{
 font-size:var(--s-2);
 margin-bottom:var(--s-xs)}
-.current-site{
-color:var(--g)!important}
+.current-site{color:var(--g)!important}
 .nav-line{
 border-top:2px dashed #555;
 margin:var(--s-sm) 0;
@@ -195,27 +200,35 @@ flex-direction:column;
 gap:var(--s-xs)}
 .footer-link{
 display:flex;
-flex-direction:row;
 justify-content:center}
 .footer-link a{
-margin-left:var(--s-xs);
-margin-right:var(--s-xs);
+margin:0 var(--s-xs);
 color:var(--g);
 text-decoration:none}
-a:hover{
-text-shadow:0 0 5px var(--g)}
-.fade-in {
-opacity: 0;
-transform: translateY(50px) scale(0.95);
-transition-property: opacity, transform;
-transition-duration: 0.3s, 0.3s;
-transition-timing-function: cubic-bezier(0.7, 0, 1, 0.5), cubic-bezier(0.7, 0, 1, 0.5);
-will-change: opacity, transform;
+a:hover{text-shadow:0 0 5px var(--g)}
+.fade-in{
+opacity:0;
+transform:translateY(50px) scale(0.95);
+transition:opacity 0.3s,transform 0.3s;
+will-change:opacity,transform}
+.fade-in.visible{
+opacity:1;
+transform:translateY(0) scale(1);
+transition-duration:0.8s;}
+@media(max-width:720px){
+.hamburger{right:var(--s-xs)}
+.hamburger svg{width:calc(var(--s-4) * .7)}
+.logo{font-size:calc(var(--s-3) * .7)}}
+#fade {
+position: fixed;
+inset: 0;
+background: #000;
+pointer-events: none;
+z-index: 9999;
+  animation: fadeOut 0.6s ease-in forwards}
+@keyframes fadeOut {
+from {
+opacity: 1}
+to {
+opacity: 0}
 }
-.fade-in.visible {
-opacity: 1;
-transform: translateY(0) scale(1);
-transition-duration: 0.8s, 0.8s;
-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.4, 0, 0.2, 1);
-}
-

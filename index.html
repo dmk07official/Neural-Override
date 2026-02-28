@@ -63,6 +63,7 @@
       "image": "https://ik.imagekit.io/ggcm4pyrd/images/profile-neural-override-2.webp?updatedAt=1769295043125",
       "sameAs": [
         "https://open.spotify.com/intl-de/artist/0yNVsX6C6F2WttTktnwK9N?si=COxpiFhjR_6m2dtNQYVDdQ",
+        "https://youtube.com/channel/UCJMylNjS9xS2ZcBuDy5oUEQ?si=uZ7gGxuW-2oTQPod",
         "https://www.tiktok.com/@neural.override?is_from_webapp=1&sender_device=pc"
       ],
       "description": "Neural Override is a solo incelcore / alternative artist creating dark, introspective music for late-night overthinkers.",
@@ -108,21 +109,6 @@
     },
     {
       "@type": "MusicRelease",
-      "name": "ALONE - Creep Remix",
-      "url": "https://open.spotify.com/intl-de/track/2zik0Ldd5yE3kWfchvCWk3?si=18c13e4968374099",
-      "contentUrl": "https://open.spotify.com/intl-de/track/2zik0Ldd5yE3kWfchvCWk3?si=18c13e4968374099",
-      "datePublished": "2026-01-11",
-      "byArtist": {
-        "@type": "MusicGroup",
-        "name": "Neural Override"
-      },
-      "genre": "Incelcore",
-      "image": "https://ik.imagekit.io/ggcm4pyrd/images/alone-creep-remix-cover.webp",
-      "description": "A remix of Radiohead's 'Creep' with a darker, acoustic style, exploring feelings of loneliness and being unlovable.",
-      "duration": "PT2M20S"
-    },
-    {
-      "@type": "MusicRelease",
       "name": "Afterparty",
       "url": "https://open.spotify.com/intl-de/track/1D3rzouiyAlHNsiOZG8HUd?si=abe91cf857b9428d",
       "datePublished": "2025-01-24",
@@ -134,6 +120,21 @@
       "image": "https://ik.imagekit.io/ggcm4pyrd/images/afterparty-cover.webp",
       "description": "A cover of Gezebelle Gaburgably's 'Afterparty' with a darker, more introspective vibe than the original.",
       "duration": "PT2M00S"
+    },
+    {
+      "@type": "MusicRelease",
+      "name": "Get Over It",
+      "url": "https://open.spotify.com/intl-de/track/0hbjB3sETH0yNMriPgkUzh?si=1913f83fc15e4b6a",
+      "contentUrl": "https://open.spotify.com/intl-de/track/0hbjB3sETH0yNMriPgkUzh?si=1913f83fc15e4b6a",
+      "datePublished": "2026-02-19",
+      "byArtist": {
+        "@type": "MusicGroup",
+        "name": "Neural Override"
+      },
+      "genre": "Incelcore",
+      "image": "https://ik.imagekit.io/ggcm4pyrd/images/get-over-it.webp",
+      "description": "A dark sound about getting over a lost love.",
+      "duration": "PT3M00S"
     },
     {
       "@type": "WebSite",
@@ -172,14 +173,24 @@
 </head>
 <body>
 
+<div id="fade"></div>
+
 <header class="header">
+<div class="header-main">
 <h2 class="logo">NEURAL OVERRIDE</h2>
+
 <div class="hamburger" onclick="toggleMobileMenu()">
 <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50" fill="#00ff88">
 <rect id="line1" class="line" x="10" y="12" width="30" height="4" rx="2"/>
 <rect id="line2" class="line" x="10" y="23" width="30" height="4" rx="2"/>
 <rect id="line3" class="line" x="10" y="34" width="30" height="4" rx="2"/>
 </svg>
+</div>
+</div>
+<div class="sub-header">
+<a href="/members.html">Members</a>
+<a href="/news.html">News</a>
+<a href="mailto:neural.o.management@gmail.com">E-mail Us</a>
 </div>
 </header>
 
@@ -195,11 +206,17 @@
 </div>
 
 <section class="hero">
-<h1>Neural Override</h1>
-<h2>Very Incelcore Music</h2>
+<div class="hero-left">
+<h1 class="glitch" data-text="Very Incelcore Music">Very Incelcore <br> Music</h1>
+<p>Neural Override is out here making music that sounds like someone is singing into a void and somehow people listen.</p>
+<p>Most of it will probably make you question life choices, but hey, that’s Incelcore for you.</p>
 <button aria-label="Spotify" onclick="window.open('https://open.spotify.com/intl-de/artist/0yNVsX6C6F2WttTktnwK9N?si=X9TaM7cXTQii-LCAEnE3bA', '_blank')">
 Check Spotify
 </button>
+<p class="read-more" id="scrollDown">&#8595; read more &#8595;</p>
+</div>
+
+<div class="hero-right"></div>
 </section>
 
 <main>
@@ -229,6 +246,10 @@ Check Spotify
 <img src="https://neural-override.com/spotify-logo.svg" alt="Spotify Logo"/>
 <span>Spotify</span>
 </a>
+<a href="https://youtube.com/channel/UCJMylNjS9xS2ZcBuDy5oUEQ?si=0Yrq1Xd8H3WUORI7" target="_blank" class="social-icon" aria-label="Youtube">
+<img src="https://neural-override.com/youtube-logo.svg" alt="Youtube Logo"/>
+<span>Youtube</span>
+</a>
 </div>
 </section>
 </main>
@@ -237,8 +258,36 @@ Check Spotify
 <div class="footer-link">
 <a href="/imprint.html">Imprint </a> | icons by <a href="https://icons8.com/">icons8.com</a>
 </div>
-<p>&copy; 2025 Neural Override</p>
+<p>&copy; 2026 Neural Override</p>
 </footer>
 <script src="overlay.js"></script>
+<script>
+const scrollDownP = document.getElementById('scrollDown');
+const targetSection = document.querySelector('.description');
+const header = document.querySelector('.header');
+
+scrollDownP.onclick = () => {
+  const step = 10;
+  const interval = 10;
+
+  const scrollInterval = setInterval(() => {
+    const headerHeight = header.offsetHeight;
+    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+    const currentScroll = window.pageYOffset;
+
+    if (Math.abs(currentScroll - targetPosition) <= step) {
+      window.scrollTo(0, targetPosition);
+      clearInterval(scrollInterval);
+      return;
+    }
+
+    if (currentScroll < targetPosition) {
+      window.scrollBy(0, step);
+    } else {
+      window.scrollBy(0, -step);
+    }
+  }, interval);
+};
+</script>
 </body>
 </html>

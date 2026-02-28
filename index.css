@@ -1,16 +1,11 @@
-@keyframes grain{
-0%{
-transform:translate(0, 0)}
-to{
-transform:translate(-10%, -10%)}
-}
 body{
 color: var(--l);
 background-image: repeating-linear-gradient(to bottom,rgba(255, 255, 255, 0.03),rgba(255, 255, 255, 0.03) 1px,transparent 2px,transparent 4px)}
+/*Hero Querformat*/
 .hero{
 color:var(--g);
 position:relative;
-height:60vh;
+height: calc(100dvh - calc(2 * calc(var(--s-sm) * 1.6) + var(--s-3) + 48px));
 background:#000;
 border-bottom:4px dashed var(--g);
 overflow:hidden;
@@ -22,20 +17,9 @@ text-align:center}
 .hero h1{
 font-size:var(--s-4);
 animation:pulse 3s infinite;
-position:relative;
 z-index:1;
 line-height:1.1;
-margin-bottom:var(--s-md);
-letter-spacing: calc(var(--s-xs) * 0.25);}
-.hero h2{
-font-size:var(--s-2);
-margin:0 auto;
-max-width:1000px;
-position:relative;
-z-index:1;
-line-height:1.4;
-opacity:0.9;
-margin-bottom:var(--s-xl)}
+letter-spacing: calc(var(--s-xs) * 0.3)}
 .hero button{
 background-color:#111;
 color:var(--g);
@@ -44,13 +28,164 @@ padding:var(--s-sm);
 border-radius:var(--s-xs);
 width:60%;
 max-width:calc(var(--s-xl) * 16);
-font-size:var(--s-sm);
+font-size:var(--s-1);
 letter-spacing: calc(var(--s-xs) * 0.15);
+z-index:1;
 transition: transform 0.3s ease, background-color 0.5s ease, color 0.5s ease}
 .hero button:hover{
 background-color:var(--g);
 color:#111;
 transform:scale(1.1)}
+.read-more:hover{
+color:var(--g)}
+@media (orientation: landscape){
+.hero{
+display:grid;
+grid-template-columns: 1fr 1fr;
+align-items:center;
+text-align:left}
+.hero-left{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center}
+.hero h1{
+max-width:80%;
+position:absolute;
+top:calc(var(--s-xl) * 1.5)}
+.hero button{
+position:absolute;
+bottom:calc(var(--s-xl) * 2.5);
+width:40%;
+max-width:calc(var(--s-xl) * 16)}
+.hero p{
+font-size:var(--s-1);
+color:#fff;
+max-width:80%;
+margin:0 auto;
+text-align:justify}
+.read-more{
+position:absolute;
+bottom:calc(var(--s-xl) * 1)}
+.hero-right{
+height:100%;
+background-image:url('https://ik.imagekit.io/ggcm4pyrd/images/hero.webp');
+background-size:cover;
+background-position:center}
+}
+/*Hero Hochformat*/
+@media(orientation: portrait){
+.hero{
+background-image: url('https://ik.imagekit.io/ggcm4pyrd/images/hero.webp');
+background-size: cover; 
+background-position: center;
+background-repeat: no-repeat;
+animation: idleMove 10s ease-in-out infinite alternate;
+height: calc(100dvh - calc(2 * calc(var(--s-sm) * 1.6) + calc(var(--s-3) * .7) + 48px))}
+.hero::after {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(
+to bottom, 
+rgba(20, 10, 20, 0.6),
+rgba(30, 20, 30, 0.3),
+rgba(40, 40, 40, 0.2));
+pointer-events: none}
+@keyframes idleMove {
+0%{
+  background-position: 46% center}
+50%{
+  background-position: 54% center}
+100%{
+  background-position: 46% center}
+}
+.hero-left{
+width:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center}
+.hero h1{
+transform: perspective(300px) rotateX(15deg);
+position:absolute;
+top:calc(var(--s-xl) * 1)}
+.hero p{
+display: none}
+.read-more{
+width:60%;
+max-width:calc(var(--s-xl) * 16);
+border: 1px solid rgba(100,100,100,0.8);
+background-color: rgba(10,10,10,0.8);
+border-radius: var(--s-xs);
+padding: var(--s-xs);
+color: #fff;
+font-size:var(--s-1);
+display: block !important;
+position:absolute;
+bottom:calc(var(--s-xl) * 0.8)}
+.hero button{
+position:absolute;
+bottom:calc(var(--s-xl) * 2)}
+@media(min-width: 800px){
+.hero button{
+background-color:#111;
+color:var(--g);
+border:var(--g) calc(var(--s-xs) * 0.4) solid;
+padding:var(--s-sm);
+border-radius:var(--s-xs);
+width:60%;
+max-width:calc(var(--s-xl) * 16);
+font-size:calc(var(--s-2) * 0.8);
+letter-spacing: calc(var(--s-xs) * 0.15);
+transition: transform 0.3s ease, background-color 0.5s ease, color 0.5s ease}
+}
+.glitch{
+position:relative;
+color:var(--g);
+font-size:var(--s-4);
+animation:glitch-flicker 1s infinite}
+.glitch::before,
+.glitch::after{
+content: attr(data-text);
+position:absolute;
+top:0;
+left:0;
+width:100%;
+overflow:hidden;
+pointer-events: none}
+.glitch::before{
+opacity: 0.6;
+color:#ff004c;
+z-index:-1;
+animation: glitch-red 1.5s infinite linear}
+.glitch::after{
+opacity: 0.6;
+color:#00f0ff;
+z-index:-2;
+animation:glitch-cyan 1.4s infinite linear}
+@keyframes glitch-red{
+0%{ transform: translate(0,0)}
+20%{ transform: translate(-2px,1px)}
+40%{ transform: translate(-1px,-1px)}
+60%{ transform: translate(-3px,0)}
+80%{ transform: translate(-1px,1px)}
+100%{ transform: translate(0,0)}}
+@keyframes glitch-cyan{
+0%{ transform: translate(0,0)}
+20%{ transform: translate(2px,-1px)}
+40%{ transform: translate(1px,1px)}
+60%{ transform: translate(3px,0)}
+80%{ transform: translate(1px,-1px)}
+100%{ transform: translate(0,0)}}
+@keyframes glitch-flicker{
+0%,100%{ text-shadow: none }
+10%{ text-shadow: 2px 0 #ff004c, -2px 0 #00f0ff }
+15%{ text-shadow: none }
+25%{ text-shadow: -1px 0 #ff004c, 1px 0 #00f0ff }}
+}
 .social,
 .description{
 padding:var(--s-md)var(--s-sm);
@@ -119,13 +254,9 @@ transform:scale(1.08)}
 filter:grayscale(0%)brightness(1)}
 .social-icon:hover span{
 opacity:1}
-@media(max-width:700px){
-.hero{
-height:45vh}
+@media(max-width:500px){
 .hero h1{
 font-size:var(--s-3)}
-.hero h2{
-font-size:var(--s-1)}
 .social-icon{
 margin:var(--s-xs)}
 }
@@ -136,49 +267,4 @@ width:var(--s-3)}
 @media(min-width: 800px){
 .social-container{
 grid-template-columns:repeat(4, auto)}
-.hero button{
-background-color:#111;
-color:var(--g);
-border:var(--g) calc(var(--s-xs) * 0.4) solid;
-padding:var(--s-sm);
-border-radius:var(--s-xs);
-width:60%;
-max-width:calc(var(--s-xl) * 16);
-font-size:calc(var(--s-md) * 0.8);
-letter-spacing: calc(var(--s-xs) * 0.15);
-transition: transform 0.3s ease, background-color 0.5s ease, color 0.5s ease}
-}
-.release{
-padding:var(--s-md) var(--s-sm)}
-.release p{
-text-align:left;
-line-height:1.7}
-.release-box{
-position:relative;
-width:100%;
-max-width:1000px;
-margin:var(--s-lg) auto 0;
-background-color:rgba(0, 0, 0, 0.3);
-padding:var(--s-lg);
-border-radius:var(--s-sm);
-overflow:hidden;
-box-shadow:0 0 15px rgba(0, 0, 0, 0.2);
-display:grid;
-grid-template-columns:auto 1fr;
-gap:var(--s-md);
-align-items:center;
-text-align:left}
-.release-cover{
-width:calc(var(--s-4) * 2.5);
-border-radius:var(--s-sm)}
-.release-title{
-font-family:'Russo One', sans-serif;
-font-size:var(--s-2);
-color:var(--g)}
-@media(max-width: 700px){
-.release-box{
-grid-template-columns: 1fr;
-text-align:center}
-.release-cover{
-margin:0 auto}
 }
