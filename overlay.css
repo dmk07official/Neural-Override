@@ -73,11 +73,12 @@ transition:all 0.5s ease}
 .header-main{
 display:flex;
 align-items:center;
-justify-content:space-between;
+justify-content:center;
 padding:calc(var(--s-sm) * 1.6) calc(var(--s-sm) + var(--s-0));
 position:relative;
 transition:padding 0.5s ease}
 .header:not(.at-top) .header-main{
+justify-content:space-between;
 padding:var(--s-sm) calc(var(--s-sm) + var(--s-0))}
 .header::after{
 content:"";
@@ -96,8 +97,6 @@ letter-spacing:3px;
 user-select:none;
 white-space:nowrap;
 transition:transform 0.5s cubic-bezier(.4,0,.2,1),font-size 0.5s ease}
-.header.at-top .logo{
-transform:translateX(var(--logo-shift, 0px))}
 .header:not(.at-top) .logo{
 transform:translateX(-10%) scale(0.85)}
 .sub-header{
@@ -114,9 +113,11 @@ border: none}
 .sub-header a{
 font-family: 'Russo One', sans-serif;
 font-size:var(--s-0);
-color:var(--g);
+color:#fff;
 text-decoration:none;
 transition:opacity 0.2s ease}
+.sub-header a:hover{
+color:var(--g)}
 .header:not(.at-top) .sub-header a{
 opacity:0;
 pointer-events:none}

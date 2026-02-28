@@ -1,48 +1,48 @@
 (() => {
   const header = document.querySelector(".header");
   const subHeader = document.querySelector(".sub-header");
-  const headerMain = document.querySelector(".header-main");
-  const logo = document.querySelector(".logo");
-  const rightEl = document.querySelector(".hamburger");
+  const mobileNav = document.getElementById("mobileNav");
 
   const burger = document.getElementById("hamburger");
   const l1 = document.getElementById("line1");
   const l2 = document.getElementById("line2");
   const l3 = document.getElementById("line3");
-  const mobileNav = document.getElementById("mobileNav");
 
   let menuOffen = false;
+  let isAtTop = null; // 👈 absichtlich null
 
   function handleScroll() {
     const scrollTop = window.scrollY;
+
+    // progress bar
     const docHeight =
       document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-
     header.style.setProperty("--progress-width", `${scrollPercent}%`);
 
-    if (scrollTop < 5) {
-      header.classList.add("at-top");
-      subHeader?.classList.add("at-top");
+    // 🔒 Initialisierung + Hysterese
+    if (isAtTop === null) {
+      isAtTop = scrollTop < 5;
+      header.classList.toggle("at-top", isAtTop);
+      subHeader?.classList.toggle("at-top", isAtTop);
     } else {
-      header.classList.remove("at-top");
-      subHeader?.classList.remove("at-top");
+      if (scrollTop <= 2 && !isAtTop) {
+        header.classList.add("at-top");
+        subHeader?.classList.add("at-top");
+        isAtTop = true;
+      }
+
+      if (scrollTop >= 10 && isAtTop) {
+        header.classList.remove("at-top");
+        subHeader?.classList.remove("at-top");
+        isAtTop = false;
+      }
     }
-  }
 
-  function updateLogoTranslate() {
-    if (!headerMain || !logo || !rightEl) return;
-
-    const headerRect = headerMain.getBoundingClientRect();
-    const logoRect = logo.getBoundingClientRect();
-
-    const centerX = headerRect.width / 2;
-    const logoStartX = logoRect.left - headerRect.left;
-    const logoCenterOffset = logoRect.width / 2;
-
-    const translateX = centerX - (logoStartX + logoCenterOffset);
-
-    logo.style.setProperty("--logo-shift", `${translateX}px`);
+    // mobile nav opacity
+    if (mobileNav) {
+      mobileNav.style.opacity = scrollTop < 5 ? "0" : "1";
+    }
   }
 
   window.toggleMobileMenu = () => {
@@ -75,11 +75,8 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     updateTitle();
-    handleScroll();
-    updateLogoTranslate();
-
+    handleScroll(); // 👈 setzt at-top korrekt beim Start
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", updateLogoTranslate);
   });
 
   window.addEventListener("load", () => {
@@ -89,15 +86,4 @@
   if ("scrollRestoration" in history) {
     history.scrollRestoration = "manual";
   }
-  
-  window.addEventListener("scroll", () => {
-  const nav = document.querySelector(".mobile-nav");
-  if (!nav) return;
-
-  if (window.scrollY < 5) {
-    nav.style.opacity = "0";
-  } else {
-    nav.style.opacity = "1";
-  }
-});
 })();

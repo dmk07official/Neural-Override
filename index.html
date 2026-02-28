@@ -267,26 +267,16 @@ const targetSection = document.querySelector('.description');
 const header = document.querySelector('.header');
 
 scrollDownP.onclick = () => {
-  const step = 10;
-  const interval = 10;
+  if (!targetSection || !header) return;
 
-  const scrollInterval = setInterval(() => {
-    const headerHeight = header.offsetHeight;
-    const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-    const currentScroll = window.pageYOffset;
+  const headerHeight = header.offsetHeight;
+  const targetPosition = targetSection.offsetTop - headerHeight;
 
-    if (Math.abs(currentScroll - targetPosition) <= step) {
-      window.scrollTo(0, targetPosition);
-      clearInterval(scrollInterval);
-      return;
-    }
-
-    if (currentScroll < targetPosition) {
-      window.scrollBy(0, step);
-    } else {
-      window.scrollBy(0, -step);
-    }
-  }, interval);
+  window.scrollTo({
+    top: targetPosition,
+    left: 0,
+    behavior: 'auto' // teleport, sofort
+  });
 };
 </script>
 </body>
