@@ -9,16 +9,22 @@
   const l3 = document.getElementById("line3");
 
   let menuOffen = false;
-  let isAtTop = null; // 👈 absichtlich null
+  let isAtTop = null;
 
-  // ⚡ requestAnimationFrame Flag
   let ticking = false;
+
+  let lastScrollTop = 0; // ✨ Neu: merken für kleine Bewegungen
 
   function handleScrollRAF() {
     const scrollTop = window.scrollY;
+
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        updateHeader(scrollTop);
+        // ✨ Neu: nur toggle wenn Unterschied >1px
+        if (Math.abs(scrollTop - lastScrollTop) > 1) {
+          updateHeader(scrollTop);
+          lastScrollTop = scrollTop;
+        }
         ticking = false;
       });
       ticking = true;
@@ -26,32 +32,29 @@
   }
 
   function updateHeader(scrollTop) {
-    // progress bar
     const docHeight =
       document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     header.style.setProperty("--progress-width", `${scrollPercent}%`);
 
-    // 🔒 Hysterese + at-top toggle
+    // Hysterese
     if (isAtTop === null) {
       isAtTop = scrollTop < 5;
       header.classList.toggle("at-top", isAtTop);
       subHeader?.classList.toggle("at-top", isAtTop);
     } else {
-      if (scrollTop <= 10 && !isAtTop) { // früher 2px
+      if (scrollTop <= 10 && !isAtTop) {
         header.classList.add("at-top");
         subHeader?.classList.add("at-top");
         isAtTop = true;
       }
-
-      if (scrollTop >= 25 && isAtTop) { // früher 10px
+      if (scrollTop >= 25 && isAtTop) {
         header.classList.remove("at-top");
         subHeader?.classList.remove("at-top");
         isAtTop = false;
       }
     }
 
-    // mobile nav opacity
     if (mobileNav) {
       mobileNav.style.opacity = scrollTop < 5 ? "0" : "1";
     }
@@ -87,7 +90,12 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     updateTitle();
-    handleScrollRAF(); // setzt at-top korrekt beim Start
+    // sofort Status setzen
+  const initialScroll = window.scrollY;
+  isAtTop = initialScroll < 5;
+  header.classList.toggle("at-top", isAtTop);
+  subHeader?.classList.toggle("at-top", isAtTop);
+    handleScrollRAF();
     window.addEventListener("scroll", handleScrollRAF, { passive: true });
   });
 
