@@ -248,9 +248,7 @@ text-align:left !important}
 .social-text,
 .description-text{
 margin-bottom:var(--s-md);
-font-size:var(--s-1);
-margin-left:auto;
-margin-right:auto}
+font-size:var(--s-1)}
 .description-text{
 text-align:left}
 .description a,
