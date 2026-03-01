@@ -85,18 +85,18 @@
 
     menuOffen = !menuOffen;
   };
-  
-let lastVH = 0;
-function setVH() {
-  const vh = window.innerHeight * 0.01;
-  if(Math.abs(vh - lastVH) > 0.01) {
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    lastVH = vh;
-  }
-}
 
   document.addEventListener("DOMContentLoaded", () => {
-    setVH();
+    
+    const hero = document.querySelector('.hero');
+
+    const headerHeight = document.querySelector('.header').offsetHeight;
+    const subHeaderHeight = document.querySelector('.sub-header')?.offsetHeight || 0;
+    const extraPadding = 48;
+    
+    const heroHeight = window.innerHeight - (headerHeight + subHeaderHeight + extraPadding);
+
+    hero.style.height = `${heroHeight}px`;
     
     const initialScroll = getScrollTop();
     isAtTop = initialScroll === 0;
@@ -104,7 +104,6 @@ function setVH() {
     subHeader?.classList.toggle("at-top", isAtTop);
     lastScrollTop = initialScroll;
 
-    window.addEventListener('resize', setVH);
     window.addEventListener("scroll", handleScrollRAF, { passive: true });
   });
 
