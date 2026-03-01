@@ -86,9 +86,13 @@
     menuOffen = !menuOffen;
   };
   
-  function setVH() {
+let lastVH = 0;
+function setVH() {
   const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  if(Math.abs(vh - lastVH) > 0.01) {
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    lastVH = vh;
+  }
 }
 
   document.addEventListener("DOMContentLoaded", () => {
