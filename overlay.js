@@ -12,16 +12,19 @@
   let isAtTop = null;
 
   let ticking = false;
+  let lastScrollTop = -1; // absichtlich -1 für initialen Run
 
-  let lastScrollTop = 0; // ✨ Neu: merken für kleine Bewegungen
+  function getScrollTop() {
+    return window.pageYOffset || document.documentElement.scrollTop || 0;
+  }
 
   function handleScrollRAF() {
-    const scrollTop = window.scrollY;
+    const scrollTop = getScrollTop();
 
     if (!ticking) {
       window.requestAnimationFrame(() => {
-        // ✨ Neu: nur toggle wenn Unterschied >1px
-        if (Math.abs(scrollTop - lastScrollTop) > 1) {
+        // 👉 NUR reagieren, wenn sich der Wert wirklich ändert
+        if (scrollTop !== lastScrollTop) {
           updateHeader(scrollTop);
           lastScrollTop = scrollTop;
         }
@@ -32,31 +35,36 @@
   }
 
   function updateHeader(scrollTop) {
+    // progress bar
     const docHeight =
       document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     header.style.setProperty("--progress-width", `${scrollPercent}%`);
 
-    // Hysterese
+    // 🔒 AT-TOP Logik – jetzt eindeutig
     if (isAtTop === null) {
-      isAtTop = scrollTop < 5;
+      isAtTop = scrollTop === 0;
       header.classList.toggle("at-top", isAtTop);
       subHeader?.classList.toggle("at-top", isAtTop);
-    } else {
-      if (scrollTop <= 10 && !isAtTop) {
-        header.classList.add("at-top");
-        subHeader?.classList.add("at-top");
-        isAtTop = true;
-      }
-      if (scrollTop >= 25 && isAtTop) {
-        header.classList.remove("at-top");
-        subHeader?.classList.remove("at-top");
-        isAtTop = false;
-      }
+      return;
     }
 
+    // nur EINMAL wechseln, keine Loop-Zone mehr
+    if (scrollTop === 0 && !isAtTop) {
+      header.classList.add("at-top");
+      subHeader?.classList.add("at-top");
+      isAtTop = true;
+    }
+
+    if (scrollTop > 0 && isAtTop) {
+      header.classList.remove("at-top");
+      subHeader?.classList.remove("at-top");
+      isAtTop = false;
+    }
+
+    // mobile nav opacity
     if (mobileNav) {
-      mobileNav.style.opacity = scrollTop < 5 ? "0" : "1";
+      mobileNav.style.opacity = scrollTop === 0 ? "0" : "1";
     }
   }
 
@@ -90,12 +98,14 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     updateTitle();
-    // sofort Status setzen
-  const initialScroll = window.scrollY;
-  isAtTop = initialScroll < 5;
-  header.classList.toggle("at-top", isAtTop);
-  subHeader?.classList.toggle("at-top", isAtTop);
-    handleScrollRAF();
+
+    // 🔥 initialer, harter Zustand
+    const initialScroll = getScrollTop();
+    isAtTop = initialScroll === 0;
+    header.classList.toggle("at-top", isAtTop);
+    subHeader?.classList.toggle("at-top", isAtTop);
+    lastScrollTop = initialScroll;
+
     window.addEventListener("scroll", handleScrollRAF, { passive: true });
   });
 
