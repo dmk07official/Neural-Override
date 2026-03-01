@@ -112,6 +112,8 @@ top:calc(var(--s-xl) * 0.5)}
 /*Hero Hochformat*/
 @media(orientation: portrait){
 .hero{
+will-change: background-position;
+backface-visibility: hidden;
 background-image: url('https://ik.imagekit.io/ggcm4pyrd/images/hero.webp');
 background-size: cover; 
 background-position: center;
