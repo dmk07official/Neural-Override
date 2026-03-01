@@ -85,27 +85,22 @@
 
     menuOffen = !menuOffen;
   };
-
-  function updateTitle() {
-    const path = window.location.pathname;
-    let title = "Neural Override | Start";
-
-    if (path.includes("news")) title = "Neural Override | News";
-    if (path.includes("members")) title = "Neural Override | Members";
-
-    document.title = title;
-  }
+  
+  function setVH() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
 
   document.addEventListener("DOMContentLoaded", () => {
-    updateTitle();
-
-    // 🔥 initialer, harter Zustand
+    setVH();
+    
     const initialScroll = getScrollTop();
     isAtTop = initialScroll === 0;
     header.classList.toggle("at-top", isAtTop);
     subHeader?.classList.toggle("at-top", isAtTop);
     lastScrollTop = initialScroll;
 
+    window.addEventListener('resize', setVH);
     window.addEventListener("scroll", handleScrollRAF, { passive: true });
   });
 
