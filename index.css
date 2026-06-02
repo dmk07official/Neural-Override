@@ -1,305 +1,346 @@
 body{
-color: var(--l);
-background-image: repeating-linear-gradient(to bottom,rgba(255, 255, 255, 0.03),rgba(255, 255, 255, 0.03) 1px,transparent 2px,transparent 4px)}
-/*Hero Querformat*/
+color:var(--l);
+background-image:repeating-linear-gradient(to bottom,rgba(255,255,255,0.025),rgba(255,255,255,0.025) 1px,transparent 2px,transparent 4px)}
+
+/* ─── HERO ───────────────────────────────────────────────── */
+/* Robustes flexbox-flow layout statt fragiler absoluter positionen. */
 .hero{
-color:var(--g);
 position:relative;
-background:#000;
-border-bottom:4px dashed var(--g);
 overflow:hidden;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center}
-.hero h1{
-font-size:var(--s-4);
-animation:pulse 3s infinite;
-z-index:1;
-line-height:1.1;
-letter-spacing: calc(var(--s-xs) * 0.3)}
-.hero button{
-background-color:#111;
-color:var(--g);
-border:var(--g) calc(var(--s-xs) * 0.4) solid;
-padding:var(--s-sm);
-border-radius:var(--s-xs);
-width:60%;
-max-width:calc(var(--s-xl) * 16);
-font-size:var(--s-1);
-letter-spacing: calc(var(--s-xs) * 0.15);
-z-index:1;
-transition: transform 0.3s ease, background-color 0.5s ease, color 0.5s ease}
-.hero button:hover{
-background-color:var(--g);
-color:#111;
-transform:scale(1.1)}
-.read-more:hover{
-color:var(--g)}
-@media (orientation: landscape){
-.hero{
-display:grid;
-grid-template-columns: 1fr 1fr;
-align-items:center;
-text-align:left}
+background:#000;
+border-bottom:1px solid rgba(0,204,110,0.2);
+height:calc(100dvh - var(--hh, 64px));
+min-height:480px}
+
 .hero-left{
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center}
-.hero h1{
-max-width:80%;
-position:absolute;
-top:calc(var(--s-xl)* 0.9)}
-.hero button{
-position:absolute;
-bottom:calc(var(--s-xl) * 2);
-width:40%;
-max-width:calc(var(--s-xl) * 16)}
-.hero p{
-font-size:var(--s-1);
-color:#fff;
-max-width:80%;
-margin:0 auto;
-text-align:justify}
-.read-more{
-position:absolute;
-bottom:calc(var(--s-xl) * 1)}
-.hero-right{
+position:relative;
+z-index:2;
 height:100%;
-background-image:url('https://ik.imagekit.io/ggcm4pyrd/images/hero.webp');
-background-size:cover;
-background-position:center}
-}
-@media(max-height: 800px){
-.hero h1{
-font-size:calc(var(--s-4) * 0.9);
-top:calc(var(--s-xl) * 0.8)}
-.hero button{
-bottom:calc(var(--s-xl) * 1.5)}
-}
-@media(max-height: 700px){
-.hero h1{
-font-size:calc(var(--s-4) * 0.85);
-top:calc(var(--s-xl) * 0.2)}
-.hero button{
-bottom:calc(var(--s-xl) * 1.2)}
-}
-.read-more{
-bottom:calc(var(--s-xl) * 0.7)}
-@media(max-height: 400px){
-.hero{
-display:flex}
-.hero-right{
-display:none}
-.hero-left{
-width:100%;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-text-align:center}
-.hero button{
-display:none}
-.hero p{
-display: none}
-.hero h1{
-font-size:calc(var(--s-4) * 0.7);
-top:calc(var(--s-xl) * 0.5)}
-}
-/*Hero Hochformat*/
-@media(orientation: portrait){
-.hero{
-will-change: background-position;
-backface-visibility: hidden;
-background-image: url('https://ik.imagekit.io/ggcm4pyrd/images/hero.webp');
-background-size: cover; 
-background-position: center;
-background-repeat: no-repeat;
-animation: idleMove 10s ease-in-out infinite alternate;
-height: calc(100dvh - calc(2 * calc(var(--s-sm) * 1.6) + calc(var(--s-3) * .7) + 48px))}
-.hero::after {
-content: '';
-position: absolute;
-inset: 0;
-background: linear-gradient(
-to bottom, 
-rgba(20, 10, 20, 0.6),
-rgba(30, 20, 30, 0.3),
-rgba(40, 40, 40, 0.2));
-pointer-events: none}
-@keyframes idleMove {
-0%{
-  background-position: 46% center}
-50%{
-  background-position: 54% center}
-100%{
-  background-position: 46% center}
-}
-.hero-left{
-width:100%;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center}
-.hero h1{
-transform: perspective(300px) rotateX(15deg);
-position:absolute;
-top:calc(var(--s-xl) * 1)}
-.hero p{
-display: none}
-.read-more{
-width:60%;
-max-width:calc(var(--s-xl) * 16);
-border: 1px solid rgba(100,100,100,0.8);
-background-color: rgba(10,10,10,0.8);
-border-radius: var(--s-xs);
-padding: var(--s-xs);
-color: #fff;
-font-size:var(--s-1);
-display: block !important;
-position:absolute;
-bottom:calc(var(--s-xl) * 0.8)}
-.hero button{
-position:absolute;
-bottom:calc(var(--s-xl) * 2)}
-@media(min-width: 800px){
-.hero button{
-background-color:#111;
-color:var(--g);
-border:var(--g) calc(var(--s-xs) * 0.4) solid;
-padding:var(--s-sm);
-border-radius:var(--s-xs);
-width:60%;
-max-width:calc(var(--s-xl) * 16);
-font-size:calc(var(--s-2) * 0.8);
-letter-spacing: calc(var(--s-xs) * 0.15);
-transition: transform 0.3s ease, background-color 0.5s ease, color 0.5s ease}
-}
+text-align:center;
+gap:var(--s-md);
+padding:var(--s-xl) var(--s-md);
+overflow:hidden}
+
+.hero-right{display:none}
+
+/* ─── HERO HEADLINE (glitch) ─────────────────────────────── */
+.hero h1,
 .glitch{
 position:relative;
 color:var(--g);
 font-size:var(--s-4);
-animation:glitch-flicker 1s infinite}
+line-height:1.05;
+letter-spacing:0.04em;
+z-index:1}
+
+.glitch{animation:glitch-flicker 3s infinite}
+
 .glitch::before,
 .glitch::after{
-content: attr(data-text);
+content:attr(data-text);
 position:absolute;
-top:0;
-left:0;
+top:0;left:0;
 width:100%;
 overflow:hidden;
-pointer-events: none}
-.glitch::before{
-opacity: 0.6;
-color:#ff004c;
-z-index:-1;
-animation: glitch-red 1.5s infinite linear}
-.glitch::after{
-opacity: 0.6;
-color:#00f0ff;
-z-index:-2;
-animation:glitch-cyan 1.4s infinite linear}
+pointer-events:none}
+
+.glitch::before{opacity:0.5;color:#ff004c;z-index:-1;animation:glitch-red 2s infinite linear}
+.glitch::after{opacity:0.5;color:#00f0ff;z-index:-2;animation:glitch-cyan 1.8s infinite linear}
+
 @keyframes glitch-red{
-0%{ transform: translate(0,0)}
-20%{ transform: translate(-2px,1px)}
-40%{ transform: translate(-1px,-1px)}
-60%{ transform: translate(-3px,0)}
-80%{ transform: translate(-1px,1px)}
-100%{ transform: translate(0,0)}}
+0%,100%{transform:translate(0,0)}
+20%{transform:translate(-2px,1px)}
+40%{transform:translate(-1px,-1px)}
+60%{transform:translate(-2px,0)}
+80%{transform:translate(-1px,1px)}}
+
 @keyframes glitch-cyan{
-0%{ transform: translate(0,0)}
-20%{ transform: translate(2px,-1px)}
-40%{ transform: translate(1px,1px)}
-60%{ transform: translate(3px,0)}
-80%{ transform: translate(1px,-1px)}
-100%{ transform: translate(0,0)}}
+0%,100%{transform:translate(0,0)}
+20%{transform:translate(2px,-1px)}
+40%{transform:translate(1px,1px)}
+60%{transform:translate(2px,0)}
+80%{transform:translate(1px,-1px)}}
+
 @keyframes glitch-flicker{
-0%,100%{ text-shadow: none }
-10%{ text-shadow: 2px 0 #ff004c, -2px 0 #00f0ff }
-15%{ text-shadow: none }
-25%{ text-shadow: -1px 0 #ff004c, 1px 0 #00f0ff }}
-}
+0%,100%{text-shadow:none}
+33%{text-shadow:none}
+34%{text-shadow:2px 0 #ff004c,-2px 0 #00f0ff}
+36%{text-shadow:none}
+37%{text-shadow:-1px 0 #ff004c,1px 0 #00f0ff}
+38%{text-shadow:none}}
+
+/* ─── HERO TEXT ──────────────────────────────────────────── */
+.hero p{
+font-size:var(--s-1);
+color:rgba(240,240,240,0.7);
+max-width:46ch;
+margin:0 auto;
+line-height:1.75;
+z-index:1}
+
+/* ─── BUTTON ─────────────────────────────────────────────── */
+.hero button{
+background:transparent;
+color:var(--g);
+border:1px solid rgba(0,204,110,0.6);
+padding:var(--s-sm) var(--s-md);
+border-radius:2px;
+width:auto;
+min-width:240px;
+max-width:90%;
+font-size:var(--s-1);
+letter-spacing:0.1em;
+position:relative;
+overflow:hidden;
+z-index:1;
+cursor:pointer;
+transition:color 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease}
+
+.hero button::before{
+content:'';
+position:absolute;
+inset:0;
+background:var(--g);
+transform:translateX(-101%);
+transition:transform 0.35s cubic-bezier(.4,0,.2,1);
+z-index:-1}
+
+.hero button:hover{
+color:#060608;
+border-color:var(--g);
+box-shadow:0 0 20px var(--g-glow)}
+
+.hero button:hover::before{transform:translateX(0)}
+
+/* ─── READ MORE ──────────────────────────────────────────── */
+.read-more{
+color:var(--l-dim);
+font-family:'Space Mono',monospace;
+font-size:var(--s-0);
+letter-spacing:0.08em;
+cursor:pointer;
+transition:color 0.2s ease;
+z-index:1}
+
+.read-more:hover{color:var(--g)}
+
+/* ─── TERMINAL TAG ───────────────────────────────────────── */
+.hero-tag{
+font-family:'Space Mono',monospace;
+font-size:var(--s--1);
+letter-spacing:0.18em;
+color:rgba(0,204,110,0.6);
+text-transform:uppercase;
+z-index:1}
+
+.hero-tag::after{
+content:'_';
+margin-left:2px;
+animation:tagBlink 1s steps(1) infinite}
+
+@keyframes tagBlink{
+0%,50%{opacity:1}
+51%,100%{opacity:0}}
+
+/* ─── BACKGROUND IMAGE LAYER ─────────────────────────────── */
+/* Bild liegt als ::before hinter dem content – funktioniert in
+   beiden orientierungen gleich, kein layout-shift. */
+.hero::before{
+content:'';
+position:absolute;
+inset:0;
+z-index:0;
+background-image:url('https://ik.imagekit.io/ggcm4pyrd/images/hero.webp');
+background-size:cover;
+background-position:center;
+will-change:transform;
+transform:translate3d(0,0,0) scale(1.05);
+animation:idleMove 16s ease-in-out infinite alternate}
+
+@keyframes idleMove{
+0%{background-position:46% center}
+100%{background-position:54% center}}
+
+/* dark overlay + scanlines über dem bild */
+.hero::after{
+content:'';
+position:absolute;
+inset:0;
+z-index:1;
+pointer-events:none;
+background:
+  linear-gradient(to bottom,
+    rgba(6,4,10,0.72) 0%,
+    rgba(8,8,12,0.55) 45%,
+    rgba(6,6,8,0.7) 100%),
+  repeating-linear-gradient(to bottom,
+    transparent,
+    transparent 3px,
+    rgba(0,204,110,0.015) 3px,
+    rgba(0,204,110,0.015) 4px)}
+
+/* ─── LANDSCAPE: split-screen mit bild rechts ───────────── */
+@media(orientation:landscape) and (min-width:760px){
+.hero{
+display:grid;
+grid-template-columns:1fr 1fr}
+
+/* im split-view: linke hälfte dunkel (kein bild), rechts das bild */
+.hero::before{left:50%}
+.hero::after{left:50%}
+
+.hero-left{
+background:
+  radial-gradient(ellipse 80% 60% at 35% 45%,rgba(0,204,110,0.07) 0%,transparent 62%),
+  linear-gradient(135deg,rgba(6,7,9,0.98) 0%,rgba(9,13,11,0.96) 100%);
+text-align:left;
+align-items:flex-start;
+padding:var(--s-xl) var(--s-lg)}
+
+.hero h1{text-align:left}
+.hero p{margin:0;max-width:42ch}
+.hero button{align-self:flex-start}
+
+/* circuit grid im linken panel */
+.hero-left::before{
+content:'';
+position:absolute;
+inset:0;
+z-index:-1;
+pointer-events:none;
+background-image:
+  linear-gradient(rgba(0,204,110,0.05) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,204,110,0.05) 1px,transparent 1px);
+background-size:40px 40px;
+mask-image:radial-gradient(ellipse at 35% 50%,rgba(0,0,0,0.85) 0%,transparent 75%)}
+
+/* corner bracket im linken panel – wie bei cards */
+.hero-left::after{
+content:'';
+position:absolute;
+top:var(--s-md);left:var(--s-md);right:var(--s-md);bottom:var(--s-md);
+border:1px solid rgba(0,204,110,0.1);
+border-radius:2px;
+pointer-events:none}
+
+/* scanline overlay nur auf dem rechten bild */
+.hero-right{
+display:block;
+position:absolute;
+top:0;right:0;
+width:50%;
+height:100%;
+z-index:1;
+pointer-events:none;
+background:repeating-linear-gradient(
+  to bottom,
+  transparent,
+  transparent 3px,
+  rgba(0,204,110,0.02) 3px,
+  rgba(0,204,110,0.02) 4px)}}
+
+/* sehr flache landscape (handy quer): bild als hintergrund, content zentriert */
+@media(orientation:landscape) and (max-height:430px){
+.hero p{display:none}}
+
+/* PORTRAIT: hero liegt über dem bild → info-texte ausblenden,
+   sonst unleserlich. nur headline + button bleiben. */
+@media(orientation:portrait){
+.hero p,
+.hero-tag{display:none}}
+/* ─── MAIN CONTENT ──────────────────────────────────────── */
 .social,
 .description{
-padding:var(--s-md)var(--s-sm);
-color:#f0f0f0;
+padding:calc(var(--s-md) * 1.4) var(--s-md);
+color:var(--l);
 text-align:center;
 margin-left:auto;
 margin-right:auto;
-margin-top:var(--s-md);
+margin-top:var(--s-lg);
 max-width:1000px}
+
 .description{
-margin-top:var(--s-xl);
-border-bottom:2px dashed #555}
+margin-top:calc(var(--s-xl) * 1.2);
+border-bottom:1px solid rgba(0,204,110,0.15)}
+
 .social h2,
 .description h1,
 .description h2{
 font-size:var(--s-3);
 margin-bottom:var(--s-lg);
+letter-spacing:0.04em;
 color:var(--g)}
-.description h1,
-.description h2,
-.description h3{
+
+.description h1,.description h2,.description h3{
 text-align:left !important}
+
+.description h3{
+margin-top:var(--s-lg);
+margin-bottom:var(--s-sm);
+font-size:var(--s-2);
+letter-spacing:0.04em;
+color:rgba(0,204,110,0.7)}
+
 .social-text,
 .description-text{
-margin-bottom:var(--s-md);
-font-size:var(--s-1)}
-.description-text{
-text-align:left}
-.description a,
-.release a{
+margin-bottom:calc(var(--s-md) * 1.1);
+font-size:var(--s-1);
+line-height:1.82;
+color:rgba(240,240,240,0.85)}
+
+.description-text{text-align:left}
+
+.description a,.release a{
 color:var(--g);
-text-decoration: none}
+text-decoration:none}
+
+/* ─── SOCIAL ICONS ──────────────────────────────────────── */
 .social-container{
 display:grid;
-grid-template-columns:repeat(2, auto);
+grid-template-columns:repeat(2,auto);
 justify-content:center;
 gap:var(--s-lg);
 flex-wrap:wrap;
 padding:0 var(--s-xl)}
+
 .social-icon{
 display:flex;
 flex-direction:column;
 align-items:center;
 text-decoration:none;
 color:var(--l);
-transition:transform 0.3s ease,filter 0.3s ease;
-width:auto;
+transition:transform 0.3s ease;
 margin:var(--s-sm);
 margin-bottom:var(--s-lg)}
+
 .social-icon img{
 width:var(--s-4);
 height:auto;
 margin-bottom:var(--s-sm);
-filter:grayscale(100%)brightness(0.8);
-transition:filter 0.3s ease}
+filter:grayscale(100%) brightness(0.7);
+transition:filter 0.3s ease,box-shadow 0.3s ease}
+
 .social-icon span{
 font-size:var(--s-0);
-opacity:0.7;
-transition:opacity 0.3s;
-text-align:center}
-.social-icon:hover{
-transform:scale(1.08)}
+letter-spacing:0.06em;
+opacity:0.6;
+transition:opacity 0.25s ease}
+
+.social-icon:hover{transform:scale(1.08)}
 .social-icon:hover img{
-filter:grayscale(0%)brightness(1)}
-.social-icon:hover span{
-opacity:1}
+filter:grayscale(0%) brightness(1);
+box-shadow:0 0 16px var(--g-glow)}
+.social-icon:hover span{opacity:1}
+
 @media(max-width:500px){
-.hero h1{
-font-size:var(--s-3)}
-.social-icon{
-margin:var(--s-xs)}
-}
-@media(max-width:400px){
-.social-icon img{
-width:var(--s-3)}
-}
-@media(min-width: 800px){
-.social-container{
-grid-template-columns:repeat(4, auto)}
-}
+.hero h1{font-size:var(--s-3)}
+.social-icon{margin:var(--s-xs)}}
+
+@media(max-width:400px){.social-icon img{width:var(--s-3)}}
+
+@media(min-width:800px){
+.social-container{grid-template-columns:repeat(4,auto)}}

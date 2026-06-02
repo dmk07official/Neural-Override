@@ -10,13 +10,13 @@
 <meta name="author" content="Neural Override"/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://neural-override.com/news"/>
-<meta name="last-modified" content="2026-03-01T12:00:00+00:00"/>
+<meta name="last-modified" content="2026-06-02T12:00:00+00:00"/>
 
 <meta property="og:type" content="music.musician"/>
 <meta property="og:title" content="Neural Override – Latest Band News"/>
 <meta property="og:description" content="Stay up to date with Neural Override! Latest news, releases and behind-the-scenes chaos."/>
 <meta property="og:image" content="https://ik.imagekit.io/ggcm4pyrd/images/profile-neural-override-2.webp?updatedAt=1769295043125"/>
-<meta property="og:url" content="https://neural-override.com/"/>
+<meta property="og:url" content="https://neural-override.com/news"/>
 <meta property="og:site_name" content="Neural Override"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Neural Override – Latest Band News"/>
@@ -30,9 +30,11 @@
 <meta name="apple-mobile-web-app-title" content="Neural Override" />
 <meta name="theme-color" content="#00cc6e">
   
+<link rel="preconnect" href="https://ik.imagekit.io" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="dns-prefetch" href="https://ik.imagekit.io">
 <link rel="stylesheet" href="overlay.css"/>
 <link rel="stylesheet" href="news.css"/>
-<script src="https://cdn.jsdelivr.net/npm/lazysizes/lazysizes.min.js" async></script>
 <script src="https://instant.page/5.1.0" type="module" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fontfaceobserver/2.1.0/fontfaceobserver.standalone.js"></script>
 <script>
@@ -41,7 +43,6 @@
     new FontFaceObserver('Space Mono').load()
   ]).then(function () {
     document.documentElement.classList.add('fonts-loaded');
-    console.log('fonts loaded');
   }).catch(function () {
     console.warn('fonts error');
   });
@@ -52,9 +53,9 @@
 
 <div id="fade"></div>
 
-<header class="header">
+<header class="header at-top">
 <div class="header-main">
-<h2 class="logo">NEURAL OVERRIDE</h2>
+<a href="/index.html" class="logo" aria-label="Neural Override – Home">NEURAL OVERRIDE</a>
 
 <div class="hamburger" onclick="toggleMobileMenu()">
 <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50" fill="#00ff88">
@@ -71,15 +72,14 @@
 </div>
 </header>
 
-<div class="mobile-nav" id="mobileNav">
-<h3>Home</h3>
-<a href="/index.html">- Start</a>
-<a href="/members.html">- Members</a>
-<a href="/news.html" class="current-site">- News</a>
-
+<div class="mobile-nav nav-hidden" id="mobileNav">
+<h3>Navigate</h3>
+<a href="/index.html">— Start</a>
+<a href="/members.html">— Members</a>
+<a href="/news.html" class="current-site">— News</a>
 <div class="nav-line"></div>
-<h3>Contact Us</h3>
-<a href="mailto:neural.o.management@gmail.com">- E-mail</a>
+<h3>Contact</h3>
+<a href="mailto:neural.o.management@gmail.com">— E-mail</a>
 </div>
 
 <main>
@@ -87,6 +87,11 @@
 <h1>Neural Override Latest News</h1>
 <p class="description">Everything from our latest important (yeah they are) news, releases and behind-the-scenes in one place. <strong>Stay updated</strong> on the latest bangers from your (favourite) Artist.</p>
 <p class="description">Update from 2026: Those news are NOT up to date...</p>
+<div id="news-skeleton" aria-hidden="true" style="max-width:1000px;margin:0 auto">
+<div class="news-item skeleton skeleton-box" style="height:160px"></div>
+<div class="news-item skeleton skeleton-box" style="height:160px"></div>
+<div class="news-item skeleton skeleton-box" style="height:160px"></div>
+</div>
 <div id="news-container">
 
 <div class="input-wrapper fade-in">
@@ -111,7 +116,7 @@
 "https://ik.imagekit.io/ggcm4pyrd/images/alcoholic-therapy-song-2025-cover.webp?updatedAt=1753533412992",
 "https://ik.imagekit.io/ggcm4pyrd/images/alcoholic-therapy-demo-2025-cover.webp?updatedAt=1753533413150"
 ]' data-total="2">
-<img src="https://ik.imagekit.io/ggcm4pyrd/images/alcoholic-therapy-song-2025-cover.webp?updatedAt=1753533412992" alt="Cover Arts of Alcoholic Therapy" class="slide-img" loading="lazy" decoding="async">
+<img src="https://ik.imagekit.io/ggcm4pyrd/images/alcoholic-therapy-song-2025-cover.webp?updatedAt=1753533412992" alt="Cover Arts of Alcoholic Therapy" class="slide-img" width="260" height="260" loading="lazy" decoding="async">
 <button class="prev" data-prev>&#x2039;</button>
 <button class="next" data-next>&#x203A;</button>
 <div class="slide-counter"><span class="current">1</span> / <span class="total">2</span></div>
@@ -123,7 +128,7 @@
 <p>This one’s way cleaner, and guess what – no more jump scares.</p> 
 </div>
 <div class="news-date-image">
-<p>dmk_07</p>
+<p>Dominik</p>
 <p>12.07.2025</p>
 </div>
 </div>
@@ -135,7 +140,7 @@
 <p>Neural Override is currently working on two compilations, both set to drop later this year.</p>
 <p>Besides that, we're also workin' on some singles with our own Alternative Rock style and vibe – you’ll find 'em on Spotify around fall 2025..</p>
 <div class="news-date">
-<p>dmk_07</p>
+<p>Dominik</p>
 <p>11.07.2025</p>
 </div>
 </div>
@@ -147,7 +152,7 @@
 "https://ik.imagekit.io/ggcm4pyrd/images/production-mixing-flstudio-purple.webp?updatedAt=1753533413162",
 "https://ik.imagekit.io/ggcm4pyrd/images/production-bass-beer-dark-purple.webp?updatedAt=1753533413162"
 ]' data-total="4">
-<img src="https://ik.imagekit.io/ggcm4pyrd/images/production-flstudio-dark-purple.webp?updatedAt=1753533413228" alt="Pictures of a studio session at Neural Override's bedroom setup" class="slide-img" loading="lazy" decoding="async">
+<img src="https://ik.imagekit.io/ggcm4pyrd/images/production-flstudio-dark-purple.webp?updatedAt=1753533413228" alt="Pictures of a studio session at Neural Override's bedroom setup" class="slide-img" width="260" height="260" loading="lazy" decoding="async">
 <button class="prev" data-prev>&#x2039;</button>
 <button class="next" data-next>&#x203A;</button>
 <div class="slide-counter"><span class="current">1</span> / <span class="total">4</span></div>
@@ -159,18 +164,18 @@
 <p>Hopefully we can look back one day and laugh about those times at our start.</p>
 </div>
 <div class="news-date-image">
-<p>dmk_07</p>
+<p>Dominik</p>
 <p>14.06.2025</p>
 </div>
 </div>
 </div>
 
 <div class="news-item fade-in">
-<h3>DMK_07</h3>
-<p>Hey, it's <strong>dmk_07</strong> – newest addition of Neural Override.</p> 
+<h3>Dominik</h3>
+<p>Hey, it's <strong>Dominik</strong> – newest addition of Neural Override.</p> 
 <p>Been running this site for a bit and took part in Alcoholic Therapy, but now I'm also jumping into the music side of things.</p>
 <div class="news-date">
-<p>dmk_07</p>
+<p>Dominik</p>
 <p>07.06.2025</p>
 </div>
 </div>
@@ -218,7 +223,7 @@
 
 <div class="images-item fade-in">
 <div class="image-wrapper">
-<img src="https://ik.imagekit.io/ggcm4pyrd/images/neural-override-logo-band.webp?updatedAt=1753533413107" alt="Logo of Neural Override" class="slide-img" loading="lazy" decoding="async">
+<img src="https://ik.imagekit.io/ggcm4pyrd/images/neural-override-logo-band.webp?updatedAt=1753533413107" alt="Logo of Neural Override" class="slide-img" width="260" height="260" loading="lazy" decoding="async">
 </div>
 <div class="info-container">
 <div class="image-info">

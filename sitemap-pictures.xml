@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -6,15 +7,22 @@
 <url>
   <loc>https://neural-override.com/members</loc>
   <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-neural-override.webp</image:loc>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-neural-override-2.webp?updatedAt=1769295043125</image:loc>
     <image:caption>Neural Override: Frontman - Producer</image:caption>
   </image:image>
 </url>
 <url>
   <loc>https://neural-override.com/members</loc>
   <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-dmk07.webp?updatedAt=1753533413078</image:loc>
-    <image:caption>dmk_07: Part-time feature - Web Developer - The Music Theory Guy</image:caption>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-dominik.webp</image:loc>
+    <image:caption>Dominik: Feature - Web Developer - Music Theory</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.com/members</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-ceddo.webp</image:loc>
+    <image:caption>Ceddo: Bass - Hands</image:caption>
   </image:image>
 </url>
 <url>

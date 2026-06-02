@@ -23,107 +23,255 @@ font-family:'Space Mono';
 src:url('/fonts/SpaceMono-BoldItalic.ttf') format('truetype');
 font-weight:700;
 font-style:italic}
+
 :root{
 --g:#00cc6e;
---d:#0a0a0a;
+--g-dim:rgba(0,204,110,0.12);
+--g-glow:rgba(0,204,110,0.35);
+--d:#060608;
+--d2:#0e0f11;
 --l:#f0f0f0;
+--l-dim:rgba(240,240,240,0.55);
 --progress-width:0;
 --s-xs:0.5rem;
 --s-sm:1rem;
 --s-md:2rem;
 --s-lg:3rem;
 --s-xl:4rem;
---s--4: clamp(0.18rem, 0.162rem + 0.0225vw, 0.216rem);
---s--3: clamp(0.306rem, 0.297rem + 0.045vw, 0.36rem);
---s--2: clamp(0.513rem, 0.495rem + 0.099vw, 0.603rem);
---s--1: clamp(0.747rem, 0.702rem + 0.18vw, 0.9rem);
---s-0: clamp(0.9rem, 0.855rem + 0.225vw, 1.0125rem);
---s-1: clamp(1.0125rem, 0.9rem + 0.45vw, 1.35rem);
---s-2: clamp(1.35rem, 1.125rem + 0.9vw, 2.025rem);
---s-3: clamp(2.025rem, 1.8rem + 1.35vw, 3.375rem);
---s-4: clamp(3.375rem, 2.7rem + 1.8vw, 5.625rem);
-}
-*{
-margin:0;
-padding:0;
-box-sizing:border-box}
+--s--4:clamp(0.18rem,0.162rem + 0.0225vw,0.216rem);
+--s--3:clamp(0.306rem,0.297rem + 0.045vw,0.36rem);
+--s--2:clamp(0.513rem,0.495rem + 0.099vw,0.603rem);
+--s--1:clamp(0.747rem,0.702rem + 0.18vw,0.9rem);
+--s-0:clamp(0.9rem,0.855rem + 0.225vw,1.0125rem);
+--s-1:clamp(1.0125rem,0.9rem + 0.45vw,1.35rem);
+--s-2:clamp(1.35rem,1.125rem + 0.9vw,2.025rem);
+--s-3:clamp(2.025rem,1.8rem + 1.35vw,3.375rem);
+--s-4:clamp(3.375rem,2.7rem + 1.8vw,5.625rem)}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
 html{
-scroll-behavior: smooth}
+scroll-behavior:smooth;
+-webkit-overflow-scrolling:touch}
+
 body{
-font-family: 'Space Mono', monospace;
+font-family:'Space Mono',monospace;
 background-color:var(--d);
 color:var(--l);
 overflow-x:hidden;
 cursor:url('cursor.cur'),auto;
--ms-overflow-style:none}
-::-webkit-scrollbar{
-display:none}
+-ms-overflow-style:none;
+overscroll-behavior-y:none}
+
+::-webkit-scrollbar{display:none}
+
+/* TYPOGRAPHIE */
 h1,h2,h3,h4,button{
-font-family: 'Russo One', sans-serif}
+font-family:'Russo One',sans-serif;
+letter-spacing:0.04em}
+
+/* AMBIENT BG: grid + orbs – position:fixed damit sie nicht scrollen */
+body::before{
+content:'';
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:0;
+background-image:
+  linear-gradient(rgba(0,204,110,0.035) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,204,110,0.035) 1px,transparent 1px),
+  linear-gradient(rgba(0,204,110,0.012) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,204,110,0.012) 1px,transparent 1px);
+background-size:80px 80px,80px 80px,20px 20px,20px 20px;
+animation:gridDrift 35s linear infinite;
+mask-image:radial-gradient(ellipse at 50% 40%,rgba(0,0,0,0.5) 0%,transparent 72%)}
+
+@keyframes gridDrift{
+0%{background-position:0px 0px,0px 0px,0px 0px,0px 0px}
+100%{background-position:80px 80px,80px 80px,20px 20px,20px 20px}}
+
+body::after{
+content:'';
+position:fixed;
+inset:0;
+pointer-events:none;
+z-index:0;
+background:
+  radial-gradient(ellipse 50vw 35vh at 10% 15%,rgba(0,204,110,0.05) 0%,transparent 70%),
+  radial-gradient(ellipse 40vw 30vh at 88% 72%,rgba(0,204,110,0.04) 0%,transparent 70%),
+  radial-gradient(ellipse 30vw 25vh at 55% 45%,rgba(0,204,110,0.025) 0%,transparent 70%);
+animation:orbFloat 22s ease-in-out infinite alternate}
+
+@keyframes orbFloat{
+0%{opacity:0.55;transform:translateY(0) scale(1)}
+50%{opacity:0.9;transform:translateY(-18px) scale(1.04)}
+100%{opacity:0.65;transform:translateY(6px) scale(0.97)}}
+
+/* z-stack: alles über ambient bg */
+header,main,section,footer,.mobile-nav,#fade{
+position:relative;
+z-index:1}
+
+/* ═══ HEADER — terminal/hacker hud, konsistent mit card-design ═══ */
 .header{
 position:sticky;
 top:0;
 z-index:999;
-background: linear-gradient(to bottom, #000, #000, #111);
+background:rgba(6,8,9,0.82);
+backdrop-filter:blur(14px) saturate(1.2);
+-webkit-backdrop-filter:blur(14px) saturate(1.2);
 display:flex;
 flex-direction:column;
-box-shadow:0 0 10px #000;
-border-bottom:none;
-transition:all 0.5s ease}
+border-bottom:1px solid rgba(0,204,110,0.18);
+box-shadow:0 8px 32px rgba(0,0,0,0.55);
+transition:padding 0.4s ease,border-color 0.4s ease,background 0.4s ease}
+
+/* corner brackets am header – wie bei den cards */
+.header-main::before{
+content:'';
+position:absolute;
+top:8px;left:10px;
+width:24px;height:24px;
+border-top:1px solid rgba(0,204,110,0.45);
+border-left:1px solid rgba(0,204,110,0.45);
+pointer-events:none;
+opacity:0;
+transition:opacity 0.4s ease}
+
+.header.at-top .header-main::before{opacity:1}
+
 .header-main{
 display:flex;
 align-items:center;
 justify-content:center;
-padding:calc(var(--s-sm) * 1.6) calc(var(--s-sm) + var(--s-0));
+padding:var(--s-md) calc(var(--s-sm) + var(--s-0)) var(--s-sm);
 position:relative;
-transition:padding 0.5s ease}
+transition:padding 0.4s ease}
+
 .header:not(.at-top) .header-main{
 justify-content:space-between;
 padding:var(--s-sm) calc(var(--s-sm) + var(--s-0))}
+
+/* animierte scanline am unteren rand (statt nur progress) */
+.header::before{
+content:'';
+position:absolute;
+bottom:0;
+left:0;
+right:0;
+height:1px;
+background:linear-gradient(90deg,
+  transparent 0%,
+  rgba(0,204,110,0.5) 50%,
+  transparent 100%);
+background-size:200% 100%;
+animation:scanline 4s linear infinite;
+pointer-events:none;
+z-index:999}
+
+@keyframes scanline{
+0%{background-position:200% 0}
+100%{background-position:-200% 0}}
+
+/* progress bar (liegt über der scanline) */
 .header::after{
 content:"";
 position:absolute;
 bottom:0;
 left:0;
-height:3px;
-width: var(--progress-width);
-background-color:var(--g);
-transition:width 0.5s ease;
-z-index:1000}
+height:2px;
+width:var(--progress-width);
+background:linear-gradient(90deg,var(--g),rgba(0,204,110,0.4));
+transition:width 0.08s linear;
+z-index:1000;
+box-shadow:0 0 10px var(--g-glow)}
+
+/* ─── LOGO mit status-LED ──────────────────── */
 .logo{
+font-family:'Russo One','Arial Black',Impact,sans-serif;
+font-weight:400;
 font-size:var(--s-3);
 color:var(--g);
-letter-spacing:3px;
+letter-spacing:4px;
 user-select:none;
 white-space:nowrap;
-transition:transform 0.5s cubic-bezier(.4,0,.2,1),font-size 0.5s ease}
+cursor:pointer;
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:0.5em;
+line-height:1;
+position:relative;
+transition:transform 0.45s cubic-bezier(.4,0,.2,1),
+           text-shadow 0.3s ease,
+           letter-spacing 0.3s ease}
+
+.logo:hover{
+text-shadow:0 0 16px var(--g-glow),0 0 32px rgba(0,204,110,0.2);
+letter-spacing:6px;
+text-decoration:none}
+
 .header:not(.at-top) .logo{
-transform:translateX(-10%) scale(0.85)}
+transform:scale(0.82);
+transform-origin:left center}
+
+/* ─── SUB HEADER — terminal nav ────────────── */
 .sub-header{
 display:flex;
 align-items:center;
-justify-content:space-around;
-height:48px;
+justify-content:center;
+gap:var(--s-lg);
+height:46px;
 overflow-x:auto;
-border-top: 1px rgba(30,50,30,0.8) solid;
-transition:height 0.5s ease,opacity 0.55s ease}
+border-top:1px solid rgba(0,204,110,0.1);
+transition:height 0.4s ease,opacity 0.45s ease}
+
 .header:not(.at-top) .sub-header{
-height:3px;
-border: none}
+height:0px;
+border:none;
+overflow:hidden}
+
 .sub-header a{
-font-family: 'Russo One', sans-serif;
+font-family:'Space Mono',monospace;
 font-size:var(--s-0);
-color:#fff;
+color:rgba(240,240,240,0.7);
 text-decoration:none;
-transition:opacity 0.2s ease}
-.sub-header a:hover{
-color:var(--g)}
+letter-spacing:0.08em;
+position:relative;
+padding:0 0.2em;
+transition:color 0.2s ease,opacity 0.2s ease}
+
+/* terminal-style [ ] brackets beim hover */
+.sub-header a::before{
+content:'[';
+opacity:0;
+margin-right:4px;
+color:var(--g);
+transform:translateX(6px);
+transition:opacity 0.2s ease,transform 0.2s ease}
+
+.sub-header a::after{
+content:']';
+opacity:0;
+margin-left:4px;
+color:var(--g);
+transform:translateX(-6px);
+transition:opacity 0.2s ease,transform 0.2s ease}
+
+.sub-header a:hover{color:var(--g)}
+
+.sub-header a:hover::before,
+.sub-header a:hover::after{
+opacity:1;
+transform:translateX(0)}
+
 .header:not(.at-top) .sub-header a{
 opacity:0;
 pointer-events:none}
+
+/* ─── HAMBURGER ──────────────────────────── */
 .hamburger{
-padding-top:var(--s--2);
-padding-bottom:var(--s--2);
+padding:var(--s--2);
 display:flex;
 justify-content:center;
 cursor:pointer;
@@ -135,15 +283,19 @@ z-index:1000;
 opacity:0;
 pointer-events:none;
 transition:opacity 0.25s ease}
+
 .header:not(.at-top) .hamburger{
 opacity:.9;
 pointer-events:auto}
+
 .hamburger svg{
-width:calc(var(--s-4) * .9);
+width:calc(var(--s-4) * .85);
 transition:fill 100ms ease-in-out}
+
 .line{
-transition:transform 0.1s ease,opacity 0.1s ease;
+transition:transform 0.15s ease,opacity 0.15s ease;
 transform-origin:25px 25px}
+
 .move-line1{transform:translateY(11px)}
 .move-line3{transform:translateY(-11px)}
 .hide-line2{opacity:0}
@@ -154,85 +306,145 @@ transform-origin:25px 25px}
 .show-line2{opacity:1}
 .r-move-line1{transform:translateY(-11px)}
 .r-move-line3{transform:translateY(11px)}
+
+/* ─── MOBILE NAV ──────────────────────────── */
+/* Nav erscheint nur im gescrollten (kompakten) header-zustand.
+   top wird via --nav-top gesetzt = höhe des kompakten headers. */
 .mobile-nav{
 position:fixed;
-top:calc(var(--s-sm) + var(--s-sm) + calc(var(--s-3) * 0.85));
+top:var(--nav-top, 64px);
 right:0;
-transform:translateX(calc(100% + 10px));
-height:100vh;
-background:linear-gradient(160deg,#111 30%,#1a1a1a 60%,#222 100%);
-border-left:2px solid var(--g);
-box-shadow:0 0 10px var(--g);
-padding-left:var(--s-lg);
-padding-right:calc(var(--s-xl) * 1.2);
-padding-top:var(--s-md);
+width:min(78vw, 320px);
+transform:translateX(calc(100% + 12px));
+height:calc(100dvh - var(--nav-top, 64px));
+background:rgba(8,10,12,0.97);
+backdrop-filter:blur(16px);
+-webkit-backdrop-filter:blur(16px);
+border-left:1px solid rgba(0,204,110,0.3);
+box-shadow:-8px 0 32px rgba(0,0,0,0.5),-4px 0 24px rgba(0,204,110,0.06);
+padding:var(--s-lg) var(--s-lg) var(--s-md);
 display:flex;
 flex-direction:column;
-gap:var(--s-sm);
-transition:transform 0.4s ease-out, opacity 0.4s ease;
+gap:calc(var(--s-xs) * 1.5);
+transition:transform 0.35s cubic-bezier(.4,0,.2,1),opacity 0.3s ease;
 z-index:998;
 overflow-y:auto}
-.mobile-nav.show{
-transform:translateX(0)}
+
+.mobile-nav.show{transform:translateX(0)}
+
+.mobile-nav.nav-hidden{
+opacity:0;
+pointer-events:none}
+
 .mobile-nav a{
-color:var(--l);
+color:var(--l-dim);
 text-decoration:none;
 font-size:var(--s-1);
-opacity:0.9;
-transition:color 0.3s ease}
-.mobile-nav a:hover{color:var(--g)}
-.mobile-nav h2,h3{
-font-size:var(--s-2);
-margin-bottom:var(--s-xs)}
-.current-site{color:var(--g)!important}
+letter-spacing:0.03em;
+padding:calc(var(--s-xs) * 0.6) 0;
+transition:color 0.2s ease,padding-left 0.2s ease}
+
+.mobile-nav a:hover{
+color:var(--g);
+padding-left:8px}
+
+.mobile-nav h2,.mobile-nav h3{
+font-family:'Russo One',sans-serif;
+font-size:var(--s--1);
+letter-spacing:0.16em;
+color:rgba(0,204,110,0.55);
+text-transform:uppercase;
+margin-bottom:var(--s-xs);
+margin-top:var(--s-xs)}
+
+.current-site{color:var(--g) !important}
+
 .nav-line{
-border-top:2px dashed #555;
+border-top:1px solid rgba(0,204,110,0.15);
 margin:var(--s-sm) 0;
-width:calc(100% + var(--s-md))}
+width:100%}
+
+/* ─── FOOTER ──────────────────────────────── */
 .footer{
 text-align:center;
-padding:var(--s-sm);
-background:#000;
-border-top:2px solid var(--g);
+padding:var(--s-md) var(--s-sm);
+background:rgba(0,0,0,0.6);
+border-top:1px solid rgba(0,204,110,0.2);
 font-size:var(--s-0);
-color:var(--g);
+color:rgba(0,204,110,0.7);
 display:flex;
 flex-direction:column;
 gap:var(--s-xs)}
-.footer-link{
-display:flex;
-justify-content:center}
+
+.footer-link{display:flex;justify-content:center}
+
 .footer-link a{
 margin:0 var(--s-xs);
-color:var(--g);
-text-decoration:none}
-a:hover{text-shadow:0 0 5px var(--g)}
+color:rgba(0,204,110,0.6);
+text-decoration:none;
+transition:color 0.2s ease}
+
+.footer-link a:hover{color:var(--g)}
+
+a:hover{text-shadow:0 0 6px var(--g-glow)}
+
+/* ─── FADE IN ──────────────────────────────── */
 .fade-in{
 opacity:0;
-transform:translateY(50px) scale(0.95);
+transform:translateY(36px) scale(0.97);
 transition:opacity 0.3s,transform 0.3s;
 will-change:opacity,transform}
+
 .fade-in.visible{
 opacity:1;
 transform:translateY(0) scale(1);
-transition-duration:0.8s;}
+transition:opacity 0.85s cubic-bezier(0.22,1,0.36,1),
+           transform 0.85s cubic-bezier(0.22,1,0.36,1)}
+
+/* ─── SKELETON ─────────────────────────────── */
+@keyframes shimmer{
+0%{background-position:-600px 0}
+100%{background-position:600px 0}}
+
+.skeleton{
+background:linear-gradient(90deg,#111 25%,#1c1c1c 50%,#111 75%);
+background-size:600px 100%;
+animation:shimmer 1.8s ease-in-out infinite;
+border-radius:8px}
+
+.skeleton-box{
+width:100%;
+border-radius:12px;
+margin-bottom:var(--s-xl)}
+
+/* ─── RESPONSIVE ────────────────────────────── */
 @media(max-width:720px){
 .hamburger{right:var(--s-xs)}
-.hamburger svg{width:calc(var(--s-4) * .7)}
-.logo{font-size:calc(var(--s-3) * .7)}}
-#fade {
-position: fixed;
-inset: 0;
-background: #000;
-pointer-events: none;
-z-index: 9999;
-  animation: fadeOut 0.6s ease-in forwards}
-@keyframes fadeOut {
-from {
-opacity: 1}
-to {
-opacity: 0}
-}
-/*Chrome Hardware Acceleration*/
-.header, .sub-header{
-transform: translateZ(0)}
+.hamburger svg{width:calc(var(--s-4) * .65)}
+.logo{font-size:calc(var(--s-3) * .72)}}
+
+/* ─── PAGE TRANSITION ───────────────────────── */
+#fade{
+position:fixed;
+inset:0;
+background:#000;
+pointer-events:none;
+z-index:9999;
+animation:fadeOut 0.5s ease-in forwards}
+
+@keyframes fadeOut{
+from{opacity:1}
+to{opacity:0}}
+
+/* HW accel */
+.header,.sub-header{
+will-change:transform;
+transform:translateZ(0)}
+
+/* REDUCED MOTION */
+@media(prefers-reduced-motion:reduce){
+body::before,body::after{animation:none}
+.header::before{animation:none;opacity:0.4}
+.logo::before{animation:none}
+.fade-in,.fade-in.visible{transition:opacity 0.15s;transform:none}
+#fade{animation:none;opacity:0}}

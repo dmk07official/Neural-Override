@@ -1,149 +1,310 @@
-@keyframes blink {
-0%,
-50%{
-opacity:1}
-51%,
-100% {
-opacity:0}
-}
+@keyframes blink{
+0%,50%{opacity:1}
+51%,100%{opacity:0}}
+
+/* ─── PAGE ─────────────────────────────────── */
 .about{
-padding:var(--s-md)var(--s-sm);
-background:repeating-linear-gradient(to bottom,rgba(255, 255, 255, 0.03),rgba(255, 255, 255, 0.03)1px,transparent 2px,transparent 4px);
+padding:var(--s-md) var(--s-sm);
+background:repeating-linear-gradient(
+  to bottom,
+  rgba(255,255,255,0.02),
+  rgba(255,255,255,0.02) 1px,
+  transparent 2px,
+  transparent 4px);
 text-align:center}
+
 .about h1{
-max-width: 1000px;
-margin-left:auto;
-margin-right:auto;
+max-width:1000px;
+margin:var(--s-md) auto var(--s-md);
 text-align:left;
 font-size:var(--s-3);
-margin-top:var(--s-sm);
-margin-bottom:var(--s-md);
-color:var(--g)}
+color:var(--g);
+letter-spacing:0.04em}
+
 .description{
-max-width: 1000px;
+max-width:1000px;
 margin-bottom:var(--s-xl);
 padding-bottom:var(--s-lg);
 font-size:var(--s-1);
+line-height:1.8;
 margin-left:auto;
 margin-right:auto;
 text-align:left;
-border-bottom:2px dashed #555}
+border-bottom:1px solid rgba(0,204,110,0.15);
+color:rgba(240,240,240,0.8)}
+
+/* ─── CARD GRID für 3 Members ───────────────── */
+/* Desktop: alle 3 nebeneinander */
+.members-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:var(--s-md);
+max-width:1200px;
+margin:0 auto var(--s-xl)}
+
+/* Tablet: 2+1 */
+@media(max-width:900px){
+.members-grid{
+grid-template-columns:repeat(2,1fr)}}
+
+/* Mobile: single column */
+@media(max-width:580px){
+.members-grid{
+grid-template-columns:1fr}}
+
+/* ─── MEMBER CARD ───────────────────────────── */
 .about-box{
 position:relative;
-width:100%;
-max-width:1000px;
-margin:0 auto var(--s-lg);
-background-color:rgba(0, 0, 0, 0.3);
-padding:var(--s-lg);
-border-radius:var(--s-sm);
+background:rgba(8,10,12,0.7);
+border:1px solid rgba(0,204,110,0.12);
+border-radius:4px;
+padding:var(--s-md);
+text-align:left;
 overflow:hidden;
-box-shadow:0 0 15px rgba(0, 0, 0, 0.2);
-text-align:left}
-.about-title{
-font-size:var(--s-3);
-margin-bottom:var(--s-md);
-color:var(--g)}
-.about-text{
-color:var(--l);
-white-space:pre-line;
-font-size:var(--s-1);
-opacity:0.9;
-overflow:hidden;
-margin-bottom:calc(var(--s-sm) * 1.2)}
-.strong{
-font-weight:500;
-opacity:1!important;
-font-size:calc(var(--s-1) * 1.2)}
-.profile-pic-floated{
-float:right;
-width:clamp(120px, 20vw, 200px);
-height:clamp(120px, 20vw, 200px);
+transition:border-color 0.3s ease,box-shadow 0.3s ease}
+
+/* corner accent – hacker UI feel */
+.about-box::before{
+content:'';
+position:absolute;
+top:0;left:0;
+width:32px;height:32px;
+border-top:1px solid rgba(0,204,110,0.5);
+border-left:1px solid rgba(0,204,110,0.5);
+pointer-events:none}
+
+.about-box::after{
+content:'';
+position:absolute;
+bottom:0;right:0;
+width:32px;height:32px;
+border-bottom:1px solid rgba(0,204,110,0.5);
+border-right:1px solid rgba(0,204,110,0.5);
+pointer-events:none}
+
+.about-box:hover{
+border-color:rgba(0,204,110,0.3);
+box-shadow:0 0 24px rgba(0,204,110,0.06),inset 0 0 40px rgba(0,204,110,0.02)}
+
+/* ─── PROFILE PIC ───────────────────────────── */
+/* Cards: bild oben, nicht floated */
+.profile-pic-card{
+display:block;
+width:clamp(80px,15vw,120px);
+height:clamp(80px,15vw,120px);
 object-fit:cover;
 border-radius:50%;
-border:3px solid var(--d);
-margin:0 0 var(--s-md)var(--s-lg);
-shape-outside:circle();
-border-color:var(--g);
-box-shadow:0 0 15px var(--g)}
+border:2px solid rgba(0,204,110,0.4);
+box-shadow:0 0 16px rgba(0,204,110,0.2);
+margin:0 auto var(--s-md);
+transition:box-shadow 0.3s ease,border-color 0.3s ease}
+
+.about-box:hover .profile-pic-card{
+border-color:rgba(0,204,110,0.7);
+box-shadow:0 0 24px rgba(0,204,110,0.35)}
+
+/* ─── CARD CONTENT ───────────────────────────── */
+.about-title{
+font-size:var(--s-2);
+margin-bottom:var(--s-md);
+color:var(--g);
+letter-spacing:0.04em;
+text-align:center}
+
+.about-title span{
+color:var(--l);
+opacity:0.9}
+
+/* ─── TEMPLATE CARD (offener slot) ──────────── */
+.member-template{
+border-style:dashed;
+border-color:rgba(0,204,110,0.18)}
+
+.member-template .profile-pic-card{
+filter:grayscale(1);
+opacity:0.35;
+border-style:dashed}
+
+.member-template .about-title{
+color:rgba(0,204,110,0.4)}
+
+.slot-tag{
+display:block;
+margin-top:4px;
+font-size:var(--s--2);
+letter-spacing:0.16em;
+color:rgba(240,240,240,0.28) !important;
+opacity:1 !important}
+
+.member-template .tba{opacity:0.3}
+
+/* ─── STAT ROWS innerhalb der card ──────────── */
+.about-text{
+color:var(--l);
+font-size:var(--s-0);
+opacity:0.85;
+line-height:1.7;
+margin-bottom:calc(var(--s-xs) * 1.4);
+display:flex;
+flex-direction:column;
+gap:0}
+
+.strong{
+font-weight:700;
+color:rgba(0,204,110,0.8);
+font-size:var(--s--1);
+letter-spacing:0.1em;
+text-transform:uppercase;
+display:block;
+margin-bottom:2px}
+
 #cursor{
 width:1px;
 background-color:currentColor;
 animation:blink 0.8s infinite;
-margin-left:2px}
+margin-left:2px;
+display:inline-block}
+
+/* ─── BAND STATS ─────────────────────────────── */
+/* Für 3 Personen: eigenes layout */
 .band-stats{
-background-color:rgba(0, 0, 0, 0.3);
-padding:var(--s-lg);
-border-radius:var(--s-sm);
-width:100%;
-max-width:1000px;
-margin:0 auto var(--s-lg)}
-.band-stats h2{
+background:rgba(8,10,12,0.7);
+border:1px solid rgba(0,204,110,0.12);
+border-radius:4px;
+padding:var(--s-lg) var(--s-md);
+max-width:1200px;
+margin:0 auto var(--s-xl);
+position:relative;
+overflow:hidden}
+
+.band-stats::before{
+content:'';
+position:absolute;
+top:0;left:0;
+width:32px;height:32px;
+border-top:1px solid rgba(0,204,110,0.5);
+border-left:1px solid rgba(0,204,110,0.5)}
+
+.band-stats::after{
+content:'';
+position:absolute;
+bottom:0;right:0;
+width:32px;height:32px;
+border-bottom:1px solid rgba(0,204,110,0.5);
+border-right:1px solid rgba(0,204,110,0.5)}
+
+.about-title.stats-title{
 text-align:left;
 margin-bottom:var(--s-md)}
+
+/* LEGEND */
+.stat-legend{
+display:flex;
+justify-content:flex-start;
+gap:var(--s-md);
+margin-bottom:var(--s-lg);
+font-size:var(--s-0);
+flex-wrap:wrap;
+color:rgba(240,240,240,0.7)}
+
+.legend-box{
+display:inline-block;
+width:10px;
+height:10px;
+margin-right:var(--s-xs);
+vertical-align:middle;
+border-radius:2px}
+
+/* 3-person colors */
+.bar.neural,.legend-box.neural{background:#00cc6e}
+.bar.dmk,.legend-box.dmk{background:#ff0080}
+.bar.member3,.legend-box.member3{background:#7c5cfc}
+
+/* stat-header label colors */
+.h-neural{color:#00cc6e}
+.h-dmk{color:#ff0080}
+.h-member3{color:#7c5cfc}
+
+/* STAT TABLE HEADER */
 .stat-header{
 display:none;
-grid-template-columns:1fr 2fr 2fr;
 gap:var(--s-sm);
-font-weight:bold;
+font-size:var(--s--1);
+letter-spacing:0.1em;
+text-transform:uppercase;
+color:rgba(0,204,110,0.5);
 margin-bottom:var(--s-sm);
-font-size:var(--s-1);
-text-align:left}
+padding-bottom:var(--s-xs);
+border-bottom:1px solid rgba(0,204,110,0.1)}
+
+/* STAT ROW */
 .stat-row{
 display:flex;
 flex-direction:column;
-margin-bottom:var(--s-sm);
-font-size:var(--s-1);
-text-align:left}
-.stat-row span{
-margin-bottom:var(--s-xs)}
-.bar-container{
-background:#333;
-height:var(--s--2);
-border-radius:var(--s-sm);
-overflow:hidden;
-margin-bottom:var(--s-xs)}
-.bar{
-height:100%}
-.bar.neural,
-.legend-box.neural{
-background:#00cc6e}
-.bar.dmk,
-.legend-box.dmk{
-background:#ff0080}
-.stat-legend{
-display:flex;
-justify-content:start;
-gap:var(--s-md);
 margin-bottom:var(--s-md);
-font-size:var(--s-0);
-opacity:0.9;
-flex-wrap:wrap}
-.legend-box{
-display:inline-block;
-width:var(--s-0);
-height:var(--s-0);
-margin-right:var(--s-xs);
-vertical-align:middle;
-border-radius:3px}
+font-size:var(--s-0)}
+
+.stat-row>span{
+color:rgba(240,240,240,0.6);
+font-size:var(--s--1);
+letter-spacing:0.08em;
+text-transform:uppercase;
+margin-bottom:var(--s-xs)}
+
+.bar-container{
+background:rgba(255,255,255,0.06);
+height:6px;
+border-radius:3px;
+overflow:hidden;
+margin-bottom:4px;
+position:relative}
+
+.bar{
+height:100%;
+border-radius:3px;
+transition:width 0.8s cubic-bezier(0.22,1,0.36,1)}
+
+/* DESKTOP: 4-col grid: label | bar1 | bar2 | bar3 */
 @media(min-width:800px){
 .stat-header{
-display:grid}
+display:grid;
+grid-template-columns:160px 1fr 1fr 1fr}
+
 .stat-row{
 display:grid;
-grid-template-columns:1fr 2fr 2fr;
+grid-template-columns:160px 1fr 1fr 1fr;
 gap:var(--s-sm);
-align-items:center}
-.stat-row span{
-margin-bottom:0}
+align-items:center;
+margin-bottom:var(--s-sm)}
+
+.stat-row>span{
+margin-bottom:0;
+text-transform:none;
+font-size:var(--s-0);
+letter-spacing:0;
+color:rgba(240,240,240,0.75)}
+
 .bar-container{
 margin-bottom:0}
-.stat-legend{
-display:none}
-}
-@media(max-width:768px){
+
+.stat-legend{display:none}}
+
+/* ─── FALLBACK: alte about-box klasse noch supported ──── */
+/* (für seiten die noch das alte layout nutzen) */
+.profile-pic-floated{
+float:right;
+width:clamp(100px,18vw,160px);
+height:clamp(100px,18vw,160px);
+object-fit:cover;
+border-radius:50%;
+border:2px solid rgba(0,204,110,0.4);
+margin:0 0 var(--s-md) var(--s-lg);
+shape-outside:circle();
+box-shadow:0 0 16px rgba(0,204,110,0.2)}
+
+@media(max-width:580px){
 .profile-pic-floated{
 float:none;
 display:block;
-margin:0 auto var(--s-md) auto;
-shape-outside:none}
-}
+margin:0 auto var(--s-md);
+shape-outside:none}}
