@@ -42,40 +42,37 @@
   }
 
   // ── HERO HEIGHT ───────────────────────────────────────────────────────
-  // HERO FIX: CSS regelt die höhe via calc(100dvh - var(--hh)).
-  // JS setzt nur --hh (kompakt/voll messung oben) und liefert einen
-  // fallback für browser ohne dvh-support.
-  let dvhSupported = false;
-  try {
-    dvhSupported = CSS && CSS.supports && CSS.supports("height", "100dvh");
-  } catch (e) { dvhSupported = false; }
+let svhSupported = false;
+try {
+  svhSupported = CSS && CSS.supports && CSS.supports("height", "100svh");
+} catch (e) { svhSupported = false; }
 
-  function recalcHeroHeight() {
-    syncHeaderVars();
-    const hero = document.querySelector(".hero");
-    if (!hero) return;
-    if (dvhSupported) {
-      hero.style.removeProperty("height");
-      return;
-    }
-    // Fallback für alte browser ohne dvh
-    const hh = header.offsetHeight;
-    hero.style.height = `${window.innerHeight - hh}px`;
+function recalcHeroHeight() {
+  syncHeaderVars();
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+  if (svhSupported) {
+    hero.style.removeProperty("height");
+    return;
   }
+  // Fallback alte browser: kleinste höhe einmal setzen
+  const hh = header.offsetHeight;
+  hero.style.height = `${window.innerHeight - hh}px`;
+}
 
-  let resizeTimer;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(recalcHeroHeight, 80);
-  });
+let resizeTimer;
+let lastVW = window.innerWidth;
+window.addEventListener("resize", () => {
+  // Nur bei breiten-/orientierungswechsel neu rechnen.
+  // Reine höhenänderung (toolbar ein/aus) ignorieren → kein jank.
+  if (window.innerWidth === lastVW) return;
+  lastVW = window.innerWidth;
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(recalcHeroHeight, 80);
+});
 
-  // VisualViewport API: fängt iOS URL-Bar resize ab die resize event nicht triggern
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(recalcHeroHeight, 80);
-    });
-  }
+// visualViewport-recalc bewusst entfernt: feuerte bei jedem toolbar ein/aus
+// und triggerte den header/hero-glitch. svh in CSS macht das jetzt stabil.
 
   // ── SCROLL ────────────────────────────────────────────────────────────
   function handleScrollRAF() {
