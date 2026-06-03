@@ -32,7 +32,7 @@ font-style:italic}
 --d2:#0e0f11;
 --l:#f0f0f0;
 --l-dim:rgba(240,240,240,0.55);
---progress-width:0;
+--progress-scale:0;
 --s-xs:0.5rem;
 --s-sm:1rem;
 --s-md:2rem;
@@ -70,7 +70,7 @@ h1,h2,h3,h4,button{
 font-family:'Russo One',sans-serif;
 letter-spacing:0.04em}
 
-/* AMBIENT BG: grid + orbs – position:fixed damit sie nicht scrollen */
+/* AMBIENT BG: grid + orbs */
 body::before{
 content:'';
 position:fixed;
@@ -107,12 +107,12 @@ animation:orbFloat 22s ease-in-out infinite alternate}
 50%{opacity:0.9;transform:translateY(-18px) scale(1.04)}
 100%{opacity:0.65;transform:translateY(6px) scale(0.97)}}
 
-/* z-stack: alles über ambient bg */
+/* z-stack: alles ueber ambient bg */
 header,main,section,footer,.mobile-nav,#fade{
 position:relative;
 z-index:1}
 
-/* ═══ HEADER — terminal/hacker hud, konsistent mit card-design ═══ */
+/* HEADER */
 .header{
 position:sticky;
 top:0;
@@ -126,7 +126,7 @@ border-bottom:1px solid rgba(0,204,110,0.18);
 box-shadow:0 8px 32px rgba(0,0,0,0.55);
 transition:padding 0.4s ease,border-color 0.4s ease,background 0.4s ease}
 
-/* corner brackets am header – wie bei den cards */
+/* corner brackets am header */
 .header-main::before{
 content:'';
 position:absolute;
@@ -152,7 +152,7 @@ transition:padding 0.4s ease}
 justify-content:space-between;
 padding:var(--s-sm) calc(var(--s-sm) + var(--s-0))}
 
-/* animierte scanline am unteren rand (statt nur progress) */
+/* animierte scanline am unteren rand */
 .header::before{
 content:'';
 position:absolute;
@@ -173,20 +173,22 @@ z-index:999}
 0%{background-position:200% 0}
 100%{background-position:-200% 0}}
 
-/* progress bar (liegt über der scanline) */
+/* progress bar – transform statt width = GPU-composited, kein Layout-Reflow */
 .header::after{
 content:"";
 position:absolute;
 bottom:0;
 left:0;
 height:2px;
-width:var(--progress-width);
+width:100%;
+transform:scaleX(var(--progress-scale,0));
+transform-origin:left center;
 background:linear-gradient(90deg,var(--g),rgba(0,204,110,0.4));
-transition:width 0.08s linear;
+transition:transform 0.08s linear;
 z-index:1000;
 box-shadow:0 0 10px var(--g-glow)}
 
-/* ─── LOGO mit status-LED ──────────────────── */
+/* LOGO */
 .logo{
 font-family:'Russo One','Arial Black',Impact,sans-serif;
 font-weight:400;
@@ -215,16 +217,22 @@ text-decoration:none}
 transform:scale(0.82);
 transform-origin:left center}
 
-/* ─── SUB HEADER — terminal nav ────────────── */
+/* SUB HEADER — terminal nav */
 .sub-header{
 display:flex;
 align-items:center;
 justify-content:center;
 gap:var(--s-lg);
 height:46px;
+/* overflow-x:auto erlaubt horizontales Scrollen wenn links nicht reinpassen */
 overflow-x:auto;
+/* scrollbar verstecken */
+scrollbar-width:none;
+-ms-overflow-style:none;
 border-top:1px solid rgba(0,204,110,0.1);
 transition:height 0.4s ease,opacity 0.45s ease}
+
+.sub-header::-webkit-scrollbar{display:none}
 
 .header:not(.at-top) .sub-header{
 height:0px;
@@ -239,6 +247,9 @@ text-decoration:none;
 letter-spacing:0.08em;
 position:relative;
 padding:0 0.2em;
+/* nie umbrechen + kein schrumpfen = korrekte overflow-x-scroll-basis */
+white-space:nowrap;
+flex-shrink:0;
 transition:color 0.2s ease,opacity 0.2s ease}
 
 /* terminal-style [ ] brackets beim hover */
@@ -259,6 +270,7 @@ transform:translateX(-6px);
 transition:opacity 0.2s ease,transform 0.2s ease}
 
 .sub-header a:hover{color:var(--g)}
+.sub-active{color:var(--g) !important}
 
 .sub-header a:hover::before,
 .sub-header a:hover::after{
@@ -269,7 +281,7 @@ transform:translateX(0)}
 opacity:0;
 pointer-events:none}
 
-/* ─── HAMBURGER ──────────────────────────── */
+/* HAMBURGER */
 .hamburger{
 padding:var(--s--2);
 display:flex;
@@ -307,9 +319,7 @@ transform-origin:25px 25px}
 .r-move-line1{transform:translateY(-11px)}
 .r-move-line3{transform:translateY(11px)}
 
-/* ─── MOBILE NAV ──────────────────────────── */
-/* Nav erscheint nur im gescrollten (kompakten) header-zustand.
-   top wird via --nav-top gesetzt = höhe des kompakten headers. */
+/* MOBILE NAV */
 .mobile-nav{
 position:fixed;
 top:var(--nav-top, 64px);
@@ -364,7 +374,7 @@ border-top:1px solid rgba(0,204,110,0.15);
 margin:var(--s-sm) 0;
 width:100%}
 
-/* ─── FOOTER ──────────────────────────────── */
+/* FOOTER */
 .footer{
 text-align:center;
 padding:var(--s-md) var(--s-sm);
@@ -388,7 +398,7 @@ transition:color 0.2s ease}
 
 a:hover{text-shadow:0 0 6px var(--g-glow)}
 
-/* ─── FADE IN ──────────────────────────────── */
+/* FADE IN */
 .fade-in{
 opacity:0;
 transform:translateY(36px) scale(0.97);
@@ -401,7 +411,7 @@ transform:translateY(0) scale(1);
 transition:opacity 0.85s cubic-bezier(0.22,1,0.36,1),
            transform 0.85s cubic-bezier(0.22,1,0.36,1)}
 
-/* ─── SKELETON ─────────────────────────────── */
+/* SKELETON */
 @keyframes shimmer{
 0%{background-position:-600px 0}
 100%{background-position:600px 0}}
@@ -417,13 +427,43 @@ width:100%;
 border-radius:12px;
 margin-bottom:var(--s-xl)}
 
-/* ─── RESPONSIVE ────────────────────────────── */
+/* RESPONSIVE */
 @media(max-width:720px){
 .hamburger{right:var(--s-xs)}
 .hamburger svg{width:calc(var(--s-4) * .65)}
 .logo{font-size:calc(var(--s-3) * .72)}}
 
-/* ─── PAGE TRANSITION ───────────────────────── */
+/* SUB-HEADER: mobile portrait overflow fix
+   Auf kleinen Screens (< 600px): links ausrichten + horizontal scrollen.
+   justify-content:center + grosser gap wuerde Items aus dem Viewport schieben
+   und den linken Teil unscroppbar machen. */
+@media(max-width:600px){
+.sub-header{
+  justify-content:flex-start;
+  gap:var(--s-sm);
+  padding:0 var(--s-sm)}}
+
+@media(max-width:380px){
+.sub-header a{
+  font-size:var(--s--1);
+  letter-spacing:0.04em}}
+
+/* HEADER: kein Flicker auf Touch-Screens
+   Problem: padding + height Transitions triggern Layout-Reflows. Bei
+   schnellem Scrollen + browser chrome show/hide konkurrieren Transitions
+   -> Flimmern. hover:none = Touch-Geraete. Dort: nur GPU-safe Props animieren.
+   -webkit-backface-visibility:hidden verhindert GPU-Layer-Flicker. */
+@media(hover:none){
+.header{
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  transition:border-color 0.15s ease,background 0.15s ease}
+.header-main{
+  transition:none}
+.sub-header{
+  transition:height 0.1s ease,opacity 0.1s ease}}
+
+/* PAGE TRANSITION */
 #fade{
 position:fixed;
 inset:0;
