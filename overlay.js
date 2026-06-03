@@ -7,18 +7,18 @@
   const l2 = document.getElementById("line2");
   const l3 = document.getElementById("line3");
 
-  let menuOffen   = false;
-  let isAtTop     = null;
-  let ticking     = false;
+  let menuOffen     = false;
+  let isAtTop       = null;
+  let ticking       = false;
   let lastScrollTop = -1;
+  let scrollEndTimer;
 
   function getScrollTop() {
     return window.pageYOffset || document.documentElement.scrollTop || 0;
   }
 
-  // Header / Nav Vars
-  // --hh      = volle header-hoehe (at-top). Hero sitzt darunter.
-  // --nav-top = kompakte header-hoehe (scrolled). mobile-nav sitzt darunter.
+  // --hh      = volle header-hoehe (at-top)
+  // --nav-top = kompakte header-hoehe (scrolled)
   function syncHeaderVars() {
     const isTop = header.classList.contains("at-top");
     if (isTop) {
@@ -50,7 +50,6 @@
       hero.style.removeProperty("height");
       return;
     }
-    // Fallback alte browser: kleinste hoehe einmal setzen
     const hh = header.offsetHeight;
     hero.style.height = `${window.innerHeight - hh}px`;
   }
@@ -58,15 +57,13 @@
   let resizeTimer;
   let lastVW = window.innerWidth;
   window.addEventListener("resize", () => {
-    // Nur bei breiten-/orientierungswechsel neu rechnen.
-    // Reine hoehenänderung (toolbar ein/aus) ignorieren - kein jank.
     if (window.innerWidth === lastVW) return;
     lastVW = window.innerWidth;
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(recalcHeroHeight, 80);
   });
 
-  // Scroll
+  // Scroll RAF
   function handleScrollRAF() {
     const scrollTop = getScrollTop();
     if (!ticking) {
@@ -84,36 +81,43 @@
 
   function updateHeader(scrollTop) {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    // scaleX(0..1) statt width(0%..100%) = GPU-composited, kein Layout-Reflow
     const scale = docHeight > 0 ? scrollTop / docHeight : 0;
     header.style.setProperty("--progress-scale", scale);
 
-    // SNAP-Puffer: verhindert schnelles at-top-Toggling bei Micro-Bounce.
-    // Ohne Puffer: mobile browser chrome show/hide laesst scrollTop kurz
-    // auf 0 springen -> at-top toggle -> konkurrierende 0.4s Transitions
-    // -> sichtbares Flimmern. Mit 6px Puffer: stabil.
-    const SNAP = 6;
+    // Transitions waehrend des aktiven Scrollens deaktivieren.
+    // Jede at-top-Zustandsaenderung ist dann sofort/instant –
+    // keine konkurrierenden Animationen, kein Flimmern.
+    // 250ms nach dem letzten Scroll-Event werden sie wieder aktiviert
+    // (= smooth Transition wenn Scrollen stoppt).
+    header.classList.add("header-scrolling");
+    clearTimeout(scrollEndTimer);
+    scrollEndTimer = setTimeout(() => {
+      header.classList.remove("header-scrolling");
+    }, 250);
+
+    // Asymmetrische Schwellen – grosse Dead-Zone verhindert Rapid-Toggling:
+    // Compact-Modus:  erst bei scrollTop > 60px aktivieren
+    // Full-Modus:     erst bei scrollTop <= 4px zurueck (fast ganz oben)
+    const EXPAND   = 4;
+    const COLLAPSE = 60;
 
     if (isAtTop === null) {
-      isAtTop = scrollTop <= SNAP;
+      isAtTop = scrollTop <= EXPAND;
       header.classList.toggle("at-top", isAtTop);
       if (mobileNav) mobileNav.classList.toggle("nav-hidden", isAtTop);
       return;
     }
-    if (scrollTop <= SNAP && !isAtTop) {
+    if (scrollTop <= EXPAND && !isAtTop) {
       header.classList.add("at-top");
       isAtTop = true;
-    } else if (scrollTop > SNAP && isAtTop) {
+    } else if (scrollTop > COLLAPSE && isAtTop) {
       header.classList.remove("at-top");
       isAtTop = false;
     }
     if (mobileNav) mobileNav.classList.toggle("nav-hidden", isAtTop);
   }
 
-  // Parallax
-  // Landscape: hero-right bild leicht langsamer scrollen (depth illusion).
-  // Portrait: KEIN JS-parallax - wuerde mit der CSS idleMove animation
-  // kollidieren (beide schreiben background-position) und auf iOS ruckeln.
+  // Parallax – nur landscape, kein portrait (iOS jank)
   function parallaxTick(scrollTop) {
     const isPortrait = window.matchMedia("(orientation: portrait)").matches;
     if (isPortrait) return;
@@ -125,14 +129,10 @@
 
   // Mobile Menu
   window.toggleMobileMenu = () => {
-    // NAV SPACING FIX: --nav-top aus der echten, aktuellen header-unterkante
-    // setzen (getBoundingClientRect.bottom). syncHeaderVars konnte waehrend
-    // der padding-transition einen zwischenwert messen -> luecke unter header.
     document.documentElement.style.setProperty(
       "--nav-top",
       Math.round(header.getBoundingClientRect().bottom) + "px"
     );
-
     mobileNav.classList.toggle("show");
     if (!menuOffen) {
       l1.classList.add("move-line1","rotate-line1");
@@ -151,16 +151,14 @@
   // Init
   document.addEventListener("DOMContentLoaded", () => {
     recalcHeroHeight();
-
     const init = getScrollTop();
-    isAtTop = init <= 6;
+    isAtTop = init <= 4;
     header.classList.toggle("at-top", isAtTop);
     lastScrollTop = init;
     if (mobileNav) mobileNav.classList.toggle("nav-hidden", isAtTop);
     window.addEventListener("scroll", handleScrollRAF, { passive: true });
   });
 
-  // Nach vollem load nochmal height korrigieren (fonts/images koennen header verschieben)
   window.addEventListener("load", () => {
     window.scrollTo(0, 0);
     recalcHeroHeight();

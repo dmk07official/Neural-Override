@@ -188,6 +188,16 @@ transition:transform 0.08s linear;
 z-index:1000;
 box-shadow:0 0 10px var(--g-glow)}
 
+/* HEADER-SCROLLING: alle Transitions deaktivieren waehrend aktiv gescrollt wird.
+   Verhindert konkurrierende Animationen die Flimmern erzeugen.
+   JS setzt diese Klasse on-scroll und entfernt sie 250ms nach Scroll-Ende.
+   Dann laufen Transitions wieder normal (smooth Uebergang nach Scroll-Stop). */
+.header-scrolling,
+.header-scrolling .header-main,
+.header-scrolling .sub-header,
+.header-scrolling .header-main::before{
+transition:none !important}
+
 /* LOGO */
 .logo{
 font-family:'Russo One','Arial Black',Impact,sans-serif;
@@ -217,16 +227,14 @@ text-decoration:none}
 transform:scale(0.82);
 transform-origin:left center}
 
-/* SUB HEADER — terminal nav */
+/* SUB HEADER */
 .sub-header{
 display:flex;
 align-items:center;
 justify-content:center;
 gap:var(--s-lg);
 height:46px;
-/* overflow-x:auto erlaubt horizontales Scrollen wenn links nicht reinpassen */
 overflow-x:auto;
-/* scrollbar verstecken */
 scrollbar-width:none;
 -ms-overflow-style:none;
 border-top:1px solid rgba(0,204,110,0.1);
@@ -247,7 +255,6 @@ text-decoration:none;
 letter-spacing:0.08em;
 position:relative;
 padding:0 0.2em;
-/* nie umbrechen + kein schrumpfen = korrekte overflow-x-scroll-basis */
 white-space:nowrap;
 flex-shrink:0;
 transition:color 0.2s ease,opacity 0.2s ease}
@@ -433,10 +440,7 @@ margin-bottom:var(--s-xl)}
 .hamburger svg{width:calc(var(--s-4) * .65)}
 .logo{font-size:calc(var(--s-3) * .72)}}
 
-/* SUB-HEADER: mobile portrait overflow fix
-   Auf kleinen Screens (< 600px): links ausrichten + horizontal scrollen.
-   justify-content:center + grosser gap wuerde Items aus dem Viewport schieben
-   und den linken Teil unscroppbar machen. */
+/* SUB-HEADER: mobile portrait overflow fix */
 @media(max-width:600px){
 .sub-header{
   justify-content:flex-start;
@@ -449,10 +453,8 @@ margin-bottom:var(--s-xl)}
   letter-spacing:0.04em}}
 
 /* HEADER: kein Flicker auf Touch-Screens
-   Problem: padding + height Transitions triggern Layout-Reflows. Bei
-   schnellem Scrollen + browser chrome show/hide konkurrieren Transitions
-   -> Flimmern. hover:none = Touch-Geraete. Dort: nur GPU-safe Props animieren.
-   -webkit-backface-visibility:hidden verhindert GPU-Layer-Flicker. */
+   padding/height Transitions = Layout-Reflows. Auf Touch: GPU-safe Props only.
+   -webkit-backface-visibility verhindert GPU-Layer-Flicker. */
 @media(hover:none){
 .header{
   -webkit-backface-visibility:hidden;
