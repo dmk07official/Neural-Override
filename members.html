@@ -5,20 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta http-equiv="Content-Language" content="en"/>
 <link rel="alternate" hreflang="en" href="https://neural-override.com/members"/>
-<title>Neural Override – Who Makes The Noise</title>
+<link rel="alternate" hreflang="x-default" href="https://neural-override.com/members"/>
+<title>Neural Override – Incelcore Band Members</title>
 <meta name="description" content="Meet the people making Neural Override happen — frontman, bassist and the guy who built this website. Three humans, one incelcore band, zero guaranteed sleep."/>
 <meta name="author" content="Neural Override"/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://neural-override.com/members"/>
-<meta name="last-modified" content="2026-06-05T12:00:00+00:00"/>
+<meta name="last-modified" content="2026-06-07T12:00:00+00:00"/>
 <meta property="og:type" content="music.musician"/>
-<meta property="og:title" content="Neural Override – Who Makes The Noise"/>
+<meta property="og:title" content="Neural Override – Incelcore Band Members"/>
 <meta property="og:description" content="Meet the people making Neural Override happen — frontman, bassist and the guy who built this website. Three humans, one incelcore band, zero guaranteed sleep."/>
 <meta property="og:image" content="https://ik.imagekit.io/ggcm4pyrd/images/profile-neural-override-2.webp?updatedAt=1769295043125"/>
 <meta property="og:url" content="https://neural-override.com/members"/>
 <meta property="og:site_name" content="Neural Override"/>
+<meta property="og:locale" content="en_US"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Neural Override – Who Makes The Noise"/>
+<meta name="twitter:title" content="Neural Override – Incelcore Band Members"/>
 <meta name="twitter:description" content="Meet the people making Neural Override happen — frontman, bassist and the guy who built this website. Three humans, one incelcore band, zero guaranteed sleep."/>
 <meta name="twitter:image" content="https://ik.imagekit.io/ggcm4pyrd/images/profile-neural-override-2.webp?updatedAt=1769295043125"/>
 <link rel="icon" type="image/png" href="https://neural-override.com/favicon-96x96.png" sizes="96x96"/>
@@ -27,19 +29,70 @@
 <link rel="apple-touch-icon" sizes="180x180" href="https://neural-override.com/apple-touch-icon.png"/>
 <meta name="apple-mobile-web-app-title" content="Neural Override"/>
 <meta name="theme-color" content="#00cc6e">
+<link rel="preload" as="font" type="font/ttf" href="/fonts/RussoOne-Regular.ttf" crossorigin>
+<link rel="preload" as="font" type="font/ttf" href="/fonts/SpaceMono-Regular.ttf" crossorigin>
 <link rel="preconnect" href="https://ik.imagekit.io" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="dns-prefetch" href="https://ik.imagekit.io">
 <link rel="stylesheet" href="overlay.css"/>
 <link rel="stylesheet" href="members.css"/>
 <script src="https://instant.page/5.1.0" type="module" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fontfaceobserver/2.1.0/fontfaceobserver.standalone.js"></script>
-<script>
-Promise.all([
-  new FontFaceObserver('Russo One').load(),
-  new FontFaceObserver('Space Mono').load()
-]).then(function(){document.documentElement.classList.add('fonts-loaded')})
-.catch(function(){});
+<script>document.fonts?document.fonts.ready.then(function(){document.documentElement.classList.add('fonts-loaded')}):document.documentElement.classList.add('fonts-loaded');</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://neural-override.com/members#webpage",
+      "url": "https://neural-override.com/members",
+      "name": "Neural Override – Incelcore Band Members",
+      "description": "Meet the three people behind Neural Override — frontman, guitarist and bassist of the incelcore band from the bedroom.",
+      "dateModified": "2026-06-07T12:00:00+00:00",
+      "isPartOf": {"@id": "https://neural-override.com/#website"},
+      "about": {"@id": "https://neural-override.com/#artist"},
+      "breadcrumb": {"@id": "https://neural-override.com/members#breadcrumb"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://neural-override.com/members#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://neural-override.com"},
+        {"@type": "ListItem", "position": 2, "name": "Members", "item": "https://neural-override.com/members"}
+      ]
+    },
+    {
+      "@type": "MusicGroup",
+      "@id": "https://neural-override.com/#artist",
+      "name": "Neural Override",
+      "url": "https://neural-override.com",
+      "genre": ["Incelcore", "Alternative Rock", "Bedroom Rock"],
+      "foundingDate": "2025-02-13",
+      "member": [
+        {
+          "@type": "Person",
+          "name": "Neural Override",
+          "jobTitle": "Frontman / Producer",
+          "description": "Frontman and producer of Neural Override. Makes incelcore from the bedroom with guitar, bass and FL Studio since February 2025.",
+          "knowsAbout": ["Guitar", "Bass", "FL Studio", "Music Production", "Incelcore"]
+        },
+        {
+          "@type": "Person",
+          "name": "Dominik Oellers",
+          "jobTitle": "Guitarist / Web Developer / Music Theory",
+          "description": "Joined Neural Override in June 2025. Handles guitar features, music theory and the website you are currently looking at.",
+          "knowsAbout": ["Piano", "Guitar", "Bass", "Drums", "Web Development", "Music Theory"]
+        },
+        {
+          "@type": "Person",
+          "name": "Ceddo",
+          "jobTitle": "Bassist",
+          "description": "Bassist of Neural Override. Joined in May 2026. Plays bass and laughs.",
+          "knowsAbout": ["Bass Guitar"]
+        }
+      ]
+    }
+  ]
+}
 </script>
 <script src="animation.js" defer></script>
 </head>
@@ -48,29 +101,30 @@ Promise.all([
 
 <header class="header at-top">
 <div class="header-main">
-<a href="/index.html" class="logo" aria-label="Neural Override – Home">NEURAL OVERRIDE</a>
-<div class="hamburger" onclick="toggleMobileMenu()">
-<svg id="hamburger" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 50 50" fill="#00ff88">
+<a href="/" class="logo" aria-label="Neural Override – Home">NEURAL OVERRIDE</a>
+<button class="hamburger" onclick="toggleMobileMenu()" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav">
+<svg id="hamburger" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 50 50" fill="#00ff88" aria-hidden="true" focusable="false">
 <rect id="line1" class="line" x="10" y="12" width="30" height="4" rx="2"/>
 <rect id="line2" class="line" x="10" y="23" width="30" height="4" rx="2"/>
 <rect id="line3" class="line" x="10" y="34" width="30" height="4" rx="2"/>
 </svg>
-</div>
+</button>
 </div>
 <div class="sub-header">
-<a href="/index.html">Start</a>
-<a href="/news.html">News</a>
-<a href="/releases.html">Releases</a>
+<a href="/">Start</a>
+<a href="/members" class="sub-active" aria-current="page">Members</a>
+<a href="/news">News</a>
+<a href="/releases">Releases</a>
 <a href="mailto:neural.o.management@gmail.com">E-mail Us</a>
 </div>
 </header>
 
 <div class="mobile-nav nav-hidden" id="mobileNav">
 <h3>Navigate</h3>
-<a href="/index.html">— Start</a>
-<a href="/members.html" class="current-site">— Members</a>
-<a href="/news.html">— News</a>
-<a href="/releases.html">— Releases</a>
+<a href="/">— Start</a>
+<a href="/members" class="current-site">— Members</a>
+<a href="/news">— News</a>
+<a href="/releases">— Releases</a>
 <div class="nav-line"></div>
 <h3>Contact</h3>
 <a href="mailto:neural.o.management@gmail.com">— E-mail</a>
@@ -79,7 +133,7 @@ Promise.all([
 <main>
 <section class="about">
 <h1>Members Behind Neural Override</h1>
-<p class="description">Who we are, what we do, and some random stuff about us. Names, roles – and a <strong>totally relevant</strong> stat battle to see who really is the better <strong>musician</strong>.</p>
+<p class="description">Who we are, what we do and why we make <strong>incelcore music</strong>. Names, roles – and a <strong>totally relevant</strong> stat battle to see who really is the better <strong>musician</strong>.</p>
 
 <!-- SKELETON: versteckt sich nach page load via animation.js -->
 <div id="members-skeleton" aria-hidden="true">
@@ -164,44 +218,44 @@ decoding="async"/>
 
 <div class="stat-row">
 <span>Vocals</span>
-<div class="bar-container"><div class="bar neural" style="width:70%"></div></div>
-<div class="bar-container"><div class="bar dmk" style="width:50%"></div></div>
-<div class="bar-container"><div class="bar member3" style="width:10%"></div></div>
+<div class="bar-container"><div class="bar neural" data-bar="70%"></div></div>
+<div class="bar-container"><div class="bar dmk" data-bar="50%"></div></div>
+<div class="bar-container"><div class="bar member3" data-bar="10%"></div></div>
 </div>
 
 <div class="stat-row">
 <span>Guitar Drive</span>
-<div class="bar-container"><div class="bar neural" style="width:100%"></div></div>
-<div class="bar-container"><div class="bar dmk" style="width:30%"></div></div>
-<div class="bar-container"><div class="bar member3" style="width:50%"></div></div>
+<div class="bar-container"><div class="bar neural" data-bar="100%"></div></div>
+<div class="bar-container"><div class="bar dmk" data-bar="30%"></div></div>
+<div class="bar-container"><div class="bar member3" data-bar="50%"></div></div>
 </div>
 
 <div class="stat-row">
 <span>Tech Skills</span>
-<div class="bar-container"><div class="bar neural" style="width:50%"></div></div>
-<div class="bar-container"><div class="bar dmk" style="width:90%"></div></div>
-<div class="bar-container"><div class="bar member3" style="width:30%"></div></div>
+<div class="bar-container"><div class="bar neural" data-bar="50%"></div></div>
+<div class="bar-container"><div class="bar dmk" data-bar="90%"></div></div>
+<div class="bar-container"><div class="bar member3" data-bar="30%"></div></div>
 </div>
 
 <div class="stat-row">
 <span>Alcohol Level</span>
-<div class="bar-container"><div class="bar neural" style="width:90%"></div></div>
-<div class="bar-container"><div class="bar dmk" style="width:40%"></div></div>
-<div class="bar-container"><div class="bar member3" style="width:100%"></div></div>
+<div class="bar-container"><div class="bar neural" data-bar="90%"></div></div>
+<div class="bar-container"><div class="bar dmk" data-bar="40%"></div></div>
+<div class="bar-container"><div class="bar member3" data-bar="100%"></div></div>
 </div>
 
 <div class="stat-row">
 <span>Creativity</span>
-<div class="bar-container"><div class="bar neural" style="width:90%"></div></div>
-<div class="bar-container"><div class="bar dmk" style="width:80%"></div></div>
-<div class="bar-container"><div class="bar member3" style="width:70%"></div></div>
+<div class="bar-container"><div class="bar neural" data-bar="90%"></div></div>
+<div class="bar-container"><div class="bar dmk" data-bar="80%"></div></div>
+<div class="bar-container"><div class="bar member3" data-bar="70%"></div></div>
 </div>
 
 <div class="stat-row">
 <span>Mental Stability</span>
-<div class="bar-container"><div class="bar neural" style="width:1%"></div></div>
-<div class="bar-container"><div class="bar dmk" style="width:100%"></div></div>
-<div class="bar-container"><div class="bar member3" style="width:80%"></div></div>
+<div class="bar-container"><div class="bar neural" data-bar="1%"></div></div>
+<div class="bar-container"><div class="bar dmk" data-bar="100%"></div></div>
+<div class="bar-container"><div class="bar member3" data-bar="80%"></div></div>
 </div>
 
 </div>
@@ -210,7 +264,7 @@ decoding="async"/>
 
 <footer class="footer">
 <div class="footer-link">
-<a href="/imprint.html">Imprint</a> | icons by <a href="https://icons8.com/">icons8.com</a>
+<a href="/imprint">Imprint</a> | icons by <a href="https://icons8.com/">icons8.com</a>
 </div>
 <p>&copy; 2026 Neural Override</p>
 </footer>

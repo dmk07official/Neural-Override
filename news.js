@@ -1,12 +1,23 @@
 // FIX: searchFunction explizit auf window gesetzt (safe in strict mode / Bundlern)
 window.searchFunction = function() {
   const input = document.getElementById("search").value.toLowerCase();
+  let anyVisible = false;
+
   ["images-item", "news-item"].forEach(cls => {
     document.querySelectorAll(`.${cls} h3`).forEach(h3 => {
       const text = h3.textContent.toLowerCase();
-      h3.closest(`.${cls}`).style.display = text.includes(input) ? "" : "none";
+      const item = h3.closest(`.${cls}`);
+      const visible = text.includes(input);
+      item.style.display = visible ? "" : "none";
+      if (visible) anyVisible = true;
     });
   });
+
+  // No-Results Hinweis ein-/ausblenden
+  const noResults = document.getElementById("no-results");
+  if (noResults) {
+    noResults.style.display = (input.length > 0 && !anyVisible) ? "" : "none";
+  }
 };
 
 document.querySelectorAll('[data-slideshow]').forEach(wrapper => {
@@ -49,3 +60,16 @@ document.querySelectorAll('[data-slideshow]').forEach(wrapper => {
   img.src = images[index];
   if (currentDisplay) currentDisplay.textContent = index + 1;
 });
+
+// Pre-fill search from URL parameter ?q= (required for schema.org SearchAction)
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get('q');
+  if (q) {
+    const searchInput = document.getElementById('search');
+    if (searchInput) {
+      searchInput.value = q;
+      window.searchFunction();
+    }
+  }
+}());

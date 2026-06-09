@@ -134,7 +134,8 @@
       Math.round(header.getBoundingClientRect().bottom) + "px"
     );
     mobileNav.classList.toggle("show");
-    if (!menuOffen) {
+    const opening = !menuOffen;
+    if (opening) {
       l1.classList.add("move-line1","rotate-line1");
       l3.classList.add("move-line3","rotate-line3");
       l2.classList.add("hide-line2");
@@ -144,6 +145,12 @@
       l3.classList.remove("move-line3","rotate-line3");
       l2.classList.remove("hide-line2");
       burger.setAttribute("fill","#00ff88");
+    }
+    // Accessibility: aria-expanded state + label für Screen Reader
+    const hamburgerBtn = document.querySelector('.hamburger');
+    if (hamburgerBtn) {
+      hamburgerBtn.setAttribute('aria-expanded', opening ? 'true' : 'false');
+      hamburgerBtn.setAttribute('aria-label', opening ? 'Close navigation menu' : 'Open navigation menu');
     }
     menuOffen = !menuOffen;
   };

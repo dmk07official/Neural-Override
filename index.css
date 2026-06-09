@@ -336,6 +336,34 @@ filter:grayscale(0%) brightness(1);
 box-shadow:0 0 16px var(--g-glow)}
 .social-icon:hover span{opacity:1}
 
+/* ─── SCROLL-DOWN INDICATOR ──────────────────── */
+.scroll-down{
+position:absolute;
+bottom:var(--s-md);
+left:50%;
+transform:translateX(-50%);
+display:flex;
+flex-direction:column;
+align-items:center;
+cursor:pointer;
+z-index:2;
+color:rgba(0,204,110,0.5);
+animation:scrollBounce 2s ease-in-out infinite;
+transition:color 0.25s ease;
+background:none;
+border:none;
+padding:0}
+
+.scroll-down:hover{color:var(--g)}
+
+@keyframes scrollBounce{
+0%,100%{transform:translateX(-50%) translateY(0)}
+50%{transform:translateX(-50%) translateY(8px)}}
+
+/* in landscape / split-screen nicht nötig */
+@media(orientation:landscape) and (min-width:760px){
+.scroll-down{display:none}}
+
 @media(max-width:500px){
 .hero h1{font-size:var(--s-3)}
 .social-icon{margin:var(--s-xs)}}

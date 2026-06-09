@@ -2,27 +2,32 @@
 font-family:'Russo One';
 src:url('/fonts/RussoOne-Regular.ttf') format('truetype');
 font-weight:400;
-font-style:normal}
+font-style:normal;
+font-display:swap}
 @font-face{
 font-family:'Space Mono';
 src:url('/fonts/SpaceMono-Regular.ttf') format('truetype');
 font-weight:400;
-font-style:normal}
+font-style:normal;
+font-display:swap}
 @font-face{
 font-family:'Space Mono';
 src:url('/fonts/SpaceMono-Bold.ttf') format('truetype');
 font-weight:700;
-font-style:normal}
+font-style:normal;
+font-display:swap}
 @font-face{
 font-family:'Space Mono';
 src:url('/fonts/SpaceMono-Italic.ttf') format('truetype');
 font-weight:400;
-font-style:italic}
+font-style:italic;
+font-display:swap}
 @font-face{
 font-family:'Space Mono';
 src:url('/fonts/SpaceMono-BoldItalic.ttf') format('truetype');
 font-weight:700;
-font-style:italic}
+font-style:italic;
+font-display:swap}
 
 :root{
 --g:#00cc6e;
@@ -277,7 +282,18 @@ transform:translateX(-6px);
 transition:opacity 0.2s ease,transform 0.2s ease}
 
 .sub-header a:hover{color:var(--g)}
-.sub-active{color:var(--g) !important}
+.sub-active{color:var(--g) !important;pointer-events:none;cursor:default}
+
+/* aktueller Seitenname als Indikator im Sub-Header (per JS gesetzt) */
+.sub-current{
+font-family:'Space Mono',monospace;
+font-size:var(--s-0);
+color:var(--g);
+letter-spacing:0.08em;
+padding:0 0.2em;
+white-space:nowrap;
+flex-shrink:0;
+opacity:0.9}
 
 .sub-header a:hover::before,
 .sub-header a:hover::after{
@@ -440,14 +456,15 @@ margin-bottom:var(--s-xl)}
 .hamburger svg{width:calc(var(--s-4) * .65)}
 .logo{font-size:calc(var(--s-3) * .72)}}
 
-/* SUB-HEADER: mobile portrait overflow fix */
-@media(max-width:600px){
+/* SUB-HEADER: ab 750px → linksbündig mit overflow-x scroll
+   deckt alle Phones + Tablets (Portrait + Landscape) ab */
+@media(max-width:750px){
 .sub-header{
   justify-content:flex-start;
   gap:var(--s-sm);
   padding:0 var(--s-sm)}}
 
-@media(max-width:380px){
+@media(max-width:420px){
 .sub-header a{
   font-size:var(--s--1);
   letter-spacing:0.04em}}
@@ -482,6 +499,13 @@ to{opacity:0}}
 .header,.sub-header{
 will-change:transform;
 transform:translateZ(0)}
+
+/* HAMBURGER: button reset – überschreibt Default-Styles wenn
+   das Element als <button> statt <div> gerendert wird */
+button.hamburger{
+background:none;
+border:none;
+font-family:inherit}
 
 /* REDUCED MOTION */
 @media(prefers-reduced-motion:reduce){

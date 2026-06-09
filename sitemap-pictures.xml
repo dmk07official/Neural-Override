@@ -5,6 +5,55 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
+  <loc>https://neural-override.com/releases</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/alina-cover.webp</image:loc>
+    <image:caption>Alina – Neural Override Bedroom Rock Single, May 2026</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.com/releases</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/past-mistakes-cover.webp</image:loc>
+    <image:caption>Past Mistakes – Neural Override Incelcore Single feat. walkoff, Mar 2026</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.com/releases</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/stolen-dance-cover.webp</image:loc>
+    <image:caption>Stolen Dance – Neural Override Incelcore Cover of Milky Chance, Mar 2026</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.com/releases</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/get-over-it.webp</image:loc>
+    <image:caption>Get Over It – Neural Override Incelcore Single, Feb 2026</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.com/releases</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/afterparty-cover.webp</image:loc>
+    <image:caption>Afterparty – Neural Override Incelcore Cover of Gezebelle Gaburgably, Jan 2026</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.com/releases</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/i-want-you-to-stay-cover.webp</image:loc>
+    <image:caption>I Want You To Stay – Neural Override Bedroom Rock Single, Jan 2026</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://neural-override.com/releases</loc>
+  <image:image>
+    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/i-know-that-i-want-you-cover.webp</image:loc>
+    <image:caption>I Know That I Want You – Neural Override Debut Incelcore Single, Nov 2025</image:caption>
+  </image:image>
+</url>
+<url>
   <loc>https://neural-override.com/members</loc>
   <image:image>
     <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-neural-override-2.webp?updatedAt=1769295043125</image:loc>

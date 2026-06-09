@@ -259,10 +259,12 @@ overflow:hidden;
 margin-bottom:4px;
 position:relative}
 
+/* width startet bei 0 – JS animiert auf data-bar-Wert beim Einblenden */
 .bar{
+width:0;
 height:100%;
 border-radius:3px;
-transition:width 0.8s cubic-bezier(0.22,1,0.36,1)}
+transition:width 0.9s cubic-bezier(0.22,1,0.36,1)}
 
 /* DESKTOP: 4-col grid: label | bar1 | bar2 | bar3 */
 @media(min-width:800px){

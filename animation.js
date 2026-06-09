@@ -21,4 +21,22 @@ window.addEventListener('load', () => {
 
   // Fade-in observer starten
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+ 
+
+  // ── Stat-Bars: von 0 auf Zielwert animieren beim Einblenden ─
+  const statSection = document.querySelector('.band-stats');
+  if (statSection) {
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.bar[data-bar]').forEach(bar => {
+            requestAnimationFrame(() => { bar.style.width = bar.dataset.bar; });
+          });
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    barObserver.observe(statSection);
+  }
 });
