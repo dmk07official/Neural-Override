@@ -1,516 +1,393 @@
-@font-face{
-font-family:'Russo One';
-src:url('/fonts/RussoOne-Regular.ttf') format('truetype');
-font-weight:400;
-font-style:normal;
-font-display:swap}
-@font-face{
-font-family:'Space Mono';
-src:url('/fonts/SpaceMono-Regular.ttf') format('truetype');
-font-weight:400;
-font-style:normal;
-font-display:swap}
-@font-face{
-font-family:'Space Mono';
-src:url('/fonts/SpaceMono-Bold.ttf') format('truetype');
-font-weight:700;
-font-style:normal;
-font-display:swap}
-@font-face{
-font-family:'Space Mono';
-src:url('/fonts/SpaceMono-Italic.ttf') format('truetype');
-font-weight:400;
-font-style:italic;
-font-display:swap}
-@font-face{
-font-family:'Space Mono';
-src:url('/fonts/SpaceMono-BoldItalic.ttf') format('truetype');
-font-weight:700;
-font-style:italic;
-font-display:swap}
+/* ════════════════════════════════════════════════════════════
+   NEURAL OVERRIDE – shared styles (alle Seiten)
+   ════════════════════════════════════════════════════════════ */
+
+/* Tipp: TTF → WOFF2 konvertieren spart ~40 % Font-Gewicht.
+   Danach hier nur url() + format('woff2') tauschen. */
+@font-face{font-family:'Russo One';src:url('/fonts/RussoOne-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Space Mono';src:url('/fonts/SpaceMono-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Space Mono';src:url('/fonts/SpaceMono-Bold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Space Mono';src:url('/fonts/SpaceMono-Italic.ttf') format('truetype');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Space Mono';src:url('/fonts/SpaceMono-BoldItalic.ttf') format('truetype');font-weight:700;font-style:italic;font-display:swap}
+
+/* Seitenwechsel: weicher Crossfade direkt vom Browser (ersetzt das alte #fade-Overlay) */
+@view-transition{navigation:auto}
 
 :root{
+color-scheme:dark;
 --g:#00cc6e;
---g-dim:rgba(0,204,110,0.12);
---g-glow:rgba(0,204,110,0.35);
+--g-soft:color-mix(in srgb,var(--g) 12%,transparent);
+--g-line:color-mix(in srgb,var(--g) 34%,transparent);
 --d:#060608;
 --d2:#0e0f11;
+--d3:#17191c;
 --l:#f0f0f0;
---l-dim:rgba(240,240,240,0.55);
---progress-scale:0;
---s-xs:0.5rem;
+--muted:rgb(240 240 240/.7);
+--faint:rgb(240 240 240/.45);
+--line:rgb(240 240 240/.12);
+--paper:#e9e6dd;
+--display:'Russo One','Arial Black',Impact,sans-serif;
+--mono:'Space Mono',ui-monospace,Menlo,Consolas,monospace;
+--hh:4rem;
+--wrap:75rem;
+--measure:62ch;
+--gutter:clamp(1rem,4vw,2.5rem);
+--section:clamp(4rem,10vw,7.5rem);
+--s-xs:.5rem;
 --s-sm:1rem;
 --s-md:2rem;
 --s-lg:3rem;
 --s-xl:4rem;
---s--4:clamp(0.18rem,0.162rem + 0.0225vw,0.216rem);
---s--3:clamp(0.306rem,0.297rem + 0.045vw,0.36rem);
---s--2:clamp(0.513rem,0.495rem + 0.099vw,0.603rem);
---s--1:clamp(0.747rem,0.702rem + 0.18vw,0.9rem);
---s-0:clamp(0.9rem,0.855rem + 0.225vw,1.0125rem);
---s-1:clamp(1.0125rem,0.9rem + 0.45vw,1.35rem);
---s-2:clamp(1.35rem,1.125rem + 0.9vw,2.025rem);
---s-3:clamp(2.025rem,1.8rem + 1.35vw,3.375rem);
---s-4:clamp(3.375rem,2.7rem + 1.8vw,5.625rem)}
+--s--1:clamp(.78rem,.74rem + .18vw,.9rem);
+--s-0:clamp(.94rem,.89rem + .22vw,1.05rem);
+--s-1:clamp(1.02rem,.94rem + .4vw,1.25rem);
+--s-2:clamp(1.35rem,1.13rem + .9vw,2rem);
+--s-3:clamp(2rem,1.6rem + 1.9vw,3.4rem)}
 
-*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
 html{
-scroll-behavior:smooth;
--webkit-overflow-scrolling:touch}
+scroll-padding-top:calc(var(--hh) + 1rem);
+scrollbar-color:var(--g-line) var(--d);
+scrollbar-width:thin;
+-webkit-text-size-adjust:100%;
+text-size-adjust:100%}
+
+@media(prefers-reduced-motion:no-preference){
+html{scroll-behavior:smooth}}
 
 body{
-font-family:'Space Mono',monospace;
-background-color:var(--d);
+font-family:var(--mono);
+font-size:var(--s-0);
+line-height:1.7;
+background:var(--d);
 color:var(--l);
-overflow-x:hidden;
-cursor:url('cursor.cur'),auto;
--ms-overflow-style:none;
-overscroll-behavior-y:none}
+overflow-x:clip;
+cursor:url('cursor.cur'),auto}
 
-::-webkit-scrollbar{display:none}
-
-/* TYPOGRAPHIE */
-h1,h2,h3,h4,button{
-font-family:'Russo One',sans-serif;
-letter-spacing:0.04em}
-
-/* AMBIENT BG: grid + orbs */
-body::before{
-content:'';
-position:fixed;
-inset:0;
-pointer-events:none;
-z-index:0;
-background-image:
-  linear-gradient(rgba(0,204,110,0.035) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(0,204,110,0.035) 1px,transparent 1px),
-  linear-gradient(rgba(0,204,110,0.012) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(0,204,110,0.012) 1px,transparent 1px);
-background-size:80px 80px,80px 80px,20px 20px,20px 20px;
-animation:gridDrift 35s linear infinite;
-mask-image:radial-gradient(ellipse at 50% 40%,rgba(0,0,0,0.5) 0%,transparent 72%)}
-
-@keyframes gridDrift{
-0%{background-position:0px 0px,0px 0px,0px 0px,0px 0px}
-100%{background-position:80px 80px,80px 80px,20px 20px,20px 20px}}
-
+/* dezentes Filmkorn – einziger Rest vom alten Overlay-Stack */
 body::after{
 content:'';
 position:fixed;
 inset:0;
+z-index:900;
 pointer-events:none;
-z-index:0;
-background:
-  radial-gradient(ellipse 50vw 35vh at 10% 15%,rgba(0,204,110,0.05) 0%,transparent 70%),
-  radial-gradient(ellipse 40vw 30vh at 88% 72%,rgba(0,204,110,0.04) 0%,transparent 70%),
-  radial-gradient(ellipse 30vw 25vh at 55% 45%,rgba(0,204,110,0.025) 0%,transparent 70%);
-animation:orbFloat 22s ease-in-out infinite alternate}
+opacity:.045;
+mix-blend-mode:overlay;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-@keyframes orbFloat{
-0%{opacity:0.55;transform:translateY(0) scale(1)}
-50%{opacity:0.9;transform:translateY(-18px) scale(1.04)}
-100%{opacity:0.65;transform:translateY(6px) scale(0.97)}}
+[hidden]{display:none !important}
 
-/* z-stack: alles ueber ambient bg */
-header,main,section,footer,.mobile-nav,#fade{
-position:relative;
-z-index:1}
+img,iframe{max-width:100%}
+img{height:auto}
 
-/* HEADER */
-.header{
+h1,h2,h3,h4{
+font-family:var(--display);
+font-weight:400;
+line-height:1.08;
+letter-spacing:.02em;
+text-wrap:balance}
+
+p,li,dd{text-wrap:pretty}
+
+a{color:var(--g);text-decoration:none;text-underline-offset:.22em}
+a:hover{text-decoration:underline}
+
+strong{font-weight:700}
+
+:focus-visible{
+outline:2px solid var(--g);
+outline-offset:3px}
+
+::selection{background:var(--g);color:var(--d)}
+
+.visually-hidden{
+position:absolute !important;
+width:1px;height:1px;
+margin:-1px;
+overflow:hidden;
+clip-path:inset(50%);
+white-space:nowrap}
+
+.skip-link{
+position:fixed;
+top:.6rem;left:.6rem;
+z-index:1000;
+padding:.6rem 1rem;
+background:var(--g);
+color:var(--d);
+font-weight:700;
+translate:0 -200%}
+.skip-link:focus{translate:0 0}
+
+.wrap{
+width:min(100% - 2 * var(--gutter),var(--wrap));
+margin-inline:auto}
+
+.section{padding-block:var(--section)}
+
+/* ─── HEADER ─────────────────────────────────────────────── */
+.site-header{
 position:sticky;
 top:0;
-z-index:999;
-background:rgba(6,8,9,0.82);
-backdrop-filter:blur(14px) saturate(1.2);
--webkit-backdrop-filter:blur(14px) saturate(1.2);
+z-index:800;
+height:var(--hh);
 display:flex;
-flex-direction:column;
-border-bottom:1px solid rgba(0,204,110,0.18);
-box-shadow:0 8px 32px rgba(0,0,0,0.55);
-transition:padding 0.4s ease,border-color 0.4s ease,background 0.4s ease}
+align-items:center;
+justify-content:space-between;
+gap:var(--s-md);
+padding-inline:var(--gutter);
+background:rgb(6 6 8/.82);
+-webkit-backdrop-filter:blur(14px) saturate(1.2);
+backdrop-filter:blur(14px) saturate(1.2);
+border-bottom:1px solid var(--line)}
 
-/* corner brackets am header */
-.header-main::before{
+/* Lesefortschritt – reines CSS (scroll-driven animation). Browser ohne
+   Support zeigen einfach keinen Balken, kein JS nötig. */
+@supports (animation-timeline:scroll()){
+.site-header::after{
 content:'';
 position:absolute;
-top:8px;left:10px;
-width:24px;height:24px;
-border-top:1px solid rgba(0,204,110,0.45);
-border-left:1px solid rgba(0,204,110,0.45);
-pointer-events:none;
-opacity:0;
-transition:opacity 0.4s ease}
+left:0;bottom:-1px;
+width:100%;height:2px;
+background:var(--g);
+transform-origin:left;
+scale:0 1;
+animation:progress linear both;
+animation-timeline:scroll(root)}}
 
-.header.at-top .header-main::before{opacity:1}
+@keyframes progress{to{scale:1 1}}
 
-.header-main{
+.logo{
+font-family:var(--display);
+font-size:clamp(1.05rem,.9rem + 1vw,1.5rem);
+letter-spacing:.14em;
+color:var(--g);
+white-space:nowrap;
+line-height:1}
+.logo:hover{text-decoration:none;color:var(--l)}
+
+.site-nav{
 display:flex;
+align-items:center;
+gap:clamp(1.25rem,3vw,2.5rem)}
+
+.site-nav a{
+position:relative;
+padding-block:.4rem;
+color:var(--muted);
+font-size:var(--s-0);
+letter-spacing:.04em;
+transition:color .15s ease}
+
+.site-nav a:hover{color:var(--l);text-decoration:none}
+
+.site-nav a[aria-current="page"]{color:var(--g)}
+.site-nav a[aria-current="page"]::after{
+content:'';
+position:absolute;
+left:0;right:0;bottom:0;
+height:2px;
+background:var(--g)}
+
+.burger{
+display:none;
+width:2.75rem;height:2.75rem;
+margin-right:-.5rem;
+background:none;
+border:0;
+color:var(--g);
+cursor:pointer}
+
+.burger span{
+display:block;
+width:1.5rem;height:2px;
+margin:5px auto;
+background:currentColor;
+transition:translate .2s ease,rotate .2s ease,opacity .2s ease}
+
+.burger[aria-expanded="true"] span:nth-child(1){translate:0 7px;rotate:45deg}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){translate:0 -7px;rotate:-45deg}
+
+@media(max-width:760px){
+.burger{display:block}
+
+.site-nav{
+position:absolute;
+top:100%;left:0;right:0;
+flex-direction:column;
+align-items:stretch;
+gap:0;
+padding:var(--s-xs) var(--gutter) var(--s-md);
+background:rgb(6 6 8/.97);
+border-bottom:1px solid var(--g-line);
+visibility:hidden;
+opacity:0;
+translate:0 -.5rem;
+transition:opacity .2s ease,translate .2s ease,visibility 0s .2s}
+
+.site-nav.open{
+visibility:visible;
+opacity:1;
+translate:0 0;
+transition-delay:0s}
+
+.site-nav a{
+padding-block:.9rem;
+font-size:var(--s-1);
+border-bottom:1px solid var(--line)}
+
+.site-nav a[aria-current="page"]::after{display:none}}
+
+/* ─── BUTTONS ────────────────────────────────────────────── */
+.actions{
+display:flex;
+flex-wrap:wrap;
+gap:var(--s-sm)}
+
+.btn{
+display:inline-flex;
 align-items:center;
 justify-content:center;
-padding:var(--s-md) calc(var(--s-sm) + var(--s-0)) var(--s-sm);
-position:relative;
-transition:padding 0.4s ease}
-
-.header:not(.at-top) .header-main{
-justify-content:space-between;
-padding:var(--s-sm) calc(var(--s-sm) + var(--s-0))}
-
-/* animierte scanline am unteren rand */
-.header::before{
-content:'';
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-height:1px;
-background:linear-gradient(90deg,
-  transparent 0%,
-  rgba(0,204,110,0.5) 50%,
-  transparent 100%);
-background-size:200% 100%;
-animation:scanline 4s linear infinite;
-pointer-events:none;
-z-index:999}
-
-@keyframes scanline{
-0%{background-position:200% 0}
-100%{background-position:-200% 0}}
-
-/* progress bar – transform statt width = GPU-composited, kein Layout-Reflow */
-.header::after{
-content:"";
-position:absolute;
-bottom:0;
-left:0;
-height:2px;
-width:100%;
-transform:scaleX(var(--progress-scale,0));
-transform-origin:left center;
-background:linear-gradient(90deg,var(--g),rgba(0,204,110,0.4));
-transition:transform 0.08s linear;
-z-index:1000;
-box-shadow:0 0 10px var(--g-glow)}
-
-/* HEADER-SCROLLING: alle Transitions deaktivieren waehrend aktiv gescrollt wird.
-   Verhindert konkurrierende Animationen die Flimmern erzeugen.
-   JS setzt diese Klasse on-scroll und entfernt sie 250ms nach Scroll-Ende.
-   Dann laufen Transitions wieder normal (smooth Uebergang nach Scroll-Stop). */
-.header-scrolling,
-.header-scrolling .header-main,
-.header-scrolling .sub-header,
-.header-scrolling .header-main::before{
-transition:none !important}
-
-/* LOGO */
-.logo{
-font-family:'Russo One','Arial Black',Impact,sans-serif;
-font-weight:400;
-font-size:var(--s-3);
-color:var(--g);
-letter-spacing:4px;
-user-select:none;
-white-space:nowrap;
+gap:.5rem;
+min-height:2.9rem;
+padding:.6rem 1.4rem;
+border:1px solid var(--line);
+border-radius:2px;
+background:rgb(6 6 8/.4);
+color:var(--l);
+font-family:var(--mono);
+font-size:var(--s-0);
+letter-spacing:.04em;
 cursor:pointer;
-text-decoration:none;
-display:flex;
-align-items:center;
-gap:0.5em;
-line-height:1;
-position:relative;
-transition:transform 0.45s cubic-bezier(.4,0,.2,1),
-           text-shadow 0.3s ease,
-           letter-spacing 0.3s ease}
+transition:background .15s ease,border-color .15s ease,color .15s ease}
 
-.logo:hover{
-text-shadow:0 0 16px var(--g-glow),0 0 32px rgba(0,204,110,0.2);
-letter-spacing:6px;
+.btn:hover{
+border-color:var(--l);
 text-decoration:none}
 
-.header:not(.at-top) .logo{
-transform:scale(0.82);
-transform-origin:left center}
+.btn.primary{
+background:var(--g);
+border-color:var(--g);
+color:var(--d);
+font-weight:700}
 
-/* SUB HEADER */
-.sub-header{
-display:flex;
+.btn.primary:hover{
+background:var(--l);
+border-color:var(--l)}
+
+/* ─── PAGE HEAD (Unterseiten) ────────────────────────────── */
+.page-head{
+display:grid;
+gap:clamp(2rem,6vw,5rem);
 align-items:center;
-justify-content:center;
-gap:var(--s-lg);
-height:46px;
-overflow-x:auto;
-scrollbar-width:none;
--ms-overflow-style:none;
-border-top:1px solid rgba(0,204,110,0.1);
-transition:height 0.4s ease,opacity 0.45s ease}
+padding-block:clamp(2.5rem,7vw,5rem)}
 
-.sub-header::-webkit-scrollbar{display:none}
-
-.header:not(.at-top) .sub-header{
-height:0px;
-border:none;
-overflow:hidden}
-
-.sub-header a{
-font-family:'Space Mono',monospace;
-font-size:var(--s-0);
-color:rgba(240,240,240,0.7);
-text-decoration:none;
-letter-spacing:0.08em;
-position:relative;
-padding:0 0.2em;
-white-space:nowrap;
-flex-shrink:0;
-transition:color 0.2s ease,opacity 0.2s ease}
-
-/* terminal-style [ ] brackets beim hover */
-.sub-header a::before{
-content:'[';
-opacity:0;
-margin-right:4px;
+.page-head h1{
+font-size:var(--s-3);
 color:var(--g);
-transform:translateX(6px);
-transition:opacity 0.2s ease,transform 0.2s ease}
+margin-bottom:var(--s-sm)}
 
-.sub-header a::after{
-content:']';
-opacity:0;
-margin-left:4px;
-color:var(--g);
-transform:translateX(-6px);
-transition:opacity 0.2s ease,transform 0.2s ease}
-
-.sub-header a:hover{color:var(--g)}
-.sub-active{color:var(--g) !important;pointer-events:none;cursor:default}
-
-/* aktueller Seitenname als Indikator im Sub-Header (per JS gesetzt) */
-.sub-current{
-font-family:'Space Mono',monospace;
-font-size:var(--s-0);
-color:var(--g);
-letter-spacing:0.08em;
-padding:0 0.2em;
-white-space:nowrap;
-flex-shrink:0;
-opacity:0.9}
-
-.sub-header a:hover::before,
-.sub-header a:hover::after{
-opacity:1;
-transform:translateX(0)}
-
-.header:not(.at-top) .sub-header a{
-opacity:0;
-pointer-events:none}
-
-/* HAMBURGER */
-.hamburger{
-padding:var(--s--2);
-display:flex;
-justify-content:center;
-cursor:pointer;
-position:absolute;
-top:50%;
-right:var(--s-sm);
-transform:translateY(-50%);
-z-index:1000;
-opacity:0;
-pointer-events:none;
-transition:opacity 0.25s ease}
-
-.header:not(.at-top) .hamburger{
-opacity:.9;
-pointer-events:auto}
-
-.hamburger svg{
-width:calc(var(--s-4) * .85);
-transition:fill 100ms ease-in-out}
-
-.line{
-transition:transform 0.15s ease,opacity 0.15s ease;
-transform-origin:25px 25px}
-
-.move-line1{transform:translateY(11px)}
-.move-line3{transform:translateY(-11px)}
-.hide-line2{opacity:0}
-.rotate-line1{transform-origin:12px 20px;transform:rotate(45deg)}
-.rotate-line3{transform-origin:12px 30px;transform:rotate(-45deg)}
-.r-rotate-line1{transform-origin:10px 23px;transform:rotate(0)}
-.r-rotate-line3{transform-origin:10px 23px;transform:rotate(0)}
-.show-line2{opacity:1}
-.r-move-line1{transform:translateY(-11px)}
-.r-move-line3{transform:translateY(11px)}
-
-/* MOBILE NAV */
-.mobile-nav{
-position:fixed;
-top:var(--nav-top, 64px);
-right:0;
-width:min(78vw, 320px);
-transform:translateX(calc(100% + 12px));
-height:calc(100dvh - var(--nav-top, 64px));
-background:rgba(8,10,12,0.97);
-backdrop-filter:blur(16px);
--webkit-backdrop-filter:blur(16px);
-border-left:1px solid rgba(0,204,110,0.3);
-box-shadow:-8px 0 32px rgba(0,0,0,0.5),-4px 0 24px rgba(0,204,110,0.06);
-padding:var(--s-lg) var(--s-lg) var(--s-md);
-display:flex;
-flex-direction:column;
-gap:calc(var(--s-xs) * 1.5);
-transition:transform 0.35s cubic-bezier(.4,0,.2,1),opacity 0.3s ease;
-z-index:998;
-overflow-y:auto}
-
-.mobile-nav.show{transform:translateX(0)}
-
-.mobile-nav.nav-hidden{
-opacity:0;
-pointer-events:none}
-
-.mobile-nav a{
-color:var(--l-dim);
-text-decoration:none;
+.page-head p{
+max-width:var(--measure);
 font-size:var(--s-1);
-letter-spacing:0.03em;
-padding:calc(var(--s-xs) * 0.6) 0;
-transition:color 0.2s ease,padding-left 0.2s ease}
+color:var(--muted);
+margin-bottom:var(--s-sm)}
 
-.mobile-nav a:hover{
-color:var(--g);
-padding-left:8px}
+.page-head .actions{margin-top:var(--s-md)}
 
-.mobile-nav h2,.mobile-nav h3{
-font-family:'Russo One',sans-serif;
-font-size:var(--s--1);
-letter-spacing:0.16em;
-color:rgba(0,204,110,0.55);
-text-transform:uppercase;
-margin-bottom:var(--s-xs);
-margin-top:var(--s-xs)}
+@media(min-width:820px){
+.page-head.has-photo{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}}
 
-.current-site{color:var(--g) !important}
+/* ─── FOTOS ──────────────────────────────────────────────── */
+.photo{
+overflow:hidden;
+background:var(--d2)}
 
-.nav-line{
-border-top:1px solid rgba(0,204,110,0.15);
-margin:var(--s-sm) 0;
-width:100%}
+.photo img{
+display:block;
+width:100%;height:100%;
+object-fit:cover}
 
-/* FOOTER */
-.footer{
-text-align:center;
-padding:var(--s-md) var(--s-sm);
-background:rgba(0,0,0,0.6);
-border-top:1px solid rgba(0,204,110,0.2);
-font-size:var(--s-0);
-color:rgba(0,204,110,0.7);
+.r-32{aspect-ratio:3/2}
+.r-45{aspect-ratio:4/5}
+.r-11{aspect-ratio:1}
+
+/* Bilder "entwickeln" sich beim Reinscrollen – nur wo der Browser
+   scroll-driven animations kann und Bewegung erwünscht ist */
+@media(prefers-reduced-motion:no-preference){
+@supports (animation-timeline:view()){
+.reveal img{
+animation:develop linear both;
+animation-timeline:view();
+animation-range:entry 0% cover 32%}}}
+
+@keyframes develop{
+from{scale:1.1;opacity:.35;filter:grayscale(1)}
+to{scale:1;opacity:1;filter:grayscale(0)}}
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+.site-footer{
 display:flex;
-flex-direction:column;
-gap:var(--s-xs)}
+flex-wrap:wrap;
+justify-content:space-between;
+gap:var(--s-sm) var(--s-md);
+padding:var(--s-md) var(--gutter);
+border-top:1px solid var(--line);
+font-size:var(--s--1);
+color:var(--faint)}
 
-.footer-link{display:flex;justify-content:center}
+.site-footer nav{display:flex;flex-wrap:wrap;gap:var(--s-sm) var(--s-md)}
+.site-footer a{color:var(--muted)}
+.site-footer a:hover{color:var(--g)}
 
-.footer-link a{
-margin:0 var(--s-xs);
-color:rgba(0,204,110,0.6);
-text-decoration:none;
-transition:color 0.2s ease}
-
-.footer-link a:hover{color:var(--g)}
-
-a:hover{text-shadow:0 0 6px var(--g-glow)}
-
-/* FADE IN */
-.fade-in{
-opacity:0;
-transform:translateY(36px) scale(0.97);
-transition:opacity 0.3s,transform 0.3s;
-will-change:opacity,transform}
-
-.fade-in.visible{
-opacity:1;
-transform:translateY(0) scale(1);
-transition:opacity 0.85s cubic-bezier(0.22,1,0.36,1),
-           transform 0.85s cubic-bezier(0.22,1,0.36,1)}
-
-/* SKELETON */
-@keyframes shimmer{
-0%{background-position:-600px 0}
-100%{background-position:600px 0}}
-
-.skeleton{
-background:linear-gradient(90deg,#111 25%,#1c1c1c 50%,#111 75%);
-background-size:600px 100%;
-animation:shimmer 1.8s ease-in-out infinite;
-border-radius:8px}
-
-.skeleton-box{
-width:100%;
-border-radius:12px;
-margin-bottom:var(--s-xl)}
-
-/* RESPONSIVE */
-@media(max-width:720px){
-.hamburger{right:var(--s-xs)}
-.hamburger svg{width:calc(var(--s-4) * .65)}
-.logo{font-size:calc(var(--s-3) * .72)}}
-
-/* SUB-HEADER: ab 750px → linksbündig mit overflow-x scroll
-   deckt alle Phones + Tablets (Portrait + Landscape) ab */
-@media(max-width:750px){
-.sub-header{
-  justify-content:flex-start;
-  gap:var(--s-sm);
-  padding:0 var(--s-sm)}}
-
-@media(max-width:420px){
-.sub-header a{
-  font-size:var(--s--1);
-  letter-spacing:0.04em}}
-
-/* HEADER: kein Flicker auf Touch-Screens
-   padding/height Transitions = Layout-Reflows. Auf Touch: GPU-safe Props only.
-   -webkit-backface-visibility verhindert GPU-Layer-Flicker. */
-@media(hover:none){
-.header{
-  -webkit-backface-visibility:hidden;
-  backface-visibility:hidden;
-  transition:border-color 0.15s ease,background 0.15s ease}
-.header-main{
-  transition:none}
-.sub-header{
-  transition:height 0.1s ease,opacity 0.1s ease}}
-
-/* PAGE TRANSITION */
-#fade{
+/* ─── BACK TO TOP ────────────────────────────────────────── */
+.to-top{
 position:fixed;
-inset:0;
-background:#000;
-pointer-events:none;
-z-index:9999;
-animation:fadeOut 0.5s ease-in forwards}
+right:var(--gutter);
+bottom:var(--s-md);
+z-index:700;
+display:grid;
+place-items:center;
+width:2.75rem;height:2.75rem;
+background:rgb(6 6 8/.85);
+border:1px solid var(--g-line);
+border-radius:2px;
+color:var(--g);
+opacity:0;
+visibility:hidden;
+transition:opacity .2s ease,visibility 0s .2s,background .15s ease}
 
-@keyframes fadeOut{
-from{opacity:1}
-to{opacity:0}}
+.to-top.show{
+opacity:1;
+visibility:visible;
+transition-delay:0s}
 
-/* HW accel */
-.header,.sub-header{
-will-change:transform;
-transform:translateZ(0)}
+.to-top:hover{background:var(--g);color:var(--d)}
 
-/* HAMBURGER: button reset – überschreibt Default-Styles wenn
-   das Element als <button> statt <div> gerendert wird */
-button.hamburger{
-background:none;
-border:none;
-font-family:inherit}
-
-/* REDUCED MOTION */
 @media(prefers-reduced-motion:reduce){
-body::before,body::after{animation:none}
-.header::before{animation:none;opacity:0.4}
-.logo::before{animation:none}
-.fade-in,.fade-in.visible{transition:opacity 0.15s;transform:none}
-#fade{animation:none;opacity:0}}
+*,*::before,*::after{
+animation-duration:.01ms !important;
+animation-iteration-count:1 !important;
+transition-duration:.01ms !important}}
+
+/* ─── IMPRINT ────────────────────────────────────────────── */
+.legal{
+max-width:46rem;
+padding-bottom:var(--section)}
+
+.legal h1{
+font-size:var(--s-3);
+color:var(--g);
+margin-block:clamp(2.5rem,7vw,5rem) var(--s-md)}
+
+.legal h2{
+font-size:var(--s-1);
+margin:var(--s-lg) 0 var(--s-xs)}
+
+.legal p,
+.legal address{
+font-style:normal;
+color:rgb(240 240 240/.86);
+margin-bottom:var(--s-sm)}

@@ -1,126 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<url>
-  <loc>https://neural-override.com/releases</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/alina-cover.webp</image:loc>
-    <image:caption>Alina – Neural Override Bedroom Rock Single, May 2026</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/releases</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/past-mistakes-cover.webp</image:loc>
-    <image:caption>Past Mistakes – Neural Override Incelcore Single feat. walkoff, Mar 2026</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/releases</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/stolen-dance-cover.webp</image:loc>
-    <image:caption>Stolen Dance – Neural Override Incelcore Cover of Milky Chance, Mar 2026</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/releases</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/get-over-it.webp</image:loc>
-    <image:caption>Get Over It – Neural Override Incelcore Single, Feb 2026</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/releases</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/afterparty-cover.webp</image:loc>
-    <image:caption>Afterparty – Neural Override Incelcore Cover of Gezebelle Gaburgably, Jan 2026</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/releases</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/i-want-you-to-stay-cover.webp</image:loc>
-    <image:caption>I Want You To Stay – Neural Override Bedroom Rock Single, Jan 2026</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/releases</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/i-know-that-i-want-you-cover.webp</image:loc>
-    <image:caption>I Know That I Want You – Neural Override Debut Incelcore Single, Nov 2025</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/members</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-neural-override-2.webp?updatedAt=1769295043125</image:loc>
-    <image:caption>Neural Override: Frontman - Producer</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/members</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-dominik.webp</image:loc>
-    <image:caption>Dominik: Feature - Web Developer - Music Theory</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/members</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-ceddo.webp</image:loc>
-    <image:caption>Ceddo: Bass - Hands</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/news</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-bass-beer-dark-purple.webp?updatedAt=1753533413162</image:loc>
-    <image:caption>Production Bass Beer Dark Purple</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/news</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-beer-flstudio-dark-purple.webp?updatedAt=1753533413180</image:loc>
-    <image:caption>Production Beer FL Studio Dark Purple</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/news</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-flstudio-dark-purple.webp?updatedAt=1753533413228</image:loc>
-    <image:caption>Production FL Studio Dark Purple</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/news</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-mixing-flstudio-purple.webp?updatedAt=1753533413162</image:loc>
-    <image:caption>Production Mixing FL Studio Purple</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/news</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/neural-override-logo-band.webp?updatedAt=1753533413107</image:loc>
-    <image:caption>Neural Override Logo Incelcore Band</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/news</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/alcoholic-therapy-song-2025-cover.webp?updatedAt=1753533412992</image:loc>
-    <image:caption>Alcoholic Therapy Song 2025 Album Cover Incelcore</image:caption>
-  </image:image>
-</url>
-<url>
-  <loc>https://neural-override.com/news</loc>
-  <image:image>
-    <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/alcoholic-therapy-demo-2025-cover.webp?updatedAt=1753533413150</image:loc>
-    <image:caption>Alcoholic Therapy Song 2025 Album Cover Incelcore</image:caption>
-  </image:image>
-</url>
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://neural-override.com/</loc>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/main-band-horizontal.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/band-vertical.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/band-picture.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/neuro-ceddo-guitar-crossing.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/ceddo-aura-farming-outside.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/neuro-ceddo-back-on-back.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://neural-override.com/members</loc>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/band-tucked-vertical.webp?tr=rt-270</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-neuro.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-dominik.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/profile-ceddo.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/dominik-goofy.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/ceddo-goofy-singing.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/neuro-ceddo-aiming-guitars.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/ceddo-singing-with-alcohol.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/band-picture-blurry.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://neural-override.com/releases</loc>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/ceddo-aura-farming.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/alina-cover.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/past-mistakes-cover.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/stolen-dance-cover.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/get-over-it.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/afterparty-cover.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/i-want-you-to-stay-cover.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/i-know-that-i-want-you-cover.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://neural-override.com/news</loc>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/main-band-horizontal.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/band-vertical.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/neuro-ceddo-back-on-back.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/neuro-ceddo-guitar-crossing.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/ceddo-aura-farming-outside.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/alcoholic-therapy-song-2025-cover.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/alcoholic-therapy-demo-2025-cover.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-flstudio-dark-purple.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-beer-flstudio-dark-purple.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-mixing-flstudio-purple.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/production-bass-beer-dark-purple.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://ik.imagekit.io/ggcm4pyrd/images/neural-override-logo-band.webp</image:loc>
+    </image:image>
+  </url>
 </urlset>
